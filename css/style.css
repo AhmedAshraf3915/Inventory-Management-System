@@ -28,6 +28,7 @@
    --text-light: #d1d5db;
    --text-white: #ffffff;
    --text-over: #0F172A;
+   --text-header: #64748B;
 
    /* =========================
      BORDERS / LINES
@@ -169,7 +170,7 @@ textarea {
 /* ////////  Sign In //////// */
 
 .card {
-   background-color:white;
+   background-color: white;
    border: 1px solid var(--border-soft);
    box-shadow: var(--shadow-md);
 }
@@ -182,7 +183,7 @@ textarea {
    width: 40px;
    height: auto;
    background-color: var(--primary);
-   margin: var(--space-1); 
+   margin: var(--space-1);
    border-radius: var(--radius-sm);
 }
 
@@ -197,19 +198,21 @@ textarea {
 }
 
 .loginForm .card-text {
-   color: #64748B;
+   color: var(--text-header);
 }
 
 .card-body img {
    width: 100%;
    height: 250px;
 }
-.chartUnderImg{
-    width: 100%;
-   height:100%;
-   background:var(--secondary-gradient) ;
+
+.chartUnderImg {
+   width: 100%;
+   height: 100%;
+   background: var(--secondary-gradient);
    z-index: 2;
 }
+
 .bar1,
 .bar2,
 .bar3,
@@ -238,25 +241,35 @@ textarea {
 .bar5 {
    background-color: rgba(109, 13, 253, 0.5);
 }
+
 .bar6 {
    background-color: rgba(109, 13, 253, 0.2);
 }
-.circle1 , .circle2, .circle3{
+
+.circle1,
+.circle2,
+.circle3 {
    width: 5%;
    height: 5%;
 }
-.circle2, .circle3{
+
+.circle2,
+.circle3 {
    margin-left: -10px;
 }
-.circle1{
+
+.circle1 {
    background-color: #E2E8F0;
 }
-.circle2{
+
+.circle2 {
    background-color: #CBD5E1;
 }
-.circle3{
+
+.circle3 {
    background-color: #94A3B8;
 }
+
 .btn-sign {
    color: var(--text-white);
    background-color: var(--primary);
@@ -266,4 +279,79 @@ textarea {
    box-shadow: 0px 4px 6px -4px #6D0DFD40;
    background-color: var(--primary-hover);
    color: var(--text-white);
+}
+
+
+/* /////////////////////// Suppliers ////////////////////////// */
+.titleUp {
+   color: var(--text-over);
+}
+
+.titleDown {
+   color: var(--text-header);
+}
+
+.suplier {
+   background-color: var(--bg-page);
+}
+
+.suplier table thead th {
+   background-color: var(--bg-soft) !important;
+}
+
+.suplier i {
+   color: #94A3B8;
+}
+
+.sorting img {
+   width: 30px;
+   height: auto;
+}
+
+.statusActive {
+   height: 20px;
+   background-color: var(--success-bg);
+   color: var(--success-dark);
+}
+
+.dotColor {
+   background-color: var(--success-dark);
+}
+
+.statusInactive {
+   height: 20px;
+   background-color: #F1F5F9;
+   color: var(--text-secondary);
+}
+
+.statusInactive .dotColor {
+   background-color: var(--text-secondary);
+}
+
+.card-footer a {
+   color: var(--text-over);
+}
+
+.suplier .page-active {
+   color: var(--text-white);
+   background-color: var(--primary);
+}
+
+.suplier .firstLatter {
+   width: 40px;
+   height: 35px;
+   background-color: rgba(109, 13, 253, 0.1);
+   color: var(--primary);
+}
+
+.suplier tbody td a,
+.suplier .modal-footer .cancle {
+   color: var(--primary);
+}
+
+.suplier .modal input,
+.suplier .modal textarea,
+.suplier .modal select {
+   border: 1px solid rgba(109, 13, 253, 0.2);
+   color: var(--text-secondary);
 }
