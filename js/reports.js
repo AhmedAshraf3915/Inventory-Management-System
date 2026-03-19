@@ -1,1 +1,2 @@
 renderNavbar("Reports");
+renderFooter()

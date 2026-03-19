@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/suppliers.css">
 </head>
 
 <body>
@@ -24,9 +25,9 @@
           <p class="titleUp fw-bold fs-1">Suppliers</p>
           <p class="titleDown p-0">Centralized directory to manage your supply chain partners.</p>
         </div> <!--title-->
-        <div class="exports p-3 col-12 col-md-4">
-          <button class="btn bg-white me-2 ms-md-2"><i class="fa-solid fa-download text-dark"></i> Exports</button>
-          <button class="btn btn-sign px-2 ms-2 my-md-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class="exports p-3 col-12 col-md-4 d-flex justify-content-evenly align-items-center">
+          <button class="btn bg-white"><i class="fa-solid fa-download text-dark"></i> Exports</button>
+          <button class="btn btn-sign" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fa-solid fa-plus text-light"></i> Add Supplier </button>
         </div> <!--exports-->
       </div> <!--flexAll-->
@@ -38,8 +39,8 @@
                 <span class="input-group-text" id="inputGroupPrepend2"><i
                     class="fa-solid fa-magnifying-glass"></i></span>
                 <input type="search" placeholder=' Search by supplier name, contact person or email...'
-                  class="form-control p-2" id="validationDefaultUsername"
-                  aria-describedby="inputGroupPrepend2" required>
+                  class="form-control p-2" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2"
+                  required>
               </div> <!--input-group-->
             </div>
             <div class="col-2">
@@ -89,9 +90,9 @@
                     <td><a href="http://gmail.com">sarah@globallog.com</a></td>
                     <td>123 Port St, Long Be…</td>
                     <td>
-                      <div class="statusActive rounded-pill d-flex justify-content-center">
-                        <div class="dotColor rounded-circle p-1 mt-2 me-1" style="width: 5%; height: 5%;"></div>
-                        <p>Active</p>
+                      <div class="statusActive">
+                        <span class="dotColor"></span>
+                        <span>Active</span>
                       </div>
                     </td>
                     <td><button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
@@ -111,10 +112,11 @@
                     <td><a href="http://gmail.com">sarah@globallog.com</a></td>
                     <td>123 Port St, Long Be…</td>
                     <td>
-                      <div class="statusInactive rounded-pill d-flex justify-content-center">
-                        <div class="dotColor rounded-circle p-1 mt-2 me-1" style="width: 5%; height: 5%;"></div>
-                        <p>Inactive</p>
+                      <div class="statusInactive">
+                        <span class="dotColor"></span>
+                        <span>Inactive</span>
                       </div>
+                    </td>
                     </td>
                     <td>
                       <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
@@ -180,16 +182,16 @@
 
               <div class="d-flex">
                 <div class="col-md-6 mx-1">
-                  <label for="inputPassword4" class="form-label">Email</label>
+                  <label for="inputPassword4" class="form-label">Phone</label>
                   <input type="password" class="form-control" id="inputPassword4" placeholder="+1 (555) 000-0000">
                 </div> <!--email-->
 
                 <div class="col-md-6 mx-1">
-                  <label for="inputEmail4" class="form-label">Password</label>
+                  <label for="inputEmail4" class="form-label">Email</label>
                   <input type="email" class="form-control" id="inputEmail4" placeholder="supplier@example.com">
                 </div> <!--password-->
               </div>
-              <div class="mb-3 col-12">
+              <div class="mb-3 col-12 my-1">
                 <label for="exampleFormControlInput1" class="form-label">Supplier Status</label>
                 <select class="form-select form-select-lg px-2 mx-2" aria-label=".form-select-lg example">
                   <option selected value="active">Active</option>
@@ -197,7 +199,7 @@
                 </select> <!--select-->
               </div><!--Name-->
 
-              <div class="mb-3 col-12">
+              <div class="mb-3 col-12 my-1">
                 <label for="exampleFormControlInput1" class="form-label">Physical Address</label>
                 <textarea type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Enter physical street address, city, and zip code"></textarea>
@@ -219,7 +221,7 @@
 
 
 
-
+  <footer id="footer"></footer>
   <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/utils.js"></script>

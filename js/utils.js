@@ -69,3 +69,12 @@ function renderNavbar(activePage) {
   document.getElementById("top-navbar").innerHTML = topNavbar;
   document.getElementById("second-navbar").innerHTML = secondNavbar;
 }
+
+function renderFooter() {
+  const footer = `
+    <div class="container">
+      <p>copyright@invenTrack.com</p>
+    </div>
+ `
+  document.getElementById('footer').innerHTML = footer;
+}

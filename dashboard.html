@@ -4,11 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Categories Page</title>
+  <title>Dashboard Page</title>
   <!-- CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
       <div class="main-content w-100">
         <div class="page-title">
           <h1 class="fw-bold">Dashboard Overview</h1>
-          <small>Welcome Back. Here's what's happening in your inventory today.</small>
+          <p class="m-0">Welcome Back. Here's what's happening in your inventory today.</p>
         </div>
         <div class="summary-cards d-flex gap-5 w-100">
           <div class="card">
@@ -150,7 +151,7 @@
             </div>
             <div class="low-stock-card">
               <div class="table-responsive">
-                <table class="table align-middle">
+                <table class="table">
                   <thead>
                     <tr>
                       <th>Product Name</th>
@@ -161,7 +162,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="tableBody">
                     <tr>
                       <td>
                         <div class="product-cell">
@@ -274,12 +275,8 @@
     </div>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>copyright@invenTrack.com</p>
-    </div>
-  </footer>
-  
+  <footer id="footer"></footer>
+
   <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/utils.js"></script>

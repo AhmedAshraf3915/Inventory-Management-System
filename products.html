@@ -1,21 +1,157 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products Page</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <div id="top-navbar"></div>
-    <div id="second-navbar"></div>
 
-    <!-- Scripts -->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/products.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products Page</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/products.css">
+</head>
+
+<body>
+  <div id="top-navbar"></div>
+  <div id="second-navbar"></div>
+
+  <main>
+    <div class="container">
+      <div class="main-content w-100 mt-4">
+        <div class="page-header d-flex align-items-center justify-content-between my-5">
+          <div class="page-title">
+            <h1 class="mb-1 fw-bold">Products</h1>
+            <p class="m-0">Manage all products and stock level</p>
+          </div>
+          <div class="exports">
+            <button class="export-btn" id="exportBtn"><i class="fa-solid fa-download"></i> Export</button>
+            <button class="add-product" id="addProduct"><i class="fa-solid fa-plus"></i> Add Product</button>
+          </div>
+        </div>
+        <div class="products-card">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</t>
+                <th>Status</t>
+                <th colspan="2">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="table-body" id="tableBody">
+              <tr>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-icon">
+                      <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="product-info">
+                      <h6>Watch</h6>
+                    </div>
+                  </div>
+                </td>
+                <td>Accessories</td>
+                <td id="price">2000</td>
+                <td id="stock">80</td>
+                <td id="status in-stock"><i class="fa-solid fa-circle"></i> In Stock</td>
+                <td id="addStock">Add Stock</td>
+                <td id="removeProduct">Remove</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-icon">
+                      <i class="fa-solid fa-pen"></i>
+                    </div>
+                    <div class="product-info">
+                      <h6>Pen</h6>
+                    </div>
+                  </div>
+                </td>
+                <td>Stationery</td>
+                <td id="price">2000</td>
+                <td id="stock">80</td>
+                <td id="status in-stock"><i class="fa-solid fa-circle"></i> In Stock</td>
+                <td id="addStock">Add Stock</td>
+                <td id="removeProduct">Remove</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-icon">
+                      <i class="fa-solid fa-keyboard"></i>
+                    </div>
+                    <div class="product-info">
+                      <h6>Mechanical Keyboard</h6>
+                    </div>
+                  </div>
+                </td>
+                <td>Electronics</td>
+                <td id="price">2000</td>
+                <td id="stock">80</td>
+                <td id="status in-stock"><i class="fa-solid fa-circle"></i> In Stock</td>
+                <td id="addStock">Add Stock</td>
+                <td id="removeProduct">Remove</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-icon">
+                      <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div class="product-info">
+                      <h6>Storage Case</h6>
+                    </div>
+                  </div>
+                </td>
+                <td>Storage</td>
+                <td id="price">2000</td>
+                <td id="stock">80</td>
+                <td id="status in-stock"><i class="fa-solid fa-circle"></i> In Stock</td>
+                <td id="addStock">Add Stock</td>
+                <td id="removeProduct">Remove</td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="product-cell">
+                    <div class="product-icon">
+                      <i class="fa-solid fa-headphones"></i>
+                    </div>
+                    <div class="product-info">
+                      <h6>Studio Headphones</h6>
+                    </div>
+                  </div>
+                </td>
+                <td>Audio</td>
+                <td id="price">2000</td>
+                <td id="stock">80</td>
+                <td id="status out-of-stock"><i class="fa-solid fa-circle"></i> In Stock</td>
+                <td id="addStock">Add Stock</td>
+                <td id="removeProduct">Remove</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <footer id="footer"></footer>
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/products.js"></script>
+</body>
+
 </html>
