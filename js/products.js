@@ -1,0 +1,2 @@
+renderNavbar("Products");
+renderFooter()

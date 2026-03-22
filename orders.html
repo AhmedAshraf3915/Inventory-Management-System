@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders Page</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/orders.css" />
+  </head>
+
+  <body class="orders-page">
+    <div id="top-navbar"></div>
+    <div id="second-navbar"></div>
+
+    <main class="orders-content">
+      <div class="container-fluid px-3 px-md-4 px-lg-5">
+        <!-- Header -->
+        <div
+          class="orders-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3"
+        >
+          <div>
+            <h1 class="orders-title">Purchase Orders</h1>
+            <p class="orders-subtitle mb-0">Manage orders from suppliers</p>
+          </div>
+
+          <button class="btn create-order-btn" data-bs-toggle="modal" data-bs-target="#createOrderModal">
+            <i class="fa-solid fa-plus"></i>
+            <span>Create Order</span>
+          </button>
+        </div>
+
+        <!-- Search -->
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input
+            type="text"
+            class="form-control order-search-input"
+            placeholder="Search by Order ID or Supplier..."
+          />
+        </div>
+
+        <!-- Desktop / Tablet Table -->
+        <div class="orders-table-card d-none d-md-block">
+          <div class="table-responsive">
+            <table class="table orders-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>ORDER ID</th>
+                  <th>SUPPLIER</th>
+                  <th>ORDER DATE</th>
+                  <th>ITEMS COUNT</th>
+                  <th>TOTAL COST</th>
+                  <th>STATUS</th>
+                  <th class="text-center">ACTIONS</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="fw-semibold">PO-8821</td>
+                  <td>
+                    <a href="#" class="supplier-link">Global Tech Solutions</a>
+                  </td>
+                  <td>Oct 24, 2023</td>
+                  <td>12</td>
+                  <td class="fw-semibold">$4,200.00</td>
+                  <td>
+                    <span class="status-badge pending">
+                      <span class="dot"></span> Pending
+                    </span>
+                  </td>
+                  <td>
+                    <div class="actions d-flex justify-content-center gap-3">
+                      <button class="action-btn view">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                      <button class="action-btn edit">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      </button>
+                      <button class="action-btn delete">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="fw-semibold">PO-8820</td>
+                  <td><a href="#" class="supplier-link">Acme Corp</a></td>
+                  <td>Oct 22, 2023</td>
+                  <td>5</td>
+                  <td class="fw-semibold">$1,150.00</td>
+                  <td>
+                    <span class="status-badge received">
+                      <span class="dot"></span> Received
+                    </span>
+                  </td>
+                  <td>
+                    <div class="actions d-flex justify-content-center gap-3">
+                      <button class="action-btn view">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                      <button class="action-btn edit">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      </button>
+                      <button class="action-btn delete">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="fw-semibold">PO-8819</td>
+                  <td><a href="#" class="supplier-link">Logistics Hub</a></td>
+                  <td>Oct 20, 2023</td>
+                  <td>24</td>
+                  <td class="fw-semibold">$8,900.50</td>
+                  <td>
+                    <span class="status-badge pending">
+                      <span class="dot"></span> Pending
+                    </span>
+                  </td>
+                  <td>
+                    <div class="actions d-flex justify-content-center gap-3">
+                      <button class="action-btn view">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                      <button class="action-btn edit">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      </button>
+                      <button class="action-btn delete">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="fw-semibold">PO-8818</td>
+                  <td>
+                    <a href="#" class="supplier-link">Office Supplies Co</a>
+                  </td>
+                  <td>Oct 18, 2023</td>
+                  <td>8</td>
+                  <td class="fw-semibold">$420.00</td>
+                  <td>
+                    <span class="status-badge received">
+                      <span class="dot"></span> Received
+                    </span>
+                  </td>
+                  <td>
+                    <div class="actions d-flex justify-content-center gap-3">
+                      <button class="action-btn view">
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                      <button class="action-btn edit">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      </button>
+                      <button class="action-btn delete">
+                        <i class="fa-regular fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div
+            class="table-footer d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3"
+          >
+            <p class="results-text mb-0">Showing 1 to 4 of 28 orders</p>
+
+            <div class="pagination-custom d-flex align-items-center gap-2">
+              <button class="page-btn">
+                <i class="fa-solid fa-angle-left"></i>
+              </button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">
+                <i class="fa-solid fa-angle-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Cards -->
+        <div class="orders-mobile d-block d-md-none">
+          <div class="order-mobile-card">
+            <div class="mobile-top">
+              <div>
+                <h6 class="mb-1">PO-8821</h6>
+                <a href="#" class="supplier-link">Global Tech Solutions</a>
+              </div>
+              <span class="status-badge pending">
+                <span class="dot"></span> Pending
+              </span>
+            </div>
+
+            <div class="mobile-details">
+              <div><strong>Date:</strong> Oct 24, 2023</div>
+              <div><strong>Items:</strong> 12</div>
+              <div><strong>Total:</strong> $4,200.00</div>
+            </div>
+
+            <div class="actions mobile-actions">
+              <button class="action-btn view">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+              <button class="action-btn edit">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+              <button class="action-btn delete">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="order-mobile-card">
+            <div class="mobile-top">
+              <div>
+                <h6 class="mb-1">PO-8820</h6>
+                <a href="#" class="supplier-link">Acme Corp</a>
+              </div>
+              <span class="status-badge received">
+                <span class="dot"></span> Received
+              </span>
+            </div>
+
+            <div class="mobile-details">
+              <div><strong>Date:</strong> Oct 22, 2023</div>
+              <div><strong>Items:</strong> 5</div>
+              <div><strong>Total:</strong> $1,150.00</div>
+            </div>
+
+            <div class="actions mobile-actions">
+              <button class="action-btn view">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+              <button class="action-btn edit">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+              <button class="action-btn delete">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="order-mobile-card">
+            <div class="mobile-top">
+              <div>
+                <h6 class="mb-1">PO-8819</h6>
+                <a href="#" class="supplier-link">Logistics Hub</a>
+              </div>
+              <span class="status-badge pending">
+                <span class="dot"></span> Pending
+              </span>
+            </div>
+
+            <div class="mobile-details">
+              <div><strong>Date:</strong> Oct 20, 2023</div>
+              <div><strong>Items:</strong> 24</div>
+              <div><strong>Total:</strong> $8,900.50</div>
+            </div>
+
+            <div class="actions mobile-actions">
+              <button class="action-btn view">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+              <button class="action-btn edit">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+              <button class="action-btn delete">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="order-mobile-card">
+            <div class="mobile-top">
+              <div>
+                <h6 class="mb-1">PO-8818</h6>
+                <a href="#" class="supplier-link">Office Supplies Co</a>
+              </div>
+              <span class="status-badge received">
+                <span class="dot"></span> Received
+              </span>
+            </div>
+
+            <div class="mobile-details">
+              <div><strong>Date:</strong> Oct 18, 2023</div>
+              <div><strong>Items:</strong> 8</div>
+              <div><strong>Total:</strong> $420.00</div>
+            </div>
+
+            <div class="actions mobile-actions">
+              <button class="action-btn view">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+              <button class="action-btn edit">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+              <button class="action-btn delete">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="mobile-pagination">
+            <p class="results-text mb-3">Showing 1 to 4 of 28 orders</p>
+            <div class="pagination-custom d-flex align-items-center gap-2">
+              <button class="page-btn">
+                <i class="fa-solid fa-angle-left"></i>
+              </button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">
+                <i class="fa-solid fa-angle-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!--  Modal -->
+    <div class="modal fade create-order-modal" id="createOrderModal" tabindex="-1" aria-labelledby="createOrderModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content create-order-modal-content">
+
+          <!-- Header -->
+          <div class="modal-header create-order-modal-header">
+            <div class="d-flex align-items-center gap-3">
+              <div class="modal-icon-box">
+                <i class="fa-solid fa-cart-plus"></i>
+              </div>
+              <h5 class="modal-title create-order-modal-title" id="createOrderModalLabel">Create New Order</h5>
+            </div>
+
+            <button type="button" class="btn-close custom-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body create-order-modal-body">
+            <form id="createOrderForm">
+              <div class="row g-3 mb-4">
+                <div class="col-12 col-md-6">
+                  <label for="supplierSelect" class="form-label modal-label">Supplier</label>
+                  <select id="supplierSelect" class="form-select modal-input">
+                    <option selected>Select a supplier</option>
+                    <option>Global Tech Solutions</option>
+                    <option>Acme Corp</option>
+                    <option>Logistics Hub</option>
+                    <option>Office Supplies Co</option>
+                  </select>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label for="orderDate" class="form-label modal-label">Order Date</label>
+                  <input type="date" id="orderDate" class="form-control modal-input" value="2023-10-24">
+                </div>
+              </div>
+
+              <div class="order-items-header d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <h6 class="order-items-title mb-0">ORDER ITEMS</h6>
+                <button type="button" class="btn add-row-btn" id="addProductRowBtn">
+                  <i class="fa-regular fa-circle-plus"></i>
+                  Add Product Row
+                </button>
+              </div>
+
+              <div class="items-table-wrapper mb-4">
+                <div class="table-responsive">
+                  <table class="table modal-items-table align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th>PRODUCT</th>
+                        <th>QTY</th>
+                        <th>COST</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="orderItemsBody">
+                      <tr>
+                        <td>
+                          <input type="text" class="form-control item-input" value="Wireless Mouse MX">
+                        </td>
+                        <td>
+                          <input type="number" class="form-control item-input qty-input" value="12" min="1">
+                        </td>
+                        <td>
+                          <input type="number" class="form-control item-input cost-input" value="24.99" min="0" step="0.01">
+                        </td>
+                        <td class="text-end">
+                          <button type="button" class="remove-row-btn" aria-label="Remove row">
+                            <i class="fa-regular fa-trash-can"></i>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <input type="text" class="form-control item-input" value="Mechanical Keyboard K2">
+                        </td>
+                        <td>
+                          <input type="number" class="form-control item-input qty-input" value="5" min="1">
+                        </td>
+                        <td>
+                          <input type="number" class="form-control item-input cost-input" value="89.00" min="0" step="0.01">
+                        </td>
+                        <td class="text-end">
+                          <button type="button" class="remove-row-btn" aria-label="Remove row">
+                            <i class="fa-regular fa-trash-can"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <div class="total-card">
+                  <div class="total-row small-row">
+                    <span>Subtotal</span>
+                    <span id="subtotalValue">$744.88</span>
+                  </div>
+                  <div class="total-row grand-total-row">
+                    <span>Total Cost</span>
+                    <span id="totalValue">$744.88</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Footer -->
+          <div class="modal-footer create-order-modal-footer">
+            <button type="button" class="btn modal-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn modal-save-btn">Save Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer"></footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/orders.js"></script>
+  </body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports Page</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/inventoryInsights.css" />
+  </head>
+  <body class="reports-page">
+    <div id="top-navbar"></div>
+    <div id="second-navbar"></div>
+
+    <main class="reports-content">
+      <div class="container-fluid px-3 px-md-4 px-lg-5">
+
+        <!-- Page Header -->
+        <div class="reports-header">
+          <h1 class="reports-title">Inventory Insights</h1>
+          <p class="reports-subtitle">
+            Real-time overview of your warehouse stock and valuation.
+          </p>
+        </div>
+
+        <!-- Insight Cards -->
+        <div class="row g-4 insights-row">
+
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="insight-card">
+              <div class="insight-top">
+                <div>
+                  <p class="insight-label">Low Stock Items</p>
+                </div>
+                <div class="insight-icon warning">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+              </div>
+
+              <h3 class="insight-value">12</h3>
+              <p class="insight-trend negative">
+                <i class="fa-solid fa-arrow-up"></i>
+                2 items since yesterday
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="insight-card">
+              <div class="insight-top">
+                <div>
+                  <p class="insight-label">Out of Stock</p>
+                </div>
+                <div class="insight-icon danger">
+                  <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+              </div>
+
+              <h3 class="insight-value">5</h3>
+              <p class="insight-trend positive">
+                <i class="fa-solid fa-arrow-down"></i>
+                1 items since yesterday
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="insight-card">
+              <div class="insight-top">
+                <div>
+                  <p class="insight-label">Total Inventory Value</p>
+                </div>
+                <div class="insight-icon success">
+                  <i class="fa-solid fa-money-bill-wave"></i>
+                </div>
+              </div>
+
+              <h3 class="insight-value">$452,300.00</h3>
+              <p class="insight-trend positive">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                +5.4% this month
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="insight-card">
+              <div class="insight-top">
+                <div>
+                  <p class="insight-label">Total Products</p>
+                </div>
+                <div class="insight-icon purple">
+                  <i class="fa-regular fa-clipboard"></i>
+                </div>
+              </div>
+
+              <h3 class="insight-value">1,240</h3>
+              <p class="insight-trend purple-text">
+                + 12 new arrivals
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Low Stock Report -->
+        <section class="report-card">
+          <div class="report-card-header d-flex justify-content-between align-items-center gap-3 flex-wrap">
+            <h2 class="report-card-title mb-0">Low Stock Report</h2>
+            <a href="#" class="report-link">View All Alerts</a>
+          </div>
+
+          <div class="table-responsive d-none d-md-block">
+            <table class="table report-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>PRODUCT NAME</th>
+                  <th>SKU</th>
+                  <th>CATEGORY</th>
+                  <th>SUPPLIER</th>
+                  <th>QUANTITY</th>
+                  <th>REORDER LEVEL</th>
+                  <th>STATUS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-semibold">Pro Wireless Mouse</td>
+                  <td>ACC-WM-092</td>
+                  <td>Electronics</td>
+                  <td>TechCorp Inc.</td>
+                  <td class="qty-danger">2</td>
+                  <td>15</td>
+                  <td>
+                    <span class="table-badge critical">CRITICAL</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold">Mechanical Keyboard V2</td>
+                  <td>ACC-MK-110</td>
+                  <td>Electronics</td>
+                  <td>Global Parts Co.</td>
+                  <td class="qty-warning">8</td>
+                  <td>10</td>
+                  <td>
+                    <span class="table-badge warning">WARNING</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold">USB-C Hub Multiport</td>
+                  <td>ACC-eB-04</td>
+                  <td>Accessories</td>
+                  <td>ConnectX Ltd.</td>
+                  <td class="qty-warning">5</td>
+                  <td>20</td>
+                  <td>
+                    <span class="table-badge warning">WARNING</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile version -->
+          <div class="d-block d-md-none report-mobile-list">
+            <div class="report-mobile-item">
+              <h6>Pro Wireless Mouse</h6>
+              <p><strong>SKU:</strong> ACC-WM-092</p>
+              <p><strong>Category:</strong> Electronics</p>
+              <p><strong>Supplier:</strong> TechCorp Inc.</p>
+              <p><strong>Quantity:</strong> <span class="qty-danger">2</span></p>
+              <p><strong>Reorder Level:</strong> 15</p>
+              <span class="table-badge critical">CRITICAL</span>
+            </div>
+
+            <div class="report-mobile-item">
+              <h6>Mechanical Keyboard V2</h6>
+              <p><strong>SKU:</strong> ACC-MK-110</p>
+              <p><strong>Category:</strong> Electronics</p>
+              <p><strong>Supplier:</strong> Global Parts Co.</p>
+              <p><strong>Quantity:</strong> <span class="qty-warning">8</span></p>
+              <p><strong>Reorder Level:</strong> 10</p>
+              <span class="table-badge warning">WARNING</span>
+            </div>
+
+            <div class="report-mobile-item">
+              <h6>USB-C Hub Multiport</h6>
+              <p><strong>SKU:</strong> ACC-eB-04</p>
+              <p><strong>Category:</strong> Accessories</p>
+              <p><strong>Supplier:</strong> ConnectX Ltd.</p>
+              <p><strong>Quantity:</strong> <span class="qty-warning">5</span></p>
+              <p><strong>Reorder Level:</strong> 20</p>
+              <span class="table-badge warning">WARNING</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Inventory Value Report -->
+        <section class="report-card">
+          <div class="report-card-header d-flex justify-content-between align-items-center gap-3 flex-wrap">
+            <h2 class="report-card-title mb-0">Inventory Value Report</h2>
+
+            <select class="form-select sort-select">
+              <option selected>Sort by Total Value</option>
+              <option>Sort by Quantity</option>
+              <option>Sort by Price</option>
+            </select>
+          </div>
+
+          <div class="table-responsive d-none d-md-block">
+            <table class="table report-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>PRODUCT NAME</th>
+                  <th>SKU</th>
+                  <th>CATEGORY</th>
+                  <th>PRICE</th>
+                  <th>QUANTITY</th>
+                  <th>TOTAL VALUE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fw-semibold">UltraWide Monitor 34"</td>
+                  <td>DrP-M-M-34</td>
+                  <td>Monitors</td>
+                  <td>$549.99</td>
+                  <td>120</td>
+                  <td class="fw-bold">$65,998.80</td>
+                </tr>
+                <tr>
+                  <td class="fw-semibold">Ergonomic Office Chair</td>
+                  <td>CHR-OC-12</td>
+                  <td>Furniture</td>
+                  <td>$299.00</td>
+                  <td>85</td>
+                  <td class="fw-bold">$25,415.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="d-block d-md-none report-mobile-list">
+            <div class="report-mobile-item">
+              <h6>UltraWide Monitor 34"</h6>
+              <p><strong>SKU:</strong> DrP-M-M-34</p>
+              <p><strong>Category:</strong> Monitors</p>
+              <p><strong>Price:</strong> $549.99</p>
+              <p><strong>Quantity:</strong> 120</p>
+              <p><strong>Total Value:</strong> <span class="fw-bold">$65,998.80</span></p>
+            </div>
+
+            <div class="report-mobile-item">
+              <h6>Ergonomic Office Chair</h6>
+              <p><strong>SKU:</strong> CHR-OC-12</p>
+              <p><strong>Category:</strong> Furniture</p>
+              <p><strong>Price:</strong> $299.00</p>
+              <p><strong>Quantity:</strong> 85</p>
+              <p><strong>Total Value:</strong> <span class="fw-bold">$25,415.00</span></p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/reports.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2 @@
+renderNavbar("Dashboard");
+renderFooter()

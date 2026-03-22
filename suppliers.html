@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suppliers Page</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/suppliers.css">
+</head>
+
+<body>
+  <div id="top-navbar"></div>
+  <div id="second-navbar"></div>
+
+  <!-- /////////////////// Suppliers Management ///////////////// -->
+
+  <div class="container mt-5">
+    <div class="border-0 suplier col-sm-12 w-100">
+      <div class="d-flex flex-column flex-md-row justify-content-between p-4">
+        <div class="title col-12 col-md-8">
+          <p class="titleUp fw-bold fs-1">Suppliers</p>
+          <p class="titleDown p-0">Centralized directory to manage your supply chain partners.</p>
+        </div> <!--title-->
+        <div class="exports p-3 col-12 col-md-4 d-flex justify-content-evenly align-items-center">
+          <button class="btn bg-white"><i class="fa-solid fa-download text-dark"></i> Exports</button>
+          <button class="btn btn-sign" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fa-solid fa-plus text-light"></i> Add Supplier </button>
+        </div> <!--exports-->
+      </div> <!--flexAll-->
+      <div class="card-body">
+        <div class="card p-4 col-sm-12">
+          <div class="row g-2 d-flex justify-content-evenly">
+            <div class="col-9">
+              <div class="input-group rounded-3">
+                <span class="input-group-text" id="inputGroupPrepend2"><i
+                    class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="search" placeholder=' Search by supplier name, contact person or email...'
+                  class="form-control p-2" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2"
+                  required>
+              </div> <!--input-group-->
+            </div>
+            <div class="col-2">
+              <select class="form-select form-select-lg py-1 px-2 rounded-3 " aria-label=".form-select-lg example">
+                <option selected>Status: All</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="15">25</option>
+                <option value="15">50</option>
+                <option value="15">75</option>
+                <option value="15">100</option>
+              </select> <!--select-->
+            </div>
+            <div class="col-1">
+              <div class="sorting border text-center py-1 px-2 rounded-3 " style="height: 40px; width: 40px;">
+                <img src="./assets/IconSort.png" class="m-auto mt-2">
+              </div> <!--sorting-->
+            </div>
+          </div> <!--flex-->
+
+          <div class="card-body w-100">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col">id</th> -->
+                    <th scope="col">Supplier Name</th>
+                    <th scope="col">Contact Person</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="p-2">
+                      <div class="d-flex justify-content-start text-center">
+                        <div class="firstLatter rounded-4 text-center p-2">GL</div>
+                        <p class="p-2">Global Logistics</p>
+                      </div>
+                    </td>
+                    <td>Sarah Chen</td>
+                    <td>+1 555- 0101</td>
+                    <td><a href="http://gmail.com">sarah@globallog.com</a></td>
+                    <td>123 Port St, Long Be…</td>
+                    <td>
+                      <div class="statusActive">
+                        <span class="dotColor"></span>
+                        <span>Active</span>
+                      </div>
+                    </td>
+                    <td><button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                          class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex justify-content-start">
+                        <div class="firstLatter rounded-4 text-center p-2">GL</div>
+                        <p class="p-2">Global Logistics</p>
+                      </div>
+                    </td>
+                    <td>Sarah Chen</td>
+                    <td>+1 555- 0101</td>
+                    <td><a href="http://gmail.com">sarah@globallog.com</a></td>
+                    <td>123 Port St, Long Be…</td>
+                    <td>
+                      <div class="statusInactive">
+                        <span class="dotColor"></span>
+                        <span>Inactive</span>
+                      </div>
+                    </td>
+                    </td>
+                    <td>
+                      <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                          class="fa-solid fa-pen-to-square"></i></button>
+                      <button class="btn"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div> <!--card-body-->
+          <div class="d-flex justify-content-between p-2 mt-1">
+            <p>Showing 1 to 5 of 42 suppliers</p>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination border-0 rounded-3">
+                <li class="page-item p-1">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                  </a>
+                </li>
+                <li class="page-item text-center p-1"><a class="page-link page-active" href="#">1</a></li>
+                <li class="page-item p-1"><a class="page-link" href="#">2</a></li>
+                <li class="page-item p-1"><a class="page-link" href="#">3</a></li>
+                <li class="page-item p-1">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div> <!--card-footer-->
+
+        </div> <!--cardDetail-->
+
+      </div> <!--card-body-->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-evenly">
+              <div class="headerMod">
+                <h5 class="modal-title fw-bold fs-3" id="exampleModalLabel">Add/Edit Supplier</h5>
+                <p class="titleDown">
+                  Manage your supplier details and status
+                </p>
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> <!--modal-header-->
+            <div class="modal-body">
+
+              <div class="mb-3 col-12">
+                <label for="exampleFormControlInput1" class="form-label">Supplier Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1"
+                  placeholder="e.g. Global Logistics Corp">
+              </div><!--Name-->
+
+              <div class="mb-3 col-12">
+                <label for="exampleFormControlTextarea1" class="form-label">Contact Person</label>
+                <input type="text" name="" id="" placeholder="Enter contact name" class="form-control"
+                  id="exampleFormControlInput1">
+              </div> <!--contact-->
+
+              <div class="d-flex">
+                <div class="col-md-6 mx-1">
+                  <label for="inputPassword4" class="form-label">Phone</label>
+                  <input type="password" class="form-control" id="inputPassword4" placeholder="+1 (555) 000-0000">
+                </div> <!--email-->
+
+                <div class="col-md-6 mx-1">
+                  <label for="inputEmail4" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="supplier@example.com">
+                </div> <!--password-->
+              </div>
+              <div class="mb-3 col-12 my-1">
+                <label for="exampleFormControlInput1" class="form-label">Supplier Status</label>
+                <select class="form-select form-select-lg px-2 mx-2" aria-label=".form-select-lg example">
+                  <option selected value="active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select> <!--select-->
+              </div><!--Name-->
+
+              <div class="mb-3 col-12 my-1">
+                <label for="exampleFormControlInput1" class="form-label">Physical Address</label>
+                <textarea type="text" class="form-control" id="exampleFormControlInput1"
+                  placeholder="Enter physical street address, city, and zip code"></textarea>
+              </div><!--Name-->
+            </div> <!--model-body-->
+            <div class="modal-footer" style="background-color: #F7F5F880;">
+              <button type="button" class="btn bg-white cancle" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-sign px-2 ms-2">Save Supplier</button>
+            </div>
+          </div>
+        </div>
+      </div> <!--model-->
+
+    </div> <!--suplier-->
+  </div> <!--container-->
+
+
+
+
+
+
+  <footer id="footer"></footer>
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/suppliers.js"></script>
+</body>
+
+</html>

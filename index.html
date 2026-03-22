@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InvenTrack</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/">
+</head>
+
+<body>
+    <div id="top-navbar"></div>
+    <div id="second-navbar"></div>
+
+    <!-- ////////////////////// Sign In ////////////////////////// -->
+    <div class="container">
+        <div class="card mb-3 border-0 mt-5 m-auto rounded-3" style="width: 80%;">
+            <div class="row g-0">
+
+                <div class="col-md-6 col-sm-12 left-Side">
+                    <div class="bg border-0 m-3 p-4">
+                        <div class="d-flex justify-content-start logo border-0 ms-2 col-12">
+                            <div>
+                                <img src="./assets/Icon.png" class="img-fluid p-2" alt="LOGO">
+                            </div>
+                            <p class="fs-4 fw-bold">Inventory System</p>
+                        </div> <!--card-header-->
+                        <div class="card-body border-0">
+                            <h5 class="card-title fs-3 fw-bold">Everything you need to manage stock.</h5>
+                            <p class="card-text fs-5">
+                                Manage products, suppliers, orders, and inventory insights in one centralized
+                                dashboard.
+                            </p>
+                            <div class="overlay position-relative">
+                                <img src="./assets/login.png" alt="Inventory System" class=" rounded-4">
+                                <div
+                                    class="chartUnderImg d-flex justify-content-around align-items-end rounded-4 position-absolute bottom-0 start-0 p-4 ">
+                                    <div class="bar1 rounded-top  ms-1" style="height:90px;"></div>
+                                    <div class="bar2 rounded-top  ms-1" style="height:150px;"></div>
+                                    <div class="bar3 rounded-top  ms-1" style="height:130px;"></div>
+                                    <div class="bar4 rounded-top  ms-1" style="height:200px;"></div>
+                                    <div class="bar5 rounded-top  ms-1" style="height:170px;"></div>
+                                    <div class="bar6 rounded-top  ms-1" style="height:60px;"></div>
+                                </div>
+                            </div> <!--overlay-->
+
+                        </div> <!--card-body-->
+                        <div class="border-0 p-2 footer-card d-flex justify-content-start">
+                            <div class="smallCircls d-flex justify-content-start">
+                                <div class="circle1 rounded-circle border border-white p-3"></div>
+                                <div class="circle2 rounded-circle border border-white p-3"></div>
+                                <div class="circle3 rounded-circle border border-white p-3"></div>
+                            </div> <!--smallCircls-->
+                            <p class="ms-2 mb-0 mt-1">Joined by 2,000+ logistics professionals</p>
+                        </div> <!--card-footer-->
+                    </div> <!--bg-->
+                </div> <!--col-->
+
+                <div class="col-md-6 py-5 col-sm-12">
+                    <div class="loginForm">
+                        <div class="border-0 px-4">
+                            <h5 class="card-title fs-3 fw-bold">Sign In</h5>
+                            <p class="card-text fs-5">Access your inventory dashboard to get started.</p>
+                        </div>
+                        <div class="formInput px-4 py-3">
+                            <form class="row g-2 needs-validation" novalidate>
+                                <div class="mb-3 col-12">
+                                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="name@company.com">
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <label for="exampleFormControlTextarea1" class="form-label d-flex justify-content-between">
+                                        <span>Password</span>
+                                        <a href="#">Forgot password?</a>
+                                    </label>
+                                    <input type="password" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="••••••••">
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
+                                            required>
+                                        <label class="form-check-label" for="invalidCheck">
+                                            Remember me for 30 days
+                                        </label>
+
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-sign px-4 py-2 col-12" type="submit">Sign In <i
+                                            class="fa-solid fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+                        </div> <!--formInput-->
+                        <div class="border-0 text-center p-4 col-sm-12">
+                            <p>Don't have an account? <a href="#">Contact your administrator</a></p>
+                        </div>
+                    </div>
+                </div> <!--col-->
+            </div>
+        </div> <!--card-->
+    </div> <!--container-->
+
+    <!-- Scripts -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+</body>
+
+</html>

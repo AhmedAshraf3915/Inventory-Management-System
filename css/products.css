@@ -1,0 +1,29 @@
+.export-btn {
+  padding: var(--space-3) var(--space-8);
+  color: var(--text-over);
+  border: none;
+  border-radius: var(--radius-sm);
+  outline: none;
+  background-color: white;
+  margin-right: 15px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+.export-btn:hover {
+  background-color: var(--bg-soft);
+}
+
+.add-product {
+  padding: var(--space-3) var(--space-8);
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  outline: none;
+  background-color: var(--primary);
+  margin-right: 15px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+.add-product:hover{
+	background-color: var(--primary-hover);
+}

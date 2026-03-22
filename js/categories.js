@@ -1,0 +1,2 @@
+renderNavbar("Categories");
+renderFooter()
