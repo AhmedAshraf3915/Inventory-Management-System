@@ -1,3 +1,5 @@
+// * json-server --watch db.json --port 3000
+
 // Fun for NavBar
 function renderNavbar(activePage) {
   // Top NavBar
@@ -79,8 +81,6 @@ function renderFooter() {
   document.getElementById('footer').innerHTML = footer;
 }
 
-
-
 // * Modal Helpers
 
 const closeModal = function () {
@@ -91,3 +91,30 @@ const showMoal = function () {
   modal.classList.remove('hidden')
   modalOverlay.classList.remove('hidden')
 }
+
+
+
+
+// * Search functionality (Should be suitable for all pages)
+
+
+
+
+
+
+
+// * Sort Functionality (Should be suitable for all pages)
+
+
+
+
+// * Pagination
+
+
+
+// * ID lookup
+
+
+
+
+// * Validation 

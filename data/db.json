@@ -1,0 +1,90 @@
+{
+  "products": [
+    { "id": 1, "name": "Wireless Mouse", "sku": "P-001", "categoryId": 1, "supplierId": 1, "price": 250, "cost": 180, "quantity": 50, "minStock": 10, "status": "in_stock", "description": "Optical wireless mouse", "createdAt": "2026-03-22" },
+    { "id": 2, "name": "Mechanical Keyboard", "sku": "P-002", "categoryId": 1, "supplierId": 2, "price": 1200, "cost": 950, "quantity": 8, "minStock": 10, "status": "low_stock", "description": "RGB keyboard", "createdAt": "2026-03-22" },
+    { "id": 3, "name": "Gaming Headset", "sku": "P-003", "categoryId": 1, "supplierId": 3, "price": 800, "cost": 600, "quantity": 25, "minStock": 10, "status": "in_stock", "description": "Surround sound headset", "createdAt": "2026-03-22" },
+    { "id": 4, "name": "USB Flash 32GB", "sku": "P-004", "categoryId": 1, "supplierId": 4, "price": 150, "cost": 100, "quantity": 5, "minStock": 10, "status": "low_stock", "description": "Portable storage", "createdAt": "2026-03-22" },
+
+    { "id": 5, "name": "LED Monitor 24\"", "sku": "P-005", "categoryId": 2, "supplierId": 5, "price": 3000, "cost": 2500, "quantity": 12, "minStock": 5, "status": "in_stock", "description": "Full HD monitor", "createdAt": "2026-03-22" },
+    { "id": 6, "name": "Curved Monitor 27\"", "sku": "P-006", "categoryId": 2, "supplierId": 6, "price": 5000, "cost": 4200, "quantity": 3, "minStock": 5, "status": "low_stock", "description": "Curved display", "createdAt": "2026-03-22" },
+
+    { "id": 7, "name": "Laptop Core i5", "sku": "P-007", "categoryId": 3, "supplierId": 1, "price": 15000, "cost": 13500, "quantity": 7, "minStock": 5, "status": "in_stock", "description": "Mid-range laptop", "createdAt": "2026-03-22" },
+    { "id": 8, "name": "Laptop Core i7", "sku": "P-008", "categoryId": 3, "supplierId": 2, "price": 22000, "cost": 20000, "quantity": 2, "minStock": 5, "status": "low_stock", "description": "High performance laptop", "createdAt": "2026-03-22" },
+
+    { "id": 9, "name": "Office Chair", "sku": "P-009", "categoryId": 4, "supplierId": 3, "price": 2000, "cost": 1500, "quantity": 20, "minStock": 5, "status": "in_stock", "description": "Ergonomic chair", "createdAt": "2026-03-22" },
+    { "id": 10, "name": "Desk Table", "sku": "P-010", "categoryId": 4, "supplierId": 4, "price": 3500, "cost": 2800, "quantity": 6, "minStock": 5, "status": "in_stock", "description": "Wooden desk", "createdAt": "2026-03-22" },
+
+    { "id": 11, "name": "Printer", "sku": "P-011", "categoryId": 5, "supplierId": 5, "price": 1800, "cost": 1400, "quantity": 4, "minStock": 5, "status": "low_stock", "description": "Ink printer", "createdAt": "2026-03-22" },
+    { "id": 12, "name": "Scanner", "sku": "P-012", "categoryId": 5, "supplierId": 6, "price": 1200, "cost": 900, "quantity": 10, "minStock": 5, "status": "in_stock", "description": "Flatbed scanner", "createdAt": "2026-03-22" },
+
+    { "id": 13, "name": "Router", "sku": "P-013", "categoryId": 6, "supplierId": 7, "price": 700, "cost": 500, "quantity": 15, "minStock": 5, "status": "in_stock", "description": "WiFi router", "createdAt": "2026-03-22" },
+    { "id": 14, "name": "Switch 8-Port", "sku": "P-014", "categoryId": 6, "supplierId": 8, "price": 900, "cost": 700, "quantity": 5, "minStock": 5, "status": "in_stock", "description": "Network switch", "createdAt": "2026-03-22" },
+
+    { "id": 15, "name": "External HDD 1TB", "sku": "P-015", "categoryId": 7, "supplierId": 9, "price": 2200, "cost": 1800, "quantity": 9, "minStock": 5, "status": "in_stock", "description": "External hard disk", "createdAt": "2026-03-22" },
+    { "id": 16, "name": "SSD 512GB", "sku": "P-016", "categoryId": 7, "supplierId": 10, "price": 1800, "cost": 1400, "quantity": 2, "minStock": 5, "status": "low_stock", "description": "Solid state drive", "createdAt": "2026-03-22" },
+
+    { "id": 17, "name": "Smartphone A", "sku": "P-017", "categoryId": 8, "supplierId": 1, "price": 9000, "cost": 7500, "quantity": 11, "minStock": 5, "status": "in_stock", "description": "Android phone", "createdAt": "2026-03-22" },
+    { "id": 18, "name": "Smartphone B", "sku": "P-018", "categoryId": 8, "supplierId": 2, "price": 12000, "cost": 10000, "quantity": 3, "minStock": 5, "status": "low_stock", "description": "Premium phone", "createdAt": "2026-03-22" },
+
+    { "id": 19, "name": "Tablet 10\"", "sku": "P-019", "categoryId": 9, "supplierId": 3, "price": 6000, "cost": 5000, "quantity": 7, "minStock": 5, "status": "in_stock", "description": "Android tablet", "createdAt": "2026-03-22" },
+    { "id": 20, "name": "Tablet Pro", "sku": "P-020", "categoryId": 9, "supplierId": 4, "price": 9000, "cost": 7500, "quantity": 2, "minStock": 5, "status": "low_stock", "description": "High-end tablet", "createdAt": "2026-03-22" },
+
+    { "id": 21, "name": "Power Bank", "sku": "P-021", "categoryId": 10, "supplierId": 5, "price": 400, "cost": 250, "quantity": 30, "minStock": 10, "status": "in_stock", "description": "Portable charger", "createdAt": "2026-03-22" },
+    { "id": 22, "name": "Charging Cable", "sku": "P-022", "categoryId": 10, "supplierId": 6, "price": 100, "cost": 60, "quantity": 50, "minStock": 10, "status": "in_stock", "description": "USB cable", "createdAt": "2026-03-22" },
+
+    { "id": 23, "name": "Webcam", "sku": "P-023", "categoryId": 1, "supplierId": 7, "price": 600, "cost": 400, "quantity": 9, "minStock": 5, "status": "in_stock", "description": "HD webcam", "createdAt": "2026-03-22" },
+    { "id": 24, "name": "Microphone", "sku": "P-024", "categoryId": 1, "supplierId": 8, "price": 700, "cost": 500, "quantity": 4, "minStock": 5, "status": "low_stock", "description": "Studio mic", "createdAt": "2026-03-22" },
+
+    { "id": 25, "name": "Graphics Card", "sku": "P-025", "categoryId": 3, "supplierId": 9, "price": 15000, "cost": 13000, "quantity": 1, "minStock": 3, "status": "low_stock", "description": "GPU", "createdAt": "2026-03-22" },
+    { "id": 26, "name": "RAM 16GB", "sku": "P-026", "categoryId": 3, "supplierId": 10, "price": 2000, "cost": 1600, "quantity": 14, "minStock": 5, "status": "in_stock", "description": "DDR4 RAM", "createdAt": "2026-03-22" },
+
+    { "id": 27, "name": "CPU Cooler", "sku": "P-027", "categoryId": 3, "supplierId": 1, "price": 500, "cost": 350, "quantity": 6, "minStock": 5, "status": "in_stock", "description": "Cooling fan", "createdAt": "2026-03-22" },
+    { "id": 28, "name": "Motherboard", "sku": "P-028", "categoryId": 3, "supplierId": 2, "price": 4000, "cost": 3200, "quantity": 3, "minStock": 5, "status": "low_stock", "description": "Main board", "createdAt": "2026-03-22" },
+
+    { "id": 29, "name": "Projector", "sku": "P-029", "categoryId": 2, "supplierId": 3, "price": 8000, "cost": 7000, "quantity": 5, "minStock": 5, "status": "in_stock", "description": "HD projector", "createdAt": "2026-03-22" },
+    { "id": 30, "name": "HDMI Cable", "sku": "P-030", "categoryId": 1, "supplierId": 4, "price": 150, "cost": 90, "quantity": 40, "minStock": 10, "status": "in_stock", "description": "HDMI cable", "createdAt": "2026-03-22" },
+
+    { "id": 31, "name": "Smart Watch", "sku": "P-031", "categoryId": 8, "supplierId": 5, "price": 3000, "cost": 2500, "quantity": 6, "minStock": 5, "status": "in_stock", "description": "Wearable device", "createdAt": "2026-03-22" },
+    { "id": 32, "name": "Bluetooth Speaker", "sku": "P-032", "categoryId": 8, "supplierId": 6, "price": 1200, "cost": 900, "quantity": 8, "minStock": 5, "status": "in_stock", "description": "Portable speaker", "createdAt": "2026-03-22" },
+
+    { "id": 33, "name": "Camera", "sku": "P-033", "categoryId": 9, "supplierId": 7, "price": 10000, "cost": 8500, "quantity": 2, "minStock": 3, "status": "low_stock", "description": "Digital camera", "createdAt": "2026-03-22" },
+    { "id": 34, "name": "Tripod", "sku": "P-034", "categoryId": 9, "supplierId": 8, "price": 800, "cost": 600, "quantity": 10, "minStock": 5, "status": "in_stock", "description": "Camera stand", "createdAt": "2026-03-22" },
+
+    { "id": 35, "name": "Extension Cord", "sku": "P-035", "categoryId": 10, "supplierId": 9, "price": 200, "cost": 120, "quantity": 25, "minStock": 10, "status": "in_stock", "description": "Electric extension", "createdAt": "2026-03-22" },
+    { "id": 36, "name": "UPS", "sku": "P-036", "categoryId": 10, "supplierId": 10, "price": 2500, "cost": 2000, "quantity": 4, "minStock": 5, "status": "low_stock", "description": "Power backup", "createdAt": "2026-03-22" },
+
+    { "id": 37, "name": "Mouse Pad", "sku": "P-037", "categoryId": 1, "supplierId": 1, "price": 80, "cost": 40, "quantity": 60, "minStock": 10, "status": "in_stock", "description": "Soft pad", "createdAt": "2026-03-22" },
+    { "id": 38, "name": "Laptop Stand", "sku": "P-038", "categoryId": 1, "supplierId": 2, "price": 300, "cost": 200, "quantity": 12, "minStock": 5, "status": "in_stock", "description": "Adjustable stand", "createdAt": "2026-03-22" },
+
+    { "id": 39, "name": "Desk Lamp", "sku": "P-039", "categoryId": 4, "supplierId": 3, "price": 250, "cost": 150, "quantity": 14, "minStock": 5, "status": "in_stock", "description": "LED lamp", "createdAt": "2026-03-22" },
+    { "id": 40, "name": "Whiteboard", "sku": "P-040", "categoryId": 4, "supplierId": 4, "price": 900, "cost": 700, "quantity": 3, "minStock": 5, "status": "low_stock", "description": "Office board", "createdAt": "2026-03-22" }
+  ],
+
+  "categories": [
+    { "id": 1, "name": "Accessories" },
+    { "id": 2, "name": "Displays" },
+    { "id": 3, "name": "Computers" },
+    { "id": 4, "name": "Furniture" },
+    { "id": 5, "name": "Office Equipment" },
+    { "id": 6, "name": "Networking" },
+    { "id": 7, "name": "Storage" },
+    { "id": 8, "name": "Mobile Devices" },
+    { "id": 9, "name": "Cameras" },
+    { "id": 10, "name": "Power & Cables" }
+  ],
+
+  "suppliers": [
+    { "id": 1, "name": "Tech Source", "phone": "01000000001", "email": "s1@mail.com", "address": "Cairo" },
+    { "id": 2, "name": "Digital Hub", "phone": "01000000002", "email": "s2@mail.com", "address": "Mansoura" },
+    { "id": 3, "name": "Global Tech", "phone": "01000000003", "email": "s3@mail.com", "address": "Alexandria" },
+    { "id": 4, "name": "IT World", "phone": "01000000004", "email": "s4@mail.com", "address": "Giza" },
+    { "id": 5, "name": "Future Supplies", "phone": "01000000005", "email": "s5@mail.com", "address": "Cairo" },
+    { "id": 6, "name": "Smart Solutions", "phone": "01000000006", "email": "s6@mail.com", "address": "Tanta" },
+    { "id": 7, "name": "Network Pro", "phone": "01000000007", "email": "s7@mail.com", "address": "Mansoura" },
+    { "id": 8, "name": "Office Plus", "phone": "01000000008", "email": "s8@mail.com", "address": "Zagazig" },
+    { "id": 9, "name": "Storage Hub", "phone": "01000000009", "email": "s9@mail.com", "address": "Cairo" },
+    { "id": 10, "name": "PowerTech", "phone": "01000000010", "email": "s10@mail.com", "address": "Giza" }
+  ],
+
+  "stockMovements": []
+}
