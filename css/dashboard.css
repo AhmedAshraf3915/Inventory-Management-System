@@ -131,9 +131,6 @@
 
 .table thead th {
   background: #f3f4f6;
-  font-size: 12px;
-  text-transform: uppercase;
-  color: var(--text-secondary);
   padding: 16px;
 }
 
@@ -212,7 +209,9 @@
   display: flex;
   justify-content: space-between;
   padding: 16px;
-  border-top: 1px solid #eee;
+}
+.table-footer i {
+  color: #555 !important;
 }
 
 .pagination button {
@@ -227,4 +226,171 @@
   background: #ede9fe;
   color: #7c3aed;
   font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .summary-cards {
+    flex-wrap: wrap;
+    gap: 20px !important;
+  }
+
+  .card {
+    width: calc(50% - 10px);
+    min-width: 240px;
+  }
+  .low-wtock-preview {
+    width: 100%;
+  }
+  .low-stock-card {
+    width: 100% !important;
+  }
+  .table-responsive {
+    width: 100%;
+  }
+  .table {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-cards {
+    gap: 16px;
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .statistics {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .inventory-chart,
+  .recent-activity {
+    width: 100% !important;
+  }
+
+  .inventory-chart {
+    padding: 20px !important;
+  }
+
+  .inventory-chart .container {
+    height: auto !important;
+    flex-wrap: wrap;
+    gap: 16px 12px;
+    justify-content: center !important;
+  }
+
+  .chart-col {
+    width: 30%;
+    min-width: 80px;
+    align-items: center;
+  }
+
+  .level {
+    width: 100% !important;
+    height: 140px !important;
+    min-height: unset !important;
+  }
+
+  .chart-col small {
+    margin-top: 8px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .recent-activity {
+    padding: 20px !important;
+  }
+
+  .activities .container {
+    margin-bottom: 16px;
+  }
+
+  .activity-caption p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .activity-caption span {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
+  .low-stock-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .bulk-order-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .low-stock-card {
+    margin: 0 8px 24px;
+    border-radius: 12px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .table {
+    width: 100%;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 12px 10px;
+    font-size: 0.92rem;
+  }
+
+  .product-cell {
+    min-width: 180px;
+  }
+
+  .status {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+
+  .reorder-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .table-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 12px;
+    font-size: 0.9rem;
+  }
+
+  .pagination {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pagination button {
+    min-width: 34px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .page-title h1 {
+    font-size: 1.8rem;
+  }
+
+  .page-title p {
+    font-size: 0.95rem;
+  }
 }

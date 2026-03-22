@@ -78,3 +78,16 @@ function renderFooter() {
  `
   document.getElementById('footer').innerHTML = footer;
 }
+
+
+
+// * Modal Helpers
+
+const closeModal = function () {
+  modal.classList.add('hidden')
+  modalOverlay.classList.add('hidden')
+}
+const showMoal = function () {
+  modal.classList.remove('hidden')
+  modalOverlay.classList.remove('hidden')
+}
