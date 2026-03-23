@@ -34,8 +34,7 @@
             <i class="fa-solid fa-download text-dark"></i> Exports
           </button>
 
-          <button class="btn add-supplier" id="addSupplier" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">
+          <button class="btn add-supplier" id="addSupplier" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fa-solid fa-plus text-white"></i> Add Supplier
           </button>
         </div>
@@ -43,37 +42,35 @@
       </header> <!-- header section -->
 
 
+      <!-- section search -->
+      <section class="card p-4 border-0">
+        <form class="row g-2">
+          <div class="col-9">
+            <input type="search" class="form-control rounded-4" placeholder="Search by supplier name, contact person or email..."
+              id="searchBySupplierName">
+          </div>
+
+          <div class="col-2">
+            <select class="form-select" id="formSelect">
+              <option selected>Status: All</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div> <!--form-select-->
+
+          <div class="col-1">
+            <div class="sorting border text-center py-1 px-2 rounded-3">
+              <img src="./assets/IconSort.png" class="m-auto mt-2">
+            </div> <!--sorting-->
+          </div>
+        </form>
+      </section> <!--cardSearch-->
+
 
       <!-- Table Section -->
-      <section class="card mt-3">
+      <section class="card mt-3 supplier-card">
 
-        <!-- section search -->
-        <section class="p-4">
-          <form class="row g-2">
-            <div class="col-9">
-              <input type="search" class="form-control"
-                placeholder="Search by supplier name, contact person or email..." id="searchBySupplierN">
-            </div>
-
-            <div class="col-2">
-              <select class="form-select" id="formSelect">
-                <option selected>Status: All</option>
-                <option value="15">25</option>
-                <option value="15">50</option>
-                <option value="15">75</option>
-                <option value="15">100</option>
-              </select>
-            </div> <!--form-select-->
-
-            <div class="col-1">
-              <div class="sorting border text-center py-1 px-2 rounded-3">
-                <img src="./assets/IconSort.png" class="m-auto mt-2">
-              </div> <!--sorting-->
-            </div>
-          </form>
-        </section> <!--cardSearch-->
-
-        <div class="table-responsive mt-5">
+        <div class="table-responsive ">
           <table class="table">
 
             <thead>
@@ -89,8 +86,8 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td>
+              <!-- <tr> -->
+                <!-- <td>
                   <p> <span class="first-latter rounded-4 text-center p-2" id="firstLatter">GL</span> Global Logistics
                   </p>
                 </td>
@@ -101,8 +98,8 @@
                 <td>
                   <div id="statusActive" class="status_active">
                     <p> <span class="dot-color"> </span> Active </p>
-                  </div> <!--status_active-->
-                </td>
+                  </div> status_active -->
+                <!-- </td>
                 <td>
                   <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -124,8 +121,8 @@
                 <td>
                   <div id="statusInactive" class="status_inactive">
                     <p> <span class="dot-color"> </span> Inactive </p>
-                  </div> <!--status_active-->
-                </td>
+                  </div> status_active -->
+                <!-- </td>
                 <td>
                   <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -134,7 +131,7 @@
                     <i class="fa-solid fa-trash-can"></i>
                   </button>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
 
           </table>
@@ -166,13 +163,13 @@
     </section> <!--suplier-->
   </main>
 
-  <!-- Modal -->
+  <!--Add/Edit Suppliers Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header d-flex justify-content-evenly">
           <div class="headerMod">
-            <h5 class="modal-title fw-bold fs-3" id="exampleModalLabel">Add/Edit Supplier</h5>
+            <h2 class="modal-title fw-bold fs-3" id="exampleModalLabel">Add/Edit Supplier</h2>
             <p class="titleDown">
               Manage your supplier details and status
             </p>
@@ -183,30 +180,30 @@
 
           <div class="mb-3 col-12">
             <label for="exampleFormControlInput1" class="form-label">Supplier Name</label>
-            <input type="text" class="form-control supplier-name" id="supplierName exampleFormControlInput1"
-              placeholder="e.g. Global Logistics Corp">
+            <input type="text" class="form-control supplier-name" id="supplierName"
+              placeholder="e.g. Global Logistics Corp"/>
           </div><!--Name-->
 
           <div class="mb-3 col-12">
             <label for="exampleFormControlTextarea1" class="form-label">Contact Person</label>
-            <input type="text" id="contactPerson" placeholder="Enter contact name" class="form-control contact-person"
-              id="exampleFormControlInput1">
+            <input type="text" id="contactPerson" placeholder="Enter contact name" class="form-control contact-person">
           </div> <!--contact-->
 
           <div class="d-flex">
             <div class="col-md-6 mx-1">
-              <label for="inputPassword4" class="form-label">Email</label>
-              <input type="password" class="form-control email" id="email inputPassword4" placeholder="+1 (555) 000-0000">
+              <label for="inputPhone4" class="form-label">Phone</label>
+              <input type="text" class="form-control phone" id="Phone"
+                placeholder="+1 (555) 000-0000">
             </div> <!--email-->
 
             <div class="col-md-6 mx-1">
-              <label for="inputEmail4" class="form-label">Password</label>
-              <input type="email" class="form-control pass" id="pass inputEmail4" placeholder="supplier@example.com">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" class="form-control email " id="email" placeholder="supplier@example.com">
             </div> <!--password-->
           </div>
           <div class="mb-3 col-12">
             <label for="exampleFormControlInput1" class="form-label">Supplier Status</label>
-            <select class="form-select form-select-lg px-2 mx-2" aria-label=".form-select-lg example">
+            <select class="form-select form-select-lg px-2 mx-2" aria-label=".form-select-lg example" id="select">
               <option selected value="active">Active</option>
               <option value="Inactive">Inactive</option>
             </select> <!--select-->
@@ -214,7 +211,7 @@
 
           <div class="mb-3 col-12">
             <label for="exampleFormControlInput1" class="form-label">Physical Address</label>
-            <textarea type="text" class="form-control txt-address" id="physicalAddress exampleFormControlInput1"
+            <textarea type="text" class="form-control txt-address" id="physicalAddress"
               placeholder="Enter physical street address, city, and zip code"></textarea>
           </div><!--Name-->
         </div> <!--model-body-->
@@ -228,9 +225,12 @@
 
 
 
+  <footer id="footer"></footer>
+
   <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
   <script src="js/suppliers.js"></script>
 </body>
 

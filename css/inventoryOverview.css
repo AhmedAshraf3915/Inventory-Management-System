@@ -1,0 +1,378 @@
+/* ========================
+   Inventory Overview Styles
+   Matches dashboard.css conventions
+======================== */
+
+.page-title {
+  margin: 20px 0 10px;
+}
+
+/* Breadcrumb */
+.breadcrumb-trail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.breadcrumb-link {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+  color: var(--primary);
+}
+
+.breadcrumb-sep {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.breadcrumb-current {
+  color: var(--text-secondary);
+}
+
+/* Buttons */
+.export-btn {
+  padding: var(--space-2) var(--space-6);
+  border: 1.5px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.export-btn:hover {
+  background: var(--bg-hover);
+}
+
+.add-product-btn {
+  padding: var(--space-2) var(--space-6);
+  border: none;
+  background-color: var(--primary);
+  color: var(--text-white);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.add-product-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.import-csv-btn {
+  padding: var(--space-2) var(--space-6);
+  border: 1.5px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.import-csv-btn:hover {
+  background: var(--bg-hover);
+}
+
+/* Tab Navigation */
+.inventory-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid var(--border-light);
+  margin-bottom: 24px;
+}
+
+.inv-tab {
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-fast);
+  margin-bottom: -2px;
+}
+
+.inv-tab:hover {
+  color: var(--text-primary);
+}
+
+.inv-tab.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.inv-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px 2px 0 0;
+}
+
+/* Inventory Card */
+.inventory-card {
+  width: 100%;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px dashed var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--bg-card);
+  padding: var(--space-6);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px 32px;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 32px;
+}
+
+.empty-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--icon-purple-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.empty-icon-wrap i {
+  font-size: 28px;
+  color: var(--primary);
+}
+
+.empty-desc {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Feature hints */
+.empty-features {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding: 0 20px 16px;
+}
+
+.feature-item {
+  text-align: center;
+  max-width: 160px;
+}
+
+.feature-icon {
+  margin: 0 auto 10px;
+}
+
+.feature-icon i {
+  font-size: 22px;
+  color: var(--text-muted);
+}
+
+.feature-item h6 {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.feature-item p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Toolbar (table view) */
+.inv-table-toolbar {
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.search-wrapper {
+  max-width: 340px;
+}
+
+.search-icon {
+  color: var(--primary);
+  font-size: 15px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.filter-btn {
+  padding: var(--space-2) var(--space-4);
+  border: 1.5px solid var(--border-light);
+  background: transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  transition: var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background: var(--bg-hover);
+}
+
+/* Inventory Table */
+.inv-table thead th {
+  background: #f3f4f6;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.inv-table tbody td {
+  padding: 16px;
+  border-top: 1px solid #eee;
+  vertical-align: middle;
+}
+
+/* Table Footer & Pagination */
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid #eee;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.pagination button {
+  border: none;
+  background: none;
+  margin: 0 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.pagination button:hover {
+  background-color: var(--bg-hover);
+}
+
+.pagination .active {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* ========================
+   Modal (shared pattern)
+======================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.4);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-box {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  width: 100%;
+  max-width: 520px;
+  box-shadow: var(--shadow-md);
+  animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  background: var(--bg-soft);
+  border: none;
+  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.cat-input {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  width: 100%;
+  color: var(--text-primary);
+  background: var(--bg-soft);
+  transition: var(--transition-fast);
+}
+
+.cat-input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.cancel-btn {
+  padding: var(--space-2) var(--space-6);
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.cancel-btn:hover {
+  background: var(--bg-hover);
+}

@@ -4,10 +4,10 @@
 .suplier {
   background-color: var(--bg-page);
 }
-header > div > h1 {
+header > div > h1 , .headerMod >h2{
   color: var(--text-over);
 }
-header > div > p {
+header > div > p  , .headerMod > p{
   color: var(--text-header);
 }
 .sorting img {
@@ -18,15 +18,15 @@ header > div > p {
   height: 33px;
   width: 30px;
 }
-.suplier i {
+.page-link {
   color: #94a3b8;
 }
-.add-supplier {
+.add-supplier , .save-supplier{
   color: var(--text-white);
   background-color: var(--primary);
   transition: var(--transition-fast);
 }
-.add-supplier:hover {
+.add-supplier:hover , .save-supplier:hover {
   background-color: var(--primary-hover);
   color: var(--text-white);
 }
@@ -41,7 +41,9 @@ header > div > p {
   background-color: rgba(109, 13, 253, 0.1);
   color: var(--primary);
 }
-
+.suplier .searchBySupplierName:focus{
+    border: 2px solid rgba(109, 13, 253, 0.2);
+}
 .suplier .Page .paggination {
   border-bottom: 0;
 }
@@ -52,12 +54,41 @@ header > div > p {
 .suplier tbody tr:last-child {
   border-bottom: 0;
 }
-
-.suplier table thead th {
-  background-color: var(--bg-soft) !important;
+.supplier-card{
+   width: 100%;
+   border: none !important;
+  box-shadow: var(--shadow-md);
 }
-.suplier table tbody td {
-  padding: var(--space-2);
+.supplier-card thead th{
+  font-size: 16px;
+  padding: var(--space-4);
+   background: #f3eefb;
+  color: #64748b;
+}
+
+.supplier-card tbody td{
+  font-size: 15px;
+  padding: var(--space-4);
+  vertical-align: middle;
+}
+/* .supplier-card tbody td button{
+   height: 20px;
+} */
+.supplier-card #editSupplierBtn{
+   background-color: var(--primary-soft);
+   color: var(--primary);
+}
+.supplier-card #editSupplierBtn:hover{
+  background-color: var(--primary-light);
+  color: var(--text-white);
+}
+.supplier-card #deleteSupplierBtn{
+   background-color: var(--danger-bg);
+   color: var(--danger);
+}
+.supplier-card #deleteSupplierBtn:hover{
+  background-color: var(--danger);
+  color: var(--text-white);
 }
 
 .status_active,

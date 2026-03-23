@@ -101,12 +101,12 @@
   background-color: #94a3b8;
 }
 
-.add-supplier {
+.btn-sign {
   color: var(--text-white);
   background-color: var(--primary);
 }
 
-.add-supplier:hover {
+.btn-sign:hover {
   box-shadow: 0px 4px 6px -4px #6d0dfd40;
   background-color: var(--primary-hover);
   color: var(--text-white);

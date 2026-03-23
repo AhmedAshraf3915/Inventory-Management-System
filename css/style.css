@@ -146,7 +146,14 @@ textarea {
 .card {
   border-radius: var(--radius-md);
 }
-
+.dataNotMatch{
+   text-align: center;
+   color: var(--text-secondary);
+   width: 100%;
+   font-size: 18px;
+   font-weight: bold;
+   padding-top: 20px;
+}
 
 /*y NavBar */
 #second-navbar .nav-link {

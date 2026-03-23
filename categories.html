@@ -1,26 +1,267 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categories Page</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/categories.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Categories Page</title>
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+  <body>
+    <div id="top-navbar"></div>
+    <div id="second-navbar"></div>
 
-<body>
-  <div id="top-navbar"></div>
-  <div id="second-navbar"></div>
+    <main>
+      <div class="container">
+        <div class="main-content w-100">
+          <!-- Page Title -->
+          <div
+            class="page-title d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <h1 class="fw-bold">Categories</h1>
+              <p class="m-0" style="color: var(--primary)">
+                Manage product categories
+              </p>
+            </div>
+            <button class="add-category-btn" id="addCategoryBtn">
+              <i class="fa-solid fa-plus"></i> Add Category
+            </button>
+          </div>
 
+          <!-- Search Bar -->
+          <div class="search-card card mb-4">
+            <div class="search-wrapper d-flex align-items-center gap-2">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input
+                type="text"
+                id="categorySearch"
+                class="search-input"
+                placeholder="Search categories..."
+              />
+            </div>
+          </div>
 
-  <footer id="footer"></footer>
-  <!-- Scripts -->
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/categories.js"></script>
-</body>
+          <!-- Categories Table Card -->
+          <div class="categories-card card">
+            <div class="table-responsive">
+              <table class="table categories-table">
+                <thead>
+                  <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Products</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="categoriesTableBody">
+                  <tr>
+                    <td>
+                      <div class="category-cell">
+                        <div class="category-icon icon-purple-bg">
+                          <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <span class="category-name">Electronics</span>
+                      </div>
+                    </td>
+                    <td class="category-desc">
+                      High-tech gadgets, smartphones, and wearable devices.
+                    </td>
+                    <td class="products-count">124</td>
+                    <td><span class="cat-status active">Active</span></td>
+                    <td>
+                      <div class="action-btns d-flex gap-2">
+                        <button class="action-btn edit-btn" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="action-btn delete-btn" title="Delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
 
+                  <tr>
+                    <td>
+                      <div class="category-cell">
+                        <div class="category-icon icon-green-bg">
+                          <i class="fa-solid fa-couch"></i>
+                        </div>
+                        <span class="category-name">Home &amp; Garden</span>
+                      </div>
+                    </td>
+                    <td class="category-desc">
+                      Furniture, lighting, and decorative items for your space.
+                    </td>
+                    <td class="products-count">89</td>
+                    <td><span class="cat-status active">Active</span></td>
+                    <td>
+                      <div class="action-btns d-flex gap-2">
+                        <button class="action-btn edit-btn" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="action-btn delete-btn" title="Delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="category-cell">
+                        <div class="category-icon icon-yellow-bg">
+                          <i class="fa-solid fa-shirt"></i>
+                        </div>
+                        <span class="category-name">Fashion</span>
+                      </div>
+                    </td>
+                    <td class="category-desc">
+                      Latest trends in clothing, shoes, and accessories.
+                    </td>
+                    <td class="products-count">256</td>
+                    <td><span class="cat-status active">Active</span></td>
+                    <td>
+                      <div class="action-btns d-flex gap-2">
+                        <button class="action-btn edit-btn" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="action-btn delete-btn" title="Delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="category-cell">
+                        <div class="category-icon icon-blue-bg">
+                          <i class="fa-solid fa-book"></i>
+                        </div>
+                        <span class="category-name">Books</span>
+                      </div>
+                    </td>
+                    <td class="category-desc">
+                      Educational, fiction, and non-fiction physical and digital
+                      books.
+                    </td>
+                    <td class="products-count">42</td>
+                    <td><span class="cat-status inactive">Inactive</span></td>
+                    <td>
+                      <div class="action-btns d-flex gap-2">
+                        <button class="action-btn edit-btn" title="Edit">
+                          <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="action-btn delete-btn" title="Delete">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table Footer / Pagination -->
+            <div class="table-footer">
+              <span>Showing 1 to 4 of 24 categories</span>
+              <div class="pagination">
+                <button><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button><i class="fa-solid fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Add/Edit Category Modal -->
+    <div class="modal-overlay" id="categoryModal">
+      <div class="modal-box">
+        <div
+          class="modal-header d-flex justify-content-between align-items-center mb-4"
+        >
+          <h4 class="fw-bold m-0">Add New Category</h4>
+          <button class="modal-close" id="modalClose">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <label class="form-label">Category Name</label>
+            <input
+              type="text"
+              class="form-control cat-input"
+              placeholder="e.g. Electronics"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Description</label>
+            <textarea
+              class="form-control cat-input"
+              rows="3"
+              placeholder="Short description of this category..."
+            ></textarea>
+          </div>
+          <div class="form-group mb-4">
+            <label class="form-label">Status</label>
+            <select class="form-control cat-input">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+          <div class="d-flex gap-3 justify-content-end">
+            <button class="cancel-btn" id="cancelBtn">Cancel</button>
+            <button class="add-category-btn">Save Category</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer"></footer>
+
+    <!-- Scripts -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/categories.js"></script>
+    <script>
+      // Modal toggle
+      const modal = document.getElementById("categoryModal");
+      document
+        .getElementById("addCategoryBtn")
+        .addEventListener("click", () => modal.classList.add("show"));
+      document
+        .getElementById("modalClose")
+        .addEventListener("click", () => modal.classList.remove("show"));
+      document
+        .getElementById("cancelBtn")
+        .addEventListener("click", () => modal.classList.remove("show"));
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.remove("show");
+      });
+
+      // Search filter
+      document
+        .getElementById("categorySearch")
+        .addEventListener("input", function () {
+          const q = this.value.toLowerCase();
+          document
+            .querySelectorAll("#categoriesTableBody tr")
+            .forEach((row) => {
+              row.style.display = row.textContent.toLowerCase().includes(q)
+                ? ""
+                : "none";
+            });
+        });
+    </script>
+  </body>
 </html>
