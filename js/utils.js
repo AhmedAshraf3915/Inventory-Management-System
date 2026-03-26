@@ -1,4 +1,8 @@
+// * json-server --watch db.json --port 3000
+
 // Fun for NavBar
+let profileName = JSON.parse(localStorage.getItem('userName'));
+
 function renderNavbar(activePage) {
   // Top NavBar
   const topNavbar = `
@@ -14,7 +18,7 @@ function renderNavbar(activePage) {
             <div>
                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="34" height="34" class="rounded-circle border border-white" role="button" data-bs-toggle="dropdown" alt="profile" />
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">${profileName}</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li><a class="dropdown-item text-danger" href="index.html">Logout</a></li>
                 </ul>

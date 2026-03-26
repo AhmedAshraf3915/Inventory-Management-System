@@ -2,95 +2,133 @@
    SUPPLIERS PAGE
 ========================= */
 .suplier {
-   background-color: var(--bg-page);
+  background-color: var(--bg-page);
 }
-header>div>h1{
-    color: var(--text-over);
+header > div > h1 , .headerMod >h2{
+  color: var(--text-over);
 }
-header>div>p {
-   color: var(--text-header);
+header > div > p  , .headerMod > p{
+  color: var(--text-header);
 }
 .sorting img {
-   width: 30px;
-   height: 10px;
+  width: 30px;
+  height: 10px;
 }
-.sorting{
-   height: 33px;
-   width: 30px;
+.sorting {
+  height: 33px;
+  width: 30px;
 }
-.suplier i {
-   color: #94A3B8;
+.page-link {
+  color: #94a3b8;
 }
-.add-supplier{
-   color: var(--text-white);
+.add-supplier , .save-supplier{
+  color: var(--text-white);
   background-color: var(--primary);
+  transition: var(--transition-fast);
+}
+.add-supplier:hover , .save-supplier:hover {
+  background-color: var(--primary-hover);
+  color: var(--text-white);
 }
 .suplier .page-active {
-   color: var(--text-white);
-   background-color: var(--primary);
+  color: var(--text-white);
+  background-color: var(--primary);
 }
 
 .suplier .first-latter {
-   width: 40px;
-   height: 35px;
-   background-color: rgba(109, 13, 253, 0.1);
-   color: var(--primary);
+  width: 40px;
+  height: 35px;
+  background-color: rgba(109, 13, 253, 0.1);
+  color: var(--primary);
 }
-
-.suplier .Page .paggination{
-   border-bottom: 0;
+.suplier .searchBySupplierName:focus{
+    border: 2px solid rgba(109, 13, 253, 0.2);
+}
+.suplier .Page .paggination {
+  border-bottom: 0;
 }
 .suplier tbody td a,
 .suplier .modal-footer .cancle {
+  color: var(--primary);
+}
+.suplier tbody tr:last-child {
+  border-bottom: 0;
+}
+.supplier-card{
+   width: 100%;
+   border: none !important;
+  box-shadow: var(--shadow-md);
+}
+.supplier-card thead th{
+  font-size: 16px;
+  padding: var(--space-4);
+   background: #f3eefb;
+  color: #64748b;
+}
+
+.supplier-card tbody td{
+  font-size: 15px;
+  padding: var(--space-4);
+  vertical-align: middle;
+}
+/* .supplier-card tbody td button{
+   height: 20px;
+} */
+.supplier-card #editSupplierBtn{
+   background-color: var(--primary-soft);
    color: var(--primary);
 }
-.suplier tbody tr:last-child{
-   border-bottom: 0;
+.supplier-card #editSupplierBtn:hover{
+  background-color: var(--primary-light);
+  color: var(--text-white);
+}
+.supplier-card #deleteSupplierBtn{
+   background-color: var(--danger-bg);
+   color: var(--danger);
+}
+.supplier-card #deleteSupplierBtn:hover{
+  background-color: var(--danger);
+  color: var(--text-white);
 }
 
-.suplier table thead th {
-   background-color: var(--bg-soft) !important;
-}
-.suplier table tbody td{
-   padding: var(--space-2);
-}
-
-.status_active , .status_inactive{
-   height: 20px;
-   border-radius: var(--space-2);
+.status_active,
+.status_inactive {
+  height: 20px;
+  border-radius: var(--space-2);
 }
 
 .status_active {
-   background-color: var(--success-bg);
-   color: var(--success-dark);
+  background-color: var(--success-bg);
+  color: var(--success-dark);
 }
 .status_inactive {
-   background-color: #F1F5F9;
-   color: var(--text-secondary);
+  background-color: #f1f5f9;
+  color: var(--text-secondary);
 }
-.status_active p , .status_inactive p{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 3px;
+.status_active p,
+.status_inactive p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }
-.dot-color{
-     width: 8px ;
-   height: 8px;
-   border-radius: 50%;
-   display: inline-block;
-   padding: var(--space-1);
+.dot-color {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  padding: var(--space-1);
 }
-.status_active .dot-color{
-   background-color: var(--success-dark);
+.status_active .dot-color {
+  background-color: var(--success-dark);
 }
-.status_inactive .dot-color { 
-   background-color: var(--text-secondary);
+.status_inactive .dot-color {
+  background-color: var(--text-secondary);
 }
 
 .suplier .modal input,
 .suplier .modal textarea,
 .suplier .modal select {
-   border: 1px solid rgba(109, 13, 253, 0.2);
-   color: var(--text-secondary);
+  border: 1px solid rgba(109, 13, 253, 0.2);
+  color: var(--text-secondary);
 }
