@@ -253,14 +253,13 @@ function validateInputs(regexForValidInput, NameInputValidate, messageShowForUse
 
 function validateSelect(selectValidate) {
 
-  if (selectValidate.value == '') {
+  if (selectValidate.value === '') {
     selectValidate.setCustomValidity('please select value')
     selectValidate.reportValidity();
   }
 
   else {
     selectValidate.setCustomValidity("");
-    selectValidate.reportValidity()
   }
 
 }
