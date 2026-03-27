@@ -93,8 +93,11 @@ header > div > p  , .headerMod > p{
 
 .status_active,
 .status_inactive {
-  height: 20px;
-  border-radius: var(--space-2);
+  /* height: 20px; */
+  border-radius: var(--space-3);
+  text-align: center;
+  padding: 2px var(--space-2);
+
 }
 
 .status_active {

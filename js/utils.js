@@ -1,5 +1,6 @@
 // * json-server --watch db.json --port 3000
 
+let profileName = JSON.parse(localStorage.getItem('userName'))
 // Fun for NavBar
 function renderNavbar(activePage) {
   // Top NavBar
@@ -16,7 +17,7 @@ function renderNavbar(activePage) {
             <div>
                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="34" height="34" class="rounded-circle border border-white" role="button" data-bs-toggle="dropdown" alt="profile" />
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">${profileName}</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li><a class="dropdown-item text-danger" href="index.html">Logout</a></li>
                 </ul>
@@ -25,7 +26,6 @@ function renderNavbar(activePage) {
 
     </nav>
   `;
-
   //   Second NavBar
   const pages = [
     { label: "Dashboard", icon: "fa-gauge", href: "dashboard.html" },
@@ -108,7 +108,7 @@ const showModal = function () {
 
 // ^ search By Name
 async function searchByName(endpoint, searchInputValue) {
-  let pageData = await getData(`${endpoint}`)
+  let pageData = (await getData(`${endpoint}`)).data;
   let dataAfterFilteration = pageData.filter((data) => {
     return data.name.toLowerCase().includes(searchInputValue.toLowerCase()) || data.contactPerson.toLowerCase().includes(searchInputValue.toLowerCase()) || data.email.toLowerCase().includes(searchInputValue.toLowerCase())
   });
@@ -117,7 +117,7 @@ async function searchByName(endpoint, searchInputValue) {
 
 // ^ filter By Status
 async function filterByStatus(selectValue, endpoint) {
-  let pageData = await getData(`${endpoint}`)
+  let pageData = (await getData(`${endpoint}`)).data;
   if (selectValue.value !== '') {
     return pageData.filter((data) => {
       return data.status.toLowerCase() === selectValue.value.toLowerCase()
@@ -253,14 +253,13 @@ function validateInputs(regexForValidInput, NameInputValidate, messageShowForUse
 
 function validateSelect(selectValidate) {
 
-  if (selectValidate.value == '') {
+  if (selectValidate.value === '') {
     selectValidate.setCustomValidity('please select value')
     selectValidate.reportValidity();
   }
 
   else {
     selectValidate.setCustomValidity("");
-    selectValidate.reportValidity()
   }
 
 }
