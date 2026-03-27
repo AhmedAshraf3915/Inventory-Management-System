@@ -71,9 +71,7 @@ header > div > p  , .headerMod > p{
   padding: var(--space-4);
   vertical-align: middle;
 }
-/* .supplier-card tbody td button{
-   height: 20px;
-} */
+
 .supplier-card #editSupplierBtn{
    background-color: var(--primary-soft);
    color: var(--primary);

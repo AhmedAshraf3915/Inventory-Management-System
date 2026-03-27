@@ -110,7 +110,7 @@ const showModal = function () {
 async function searchByName(endpoint, searchInputValue) {
   let pageData = (await getData(`${endpoint}`)).data;
   let dataAfterFilteration = pageData.filter((data) => {
-    return data.name.toLowerCase().includes(searchInputValue.toLowerCase()) || data.contactPerson.toLowerCase().includes(searchInputValue.toLowerCase()) || data.email.toLowerCase().includes(searchInputValue.toLowerCase())
+    return data.name.toLowerCase().includes(searchInputValue.toLowerCase()) ;
   });
   return dataAfterFilteration;
 }

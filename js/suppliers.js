@@ -52,8 +52,24 @@ formSelect.addEventListener('change', async () => {
 })
 
 
+// & pagination state
+const state = {
+    page: 1,
+    limit: 5,
+    totalCount: 0
+};
+////// pagination ////// 
+function renderTable() {
+    const start = (state.page - 1) * state.limit;
+    const end = start + state.limit;
 
-// ///////////////// Logo of Suppliers Name ////////////////////
+    const paginatedData = allSuppliersData.slice(start, end);
+
+    showDatainTable.innerHTML = "";
+    renderSuppliersRows(paginatedData);
+}
+
+///// Logo of Suppliers Name /////
 function firstLatterOfSuppliers(SuppliersName) {
     let arrStr = SuppliersName.split(' ');
     let firstLetter = [];
@@ -72,6 +88,7 @@ async function renderDataofSuppliers() {
     renderDataAfterFilteration(suppliersData);
 
 }
+//  //// Search By Suppliers Name ///// 
 
 
 
@@ -103,6 +120,36 @@ function renderDataAfterFilteration(dataAfterFilter) {
                             </td>
                 </tr>
             `
+            
+    });
+}
+
+///// sort Supplier Name ////
+sortSupplierName.addEventListener('click', () => {
+    allSuppliersData.sort((a, b) => a.name.localeCompare(b.name));
+    state.page = 1;
+    renderTable();
+    renderPagination(paginationContainer, state, renderTable);
+});
+
+////// validate input //////
+
+function setupInputValidation() {
+    // ///////// validate SuppliersName /////////
+    supplierName.addEventListener('input', () => validateInputs('^[A-Za-z\\s]{3,60}$', supplierName, 'Please Enter Valid Supplier Name :\n  Must Name contains at  -> from 3 character to 40 character!!!'));
+
+    //  ///////// validate contactPerson /////////
+    contactPerson.addEventListener('input', () => validateInputs('^[A-Za-z\\s]{3,60}$', contactPerson, 'Please Enter Valid Contact Person :\n  Must Name contains at  -> from 3 character to 40 character!!!'));
+
+    //  ///////// validate Email /////////
+    supplierMail.addEventListener('input', () => validateInputs('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', supplierMail, `Please include an '@' in the email address. '${supplierMail.value}' is missing an '@'!!!`));
+
+    //  ///////// validate Phone /////////
+    supplierPhone.addEventListener('input', () => validateInputs('^01[0125][0-9]{8}$', supplierPhone, 'Enter valid Egyptian phone number!!'));
+
+    //  ///////// validate select /////////
+    selectStatus.addEventListener('change', () => {
+        validateSelect(selectStatus);
     });
 }
 
