@@ -8,6 +8,9 @@ const searchInput = document.getElementById("categorySearch");
 const addCategoryBtn = document.getElementById("addCategoryBtn");
 const paginationContainer = document.querySelector(".table-footer .pagination");
 
+renderNavbar("Category");
+renderFooter();
+
 // Data
 let categoriesData = [];
 let filteredData = [];
@@ -86,8 +89,8 @@ function renderCategoriesPage() {
 
   tableBody.innerHTML = pageData.length
     ? pageData
-        .map(
-          (cat) => `
+      .map(
+        (cat) => `
         <tr data-id="${cat.id}">
           <td>
             <div class="category-cell">
@@ -105,8 +108,8 @@ function renderCategoriesPage() {
             </div>
           </td>
         </tr>`,
-        )
-        .join("")
+      )
+      .join("")
     : `<tr><td colspan="5" class="text-center">No categories found.</td></tr>`;
 
   document.getElementById("categoriesCount").textContent =
@@ -174,16 +177,16 @@ addBtn.addEventListener("click", async () => {
   const productsCount = parseInt(inputs[2].value) || 0;
   const status = inputs[3].value || "inactive";
 
-  if (!name) return showConfirm("Category name is required", () => {}, null);
+  if (!name) return showConfirm("Category name is required", () => { }, null);
 
   try {
     await (editCategoryId
       ? putData("categories", editCategoryId, {
-          name,
-          description,
-          productsCount,
-          status,
-        })
+        name,
+        description,
+        productsCount,
+        status,
+      })
       : postData("categories", { name, description, productsCount, status }));
 
     modal.classList.remove("show");

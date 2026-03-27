@@ -17,11 +17,12 @@
     <div id="second-navbar"></div>
 
     <!-- ////////////////////// Sign In ////////////////////////// -->
-    <div class="container">
+    <main class="container">
         <div class="card mb-3 border-0 mt-5 m-auto rounded-3" style="width: 80%;">
             <div class="row g-0">
 
-                <div class="col-md-6 col-sm-12 left-Side">
+                <!-- /// Left Side:== Inventory-->
+                <aside class="col-md-6 col-sm-12 left-Side">
                     <div class="bg border-0 m-3 p-4">
                         <div class="d-flex justify-content-start logo border-0 ms-2 col-12">
                             <div>
@@ -58,28 +59,34 @@
                             <p class="ms-2 mb-0 mt-1">Joined by 2,000+ logistics professionals</p>
                         </div> <!--card-footer-->
                     </div> <!--bg-->
-                </div> <!--col-->
+                </aside> <!--col-->
 
-                <div class="col-md-6 py-5 col-sm-12">
+
+                <!-- /// Right side :== Sign In -->
+                <section class="col-md-6 py-5 col-sm-12">
                     <div class="loginForm">
-                        <div class="border-0 px-4">
+                        <div class="border-0 px-4 py-2">
                             <h5 class="card-title fs-3 fw-bold">Sign In</h5>
                             <p class="card-text fs-5">Access your inventory dashboard to get started.</p>
                         </div>
                         <div class="formInput px-4 py-3">
-                            <form class="row g-2 needs-validation" novalidate>
+                            <form class="row g-2 needs-validation" novalidate action="dashboard.html" id="formValidate">
                                 <div class="mb-3 col-12">
                                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    <input type="email" class="form-control" id="userEmail"
                                         placeholder="name@company.com">
                                 </div>
                                 <div class="mb-3 col-12">
-                                    <label for="exampleFormControlTextarea1" class="form-label d-flex justify-content-between">
+                                    <label for="exampleFormControlTextarea1"
+                                        class="form-label d-flex justify-content-between">
                                         <span>Password</span>
-                                        <a href="#">Forgot password?</a>
+                                        <a href="#" id="forgetPass">Forgot password?</a>
                                     </label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput1"
+                                    <input type="password" class="form-control" id="userPass"
                                         placeholder="••••••••">
+                                </div>
+                                <div class="mb-1 col-12">
+                                    <label for="" id="checkCorrectorNot"></label>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">
@@ -92,23 +99,26 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-sign px-4 py-2 col-12" type="submit">Sign In <i
+                                    <button class="btn btn-sign px-4 py-2  mt-2 col-12" type="submit" id="signInBtn">Sign In <i
                                             class="fa-solid fa-arrow-right"></i></button>
                                 </div>
                             </form>
                         </div> <!--formInput-->
-                        <div class="border-0 text-center p-4 col-sm-12">
-                            <p>Don't have an account? <a href="#">Contact your administrator</a></p>
+                        <div class="border-0 text-center py-4 col-sm-12">
+                            <p>Don't have an account? <a href="#" id="contactAdmin">Contact your administrator</a></p>
                         </div>
                     </div>
-                </div> <!--col-->
+                </section> <!--col-->
+
             </div>
         </div> <!--card-->
-    </div> <!--container-->
+    </main> <!--container-->
 
     <!-- Scripts -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 
 </html>
