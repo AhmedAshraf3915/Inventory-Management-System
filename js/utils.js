@@ -26,7 +26,7 @@ function renderNavbar(activePage) {
 
     </nav>
   `;
-//   Second NavBar
+  //   Second NavBar
   const pages = [
     { label: "Dashboard", icon: "fa-gauge", href: "dashboard.html" },
     { label: "Products", icon: "fa-box", href: "products.html" },

@@ -82,7 +82,7 @@ async function renderProducts() {
 			"products",
 			`?_page=${state.page}&_per_page=${state.limit}`
 		);
-		
+
 		const categoriesResponse = await getData("categories");
 
 		const products = productsResponse.data.data;
