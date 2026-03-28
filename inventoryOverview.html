@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Overview</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/inventoryOverview.css" />
+</head>
+
+<body>
+  <div id="top-navbar"></div>
+  <div id="second-navbar"></div>
+
+  <main>
+    <div class="container">
+      <div class="main-content w-100">
+        <!-- Page Title -->
+        <div class="page-title d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="fw-bold m-0">Inventory Overview</h1>
+          </div>
+          <div class="d-flex gap-3">
+            <button class="export-btn">
+              <i class="fa-solid fa-download"></i> Export
+            </button>
+            <button class="add-product-btn" id="addProductBtn">
+              <i class="fa-solid fa-plus"></i> Add Product
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="inventory-tabs">
+          <button class="inv-tab active" data-tab="all">All Items</button>
+          <button class="inv-tab" data-tab="low">Low Stock</button>
+          <button class="inv-tab" data-tab="out">Out of Stock</button>
+          <button class="inv-tab" data-tab="archived">Archived</button>
+        </div>
+
+        <!-- Empty State Card -->
+        <div class="inventory-card card" id="emptyState">
+          <div class="empty-state">
+            <div class="empty-icon-wrap">
+              <i class="fa-solid fa-box-archive"></i>
+            </div>
+            <h3 class="fw-bold mt-4 mb-2">No items found</h3>
+            <p class="empty-desc">
+              Your inventory is currently empty. Start by adding<br />your
+              first product or import a CSV file to get started.
+            </p>
+            <div class="d-flex gap-3 justify-content-center mt-4">
+              <button class="add-product-btn" id="addFirstBtn">
+                <i class="fa-solid fa-plus"></i> Add Your First Item
+              </button>
+              <button class="import-csv-btn">
+                <i class="fa-solid fa-file-arrow-up"></i> Import CSV
+              </button>
+            </div>
+          </div>
+
+          <div class="empty-features">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fa-solid fa-circle-info"></i>
+              </div>
+              <h6>Track Stock</h6>
+              <p>
+                Real-time tracking of quantity across multiple warehouses.
+              </p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <h6>Low Stock Alerts</h6>
+              <p>Get notified when items drop below your threshold.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <h6>Organize</h6>
+              <p>Group items by category, tags, or custom attributes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inventory Table (hidden when empty) -->
+        <div class="inventory-card card d-none" id="inventoryTable">
+          <div class="inv-table-toolbar d-flex justify-content-between align-items-center mb-3">
+            <div class="search-wrapper d-flex align-items-center gap-2">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input type="text" class="search-input" placeholder="Search inventory..." />
+            </div>
+            <div class="d-flex gap-2">
+              <button class="filter-btn">
+                <i class="fa-solid fa-sliders"></i> Filter
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table inv-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>SKU</th>
+                  <th>Stock</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add Product Modal -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-box">
+      <div class="modal-header d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold m-0">Add New Product</h4>
+        <button class="modal-close" id="modalClose">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Product Name</label>
+            <input type="text" class="form-control cat-input" placeholder="e.g. Mechanical Keyboard" />
+          </div>
+          <div class="col-6">
+            <label class="form-label">Category</label>
+            <select class="form-control cat-input">
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Home &amp; Garden</option>
+              <option>Books</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label class="form-label">SKU</label>
+            <input type="text" class="form-control cat-input" placeholder="e.g. SKU-001" />
+          </div>
+          <div class="col-6">
+            <label class="form-label">Stock Quantity</label>
+            <input type="number" class="form-control cat-input" placeholder="0" />
+          </div>
+          <div class="col-6">
+            <label class="form-label">Price ($)</label>
+            <input type="number" class="form-control cat-input" placeholder="0.00" />
+          </div>
+        </div>
+        <div class="d-flex gap-3 justify-content-end mt-4">
+          <button class="cancel-btn" id="cancelBtn">Cancel</button>
+          <button class="add-product-btn">Save Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer id="footer"></footer>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/inventoryOverview.js"></script>
+  <script>
+    // Modal
+    const modal = document.getElementById("productModal");
+    ["addProductBtn", "addFirstBtn"].forEach((id) => {
+      const btn = document.getElementById(id);
+      if (btn)
+        btn.addEventListener("click", () => modal.classList.add("show"));
+    });
+    document
+      .getElementById("modalClose")
+      .addEventListener("click", () => modal.classList.remove("show"));
+    document
+      .getElementById("cancelBtn")
+      .addEventListener("click", () => modal.classList.remove("show"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("show");
+    });
+
+    // Tabs
+    document.querySelectorAll(".inv-tab").forEach((tab) => {
+      tab.addEventListener("click", function () {
+        document
+          .querySelectorAll(".inv-tab")
+          .forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Inventory Insights</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/all.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/inventoryInsights.css" />
+</head>
+
+<body class="reports-page">
+	<div id="top-navbar"></div>
+	<div id="second-navbar"></div>
+
+	<main class="reports-content">
+		<div class="container-fluid px-3 px-md-4 px-lg-5">
+
+			<div class="reports-header w-100 d-flex justify-content-between">
+				<div class="reports-caption">
+					<h1 class="reports-title">Inventory Insights</h1>
+					<p class="reports-subtitle">
+						Real-time overview of your warehouse stock and valuation.
+					</p>
+				</div>
+				<button class="inventory-overview-btn"><a href="inventoryOverview.html">Inventory Overview</a></button>
+			</div>
+
+			<div class="row g-4 insights-row">
+
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="insight-card">
+						<div class="insight-top">
+							<div>
+								<p class="insight-label">Low Stock Items</p>
+							</div>
+							<div class="insight-icon warning">
+								<i class="fa-solid fa-triangle-exclamation"></i>
+							</div>
+						</div>
+
+						<h3 class="insight-value" id="lowStockCount">0</h3>
+						<p class="insight-trend negative" id="lowStockTrend">Loading data...</p>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="insight-card">
+						<div class="insight-top">
+							<div>
+								<p class="insight-label">Out of Stock</p>
+							</div>
+							<div class="insight-icon danger">
+								<i class="fa-regular fa-circle-xmark"></i>
+							</div>
+						</div>
+
+						<h3 class="insight-value" id="outOfStockCount">0</h3>
+						<p class="insight-trend positive" id="outOfStockTrend">Loading data...</p>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="insight-card">
+						<div class="insight-top">
+							<div>
+								<p class="insight-label">Total Inventory Value</p>
+							</div>
+							<div class="insight-icon success">
+								<i class="fa-solid fa-money-bill-wave"></i>
+							</div>
+						</div>
+
+						<h3 class="insight-value" id="inventoryValueTotal">$0.00</h3>
+						<p class="insight-trend positive" id="inventoryValueTrend">Loading data...</p>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-xl-3">
+					<div class="insight-card">
+						<div class="insight-top">
+							<div>
+								<p class="insight-label">Total Products</p>
+							</div>
+							<div class="insight-icon purple">
+								<i class="fa-regular fa-clipboard"></i>
+							</div>
+						</div>
+
+						<h3 class="insight-value" id="totalProductsCount">0</h3>
+						<p class="insight-trend purple-text" id="totalProductsTrend">Loading data...</p>
+					</div>
+				</div>
+
+			</div>
+
+			<section class="report-card">
+				<div class="report-card-header d-flex justify-content-between align-items-center gap-3 flex-wrap">
+					<h2 class="report-card-title mb-0">Low Stock Report</h2>
+					<a href="#" class="report-link" id="toggleLowStockAlerts">View All Alerts</a>
+				</div>
+
+				<div class="table-responsive d-none d-md-block">
+					<table class="table report-table align-middle mb-0">
+						<thead>
+							<tr>
+								<th>PRODUCT NAME</th>
+								<th>SKU</th>
+								<th>CATEGORY</th>
+								<th>SUPPLIER</th>
+								<th>QUANTITY</th>
+								<th>REORDER LEVEL</th>
+								<th>STATUS</th>
+							</tr>
+						</thead>
+						<tbody id="lowStockTableBody">
+							<tr>
+								<td colspan="7" class="text-center py-4">Loading low stock items...</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="d-block d-md-none report-mobile-list" id="lowStockMobileList">
+					<div class="report-mobile-item">
+						<p class="mb-0">Loading low stock items...</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="report-card">
+				<div class="report-card-header d-flex justify-content-between align-items-center gap-3 flex-wrap">
+					<h2 class="report-card-title mb-0">Inventory Value Report</h2>
+
+					<select class="form-select sort-select" id="inventoryValueSort">
+						<option value="value" selected>Sort by Total Value</option>
+						<option value="quantity">Sort by Quantity</option>
+						<option value="price">Sort by Price</option>
+					</select>
+				</div>
+
+				<div class="table-responsive d-none d-md-block">
+					<table class="table report-table align-middle mb-0">
+						<thead>
+							<tr>
+								<th>PRODUCT NAME</th>
+								<th>SKU</th>
+								<th>CATEGORY</th>
+								<th>PRICE</th>
+								<th>QUANTITY</th>
+								<th>TOTAL VALUE</th>
+							</tr>
+						</thead>
+						<tbody id="inventoryValueTableBody">
+							<tr>
+								<td colspan="6" class="text-center py-4">Loading inventory values...</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="d-block d-md-none report-mobile-list" id="inventoryValueMobileList">
+					<div class="report-mobile-item">
+						<p class="mb-0">Loading inventory values...</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+	</main>
+
+	<footer id="footer"></footer>
+
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/api.js"></script>
+	<script src="js/inventoryInsights.js"></script>
+</body>
+
+</html>
