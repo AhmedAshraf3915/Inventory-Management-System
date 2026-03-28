@@ -8,23 +8,50 @@ const state = {
 	totalCount: 0
 };
 
+// ^ Check validation for product modal inputs 
+function getProductFormData() {
+	validateInputs(/^[A-Za-z0-9\s]{3,}$/, productName, "Product name must be at least 3 characters");
+	validateInputs(/^[A-Za-z0-9-]{3,}$/, SKU, "SKU must contain letters, numbers or -");
+	validateInputs(/^\d+(\.\d{1,2})?$/, productPrice, "Enter a valid price");
+	validateInputs(/^\d+$/, initialQty, "Quantity must be a valid number");
+	validateInputs(/^\d+$/, reorderLevel, "Reorder level must be a valid number");
+
+	validateSelect(productCategory);
+	validateSelect(productSupplier);
+
+	const allValid =
+		productName.checkValidity() &&
+		SKU.checkValidity() &&
+		productPrice.checkValidity() &&
+		initialQty.checkValidity() &&
+		reorderLevel.checkValidity() &&
+		productCategory.checkValidity() &&
+		productSupplier.checkValidity();
+
+	if (!allValid) {
+		return null;
+	}
+
+	const productObject = {
+		name: productName.value.trim(),
+		sku: SKU.value.trim(),
+		price: Number(productPrice.value),
+		category: categorySelect.value,
+		supplier: supplierSelect.value,
+		initialQty: Number(initialQty.value),
+		reorderLevel: Number(reorderLevel.value),
+		createdAt: `${getCurrentDate()}`
+	};
+
+	return productObject;
+}
+
+
+// & Get date helper for >> createdAt field
 function getCurrentDate() {
 	let today = new Date()
 	today = (today.toISOString()).slice(0, today.toISOString().indexOf('T'))
 	return today;
-}
-
-getCurrentDate()
-// & Empty Object for Product Data
-const product = {
-	name: '',
-	sku: '',
-	price: 0,
-	category: '',
-	supplier: '',
-	minStock: 0,
-	reorderLevel: 0,
-	createdAt: ''
 }
 
 const addProductBtn = document.querySelector("#addProductBtn");
@@ -41,8 +68,8 @@ const modalOverlay = document.querySelector("#modalOverlay");
 const productName = document.getElementById('productName')
 const SKU = document.getElementById('productSKU')
 const productPrice = document.getElementById('productPrice')
-const productCategory = document.getElementById('category')
-const productSupplier = document.getElementById('supplier')
+const categorySelect = document.getElementById('category')
+const supplierSelect = document.getElementById('supplier')
 const initialQty = document.getElementById('initialQty')
 const reorderLevel = document.getElementById('reorderLevel')
 const cancelModal = document.querySelector("#cancelBtn");
@@ -84,6 +111,28 @@ function getProductIcon(category) {
 	return "fa-box";
 }
 
+// ^ render categories in select
+async function renderCategoriesSelect() {
+	let html = ``
+	const categoriesData = await getCategoriesMap();
+	console.log(categoriesData)
+	for ([key, value] of Object.entries(categoriesData)) {
+		console.log(key, value)
+		html += `<option value="${key}">${value}</option>`;
+	}
+	categorySelect.innerHTML += html;
+}
+async function renderSuppliersSelect() {
+	let html = ``
+	const suppliersData = await getSuppliersMap();
+	console.log(suppliersData)
+	for ([key, value] of Object.entries(suppliersData)) {
+		console.log(key, value)
+		html += `<option value="${key}">${value}</option>`;
+	}
+	supplierSelect.innerHTML += html;
+}
+
 // ^ Modal Actions
 
 addProductBtn.addEventListener("click", function () {
@@ -114,6 +163,8 @@ document.addEventListener('keydown', function (e) {
 
 // ^ Page load
 document.addEventListener("DOMContentLoaded", function () {
+	renderCategoriesSelect()
+	renderSuppliersSelect()
 	renderProducts();
 });
 
@@ -140,13 +191,36 @@ function filterProductsByStatus(products, filterValue) {
 	});
 }
 
+// & Get categories
+async function getCategoriesMap() {
+	const categoriesResponse = await getData("categories");
+	const categories = categoriesResponse.data;
+
+	const categoryMap = {};
+	categories.forEach(function (cat) {
+		categoryMap[cat.id] = cat.name;
+	});
+	return categoryMap;
+}
+
+
+async function getSuppliersMap() {
+	const suppliersResponse = await getData("suppliers")
+	const suppliers = suppliersResponse.data
+
+	const suppliersMap = {}
+	suppliers.forEach(function (supp) {
+		suppliersMap[supp.id] = supp.name;
+	})
+	return suppliersMap;
+}
+
 
 // & Rendering Data Function
 
 async function renderProducts() {
 	try {
-		const categoriesResponse = await getData("categories");
-		const categories = categoriesResponse.data;
+
 
 		let products = [];
 		const searchValue = searchByProductName.value.trim();
@@ -155,7 +229,7 @@ async function renderProducts() {
 		if (searchValue !== "" || filterValue !== "") {
 			let allProducts = (await getData("products")).data;
 
-			// ===== SEARCH =====
+			//^  SEARCH
 			if (searchValue !== "") {
 				allProducts = allProducts.filter(function (product) {
 					return (product.name || "")
@@ -164,7 +238,7 @@ async function renderProducts() {
 				});
 			}
 
-			// ===== FILTER =====
+			// ^  FILTER
 			if (filterValue !== "") {
 				allProducts = filterProductsByStatus(allProducts, filterValue);
 			}
@@ -185,11 +259,7 @@ async function renderProducts() {
 			state.totalCount = productsResponse.data.items;
 		}
 
-		const categoryMap = {};
-
-		categories.forEach(function (cat) {
-			categoryMap[cat.id] = cat.name;
-		});
+		const categoryMap = await getCategoriesMap()
 
 		if (!products.length) {
 			tableBody.innerHTML = `
@@ -249,3 +319,10 @@ async function renderProducts() {
 	}
 }
 
+
+
+// addProductBtn.addEventListener('click', function (e) {
+// 	e.preventDefault()
+
+
+// })

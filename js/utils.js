@@ -204,13 +204,6 @@ function renderPagination(container, state, onPageChange) {
   container.appendChild(nextBtn);
 }
 
-
-// * ID lookup
-
-
-
-
-
 // * Validation 
 
 //  /////////////// Validate Name for any ////////////////
@@ -228,7 +221,6 @@ function renderPagination(container, state, onPageChange) {
  *       for Name :--> Please Enter Valid ${any Name} :\n  Must Name contains at  -> from 3 character to 40 character!!!
  *       for Price || Cost :-->  Value Must be large than or equal 100
  *       for Initial quentity :--> ...
- * 
  */
 
 function validateInputs(regexForValidInput, NameInputValidate, messageShowForUser) {
@@ -261,5 +253,4 @@ function validateSelect(selectValidate) {
   else {
     selectValidate.setCustomValidity("");
   }
-
 }
