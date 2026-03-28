@@ -27,7 +27,7 @@ signInBtn.addEventListener("click", async (e) => {
   let adminData = await getData("admins");
 
   //  ///// check Match data or not ////
-  let userCorrectData = adminData.find(
+  let userCorrectData = adminData.data.find(
     (userName) =>
       userEmail.value == userName.email && userPass.value == userName.password,
   );
