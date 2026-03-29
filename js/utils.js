@@ -1,6 +1,5 @@
 // * json-server --watch db.json --port 3000
 
-let profileName = JSON.parse(localStorage.getItem('userName'))
 // Fun for NavBar
 function renderNavbar(activePage) {
   // Top NavBar
@@ -17,7 +16,7 @@ function renderNavbar(activePage) {
             <div>
                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="34" height="34" class="rounded-circle border border-white" role="button" data-bs-toggle="dropdown" alt="profile" />
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">${profileName}</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li><a class="dropdown-item text-danger" href="index.html">Logout</a></li>
                 </ul>
@@ -26,6 +25,7 @@ function renderNavbar(activePage) {
 
     </nav>
   `;
+
   //   Second NavBar
   const pages = [
     { label: "Dashboard", icon: "fa-gauge", href: "dashboard.html" },
@@ -108,9 +108,9 @@ const showModal = function () {
 
 // ^ search By Name
 async function searchByName(endpoint, searchInputValue) {
-  let pageData = (await getData(`${endpoint}`)).data;
+  let pageData = (await getData(`${endpoint}`)).data
   let dataAfterFilteration = pageData.filter((data) => {
-    return data.name.toLowerCase().includes(searchInputValue.toLowerCase())
+    return data.name.toLowerCase().includes(searchInputValue.toLowerCase());
   });
   return dataAfterFilteration;
 }
@@ -118,10 +118,13 @@ async function searchByName(endpoint, searchInputValue) {
 // ^ filter By Status
 async function filterByStatus(selectValue, endpoint) {
   let pageData = (await getData(`${endpoint}`)).data
-  if (!selectValue.value || selectValue.value !=='all') {
+  if (!selectValue.value || selectValue.value !== 'all') {
     return pageData.filter((data) => {
       return data.status.toLowerCase() === selectValue.value.toLowerCase()
     });
+  }
+  else {
+    return pageData
   }
 }
 
@@ -204,9 +207,10 @@ function renderPagination(container, state, onPageChange) {
   container.appendChild(nextBtn);
 }
 
+
 // * Validation 
 
-//  /////////////// Validate Name for any ////////////////
+//  Validate Name for any
 
 /**
  * 
@@ -221,6 +225,7 @@ function renderPagination(container, state, onPageChange) {
  *       for Name :--> Please Enter Valid ${any Name} :\n  Must Name contains at  -> from 3 character to 40 character!!!
  *       for Price || Cost :-->  Value Must be large than or equal 100
  *       for Initial quentity :--> ...
+ * 
  */
 
 function validateInputs(regexForValidInput, NameInputValidate, messageShowForUser) {
@@ -253,4 +258,5 @@ function validateSelect(selectValidate) {
   else {
     selectValidate.setCustomValidity("");
   }
+
 }

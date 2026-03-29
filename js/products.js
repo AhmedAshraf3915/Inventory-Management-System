@@ -36,6 +36,8 @@ const initialQty = document.getElementById("initialQty");
 const reorderLevel = document.getElementById("reorderLevel");
 const cancelBtn = document.getElementById("cancelBtn");
 const saveProduct = document.getElementById("saveProduct");
+const sortBtn = document.querySelector('.sorting');
+
 
 // ===============================
 // Helpers
@@ -238,9 +240,101 @@ function fillFormWithProduct(product) {
 	reorderLevel.value = product.minStock ?? "";
 }
 
-// ===============================
-// Render products
-// ===============================
+// ^ Sort functionality (by name ascending and descending)
+// ^ Sort functionality (sort / return original order)
+let isSortedByName = false;
+let originalProductsOrder = [];
+
+sortBtn.addEventListener("click", async function () {
+	const productsResponse = await getData("products");
+	let products = productsResponse.data;
+
+	const searchValue = searchByProductName.value.trim().toLowerCase();
+	const filterValue = formSelect.value;
+
+	if (searchValue) {
+		products = products.filter(function (product) {
+			return String(product.name || "")
+				.toLowerCase()
+				.includes(searchValue);
+		});
+	}
+
+	products = filterProductsByStatus(products, filterValue);
+
+	if (!isSortedByName) {
+		originalProductsOrder = [...products];
+
+		products.sort(function (a, b) {
+			return String(a.name || "").localeCompare(String(b.name || ""));
+		});
+
+		isSortedByName = true;
+	} else {
+		products = [...originalProductsOrder];
+		isSortedByName = false;
+	}
+
+	state.page = 1;
+	state.totalCount = products.length;
+
+	const categoryMap = await getCategoriesMap();
+
+	const start = (state.page - 1) * state.limit;
+	const end = start + state.limit;
+	const paginatedProducts = products.slice(start, end);
+
+	if (!paginatedProducts.length) {
+		tableBody.innerHTML = `
+			<tr>
+				<td colspan="7" style="text-align:center;">No products found</td>
+			</tr>
+		`;
+		renderPagination(paginationContainer, state, renderProducts);
+		return;
+	}
+
+	tableBody.innerHTML = paginatedProducts
+		.map(function (product) {
+			const categoryName = categoryMap[String(product.categoryId)] || "Unknown";
+			const stockClass = getStockClass(product.status);
+			const statusText = getStatusText(product.status);
+			const iconClass = getProductIcon(categoryName);
+
+			return `
+				<tr>
+					<td>
+						<div class="product-cell">
+							<div class="product-icon">
+								<i class="fa-solid ${iconClass}"></i>
+							</div>
+							<div class="product-info">
+								<h6>${escapeHTML(product.name)}</h6>
+							</div>
+						</div>
+					</td>
+					<td>${escapeHTML(categoryName)}</td>
+					<td>$${Number(product.price).toLocaleString()}</td>
+					<td class="${stockClass}">${product.quantity}</td>
+					<td class="status ${stockClass}">
+						<i class="fa-solid fa-circle"></i> ${statusText}
+					</td>
+					<td>
+						<button class="editProductBtn" data-id="${product.id}">Edit</button>
+					</td>
+					<td>
+						<button class="removeProductBtn" data-id="${product.id}">Remove</button>
+					</td>
+				</tr>
+			`;
+		})
+		.join("");
+
+	renderPagination(paginationContainer, state, renderProducts);
+});
+
+//^ Render products
+
 async function renderProducts() {
 	try {
 		const productsResponse = await getData("products");

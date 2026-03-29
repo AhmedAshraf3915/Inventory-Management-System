@@ -84,7 +84,6 @@ th[colspan="2"] {
   font-weight: bold;
 }
 
-
 .editProductBtn {
   background: var(--primary);
   color: white;
@@ -117,25 +116,6 @@ th[colspan="2"] {
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 12px;
-  font-weight: bold;
-}
-.table-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px;
-}
-
-.pagination button {
-  border: none;
-  background: none;
-  margin: 0 4px;
-  padding: 6px 10px;
-  border-radius: 6px;
-}
-
-.pagination .active {
-  background: #ede9fe;
-  color: #7c3aed;
   font-weight: bold;
 }
 
