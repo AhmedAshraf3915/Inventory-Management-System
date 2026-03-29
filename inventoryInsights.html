@@ -17,9 +17,8 @@
 	<div id="second-navbar"></div>
 
 	<main class="reports-content">
-		<div class="container-fluid px-3 px-md-4 px-lg-5">
+		<div class="container px-3 px-md-4 px-lg-5">
 
-			<!-- Page Header -->
 			<div class="reports-header w-100 d-flex justify-content-between">
 				<div class="reports-caption">
 					<h1 class="reports-title">Inventory Insights</h1>
@@ -27,10 +26,8 @@
 						Real-time overview of your warehouse stock and valuation.
 					</p>
 				</div>
-				<button class="inventory-overview-btn"><a href="inventoryOverview.html">Inventory Overview</a></button>
 			</div>
 
-			<!-- Insight Cards -->
 			<div class="row g-4 insights-row">
 
 				<div class="col-12 col-sm-6 col-xl-3">
@@ -44,11 +41,8 @@
 							</div>
 						</div>
 
-						<h3 class="insight-value">12</h3>
-						<p class="insight-trend negative">
-							<i class="fa-solid fa-arrow-up"></i>
-							2 items since yesterday
-						</p>
+						<h3 class="insight-value" id="lowStockCount">0</h3>
+						<p class="insight-trend negative" id="lowStockTrend">Loading data...</p>
 					</div>
 				</div>
 
@@ -63,11 +57,8 @@
 							</div>
 						</div>
 
-						<h3 class="insight-value">5</h3>
-						<p class="insight-trend positive">
-							<i class="fa-solid fa-arrow-down"></i>
-							1 items since yesterday
-						</p>
+						<h3 class="insight-value" id="outOfStockCount">0</h3>
+						<p class="insight-trend positive" id="outOfStockTrend">Loading data...</p>
 					</div>
 				</div>
 
@@ -82,11 +73,8 @@
 							</div>
 						</div>
 
-						<h3 class="insight-value">$452,300.00</h3>
-						<p class="insight-trend positive">
-							<i class="fa-solid fa-arrow-trend-up"></i>
-							+5.4% this month
-						</p>
+						<h3 class="insight-value" id="inventoryValueTotal">$0.00</h3>
+						<p class="insight-trend positive" id="inventoryValueTrend">Loading data...</p>
 					</div>
 				</div>
 
@@ -101,20 +89,17 @@
 							</div>
 						</div>
 
-						<h3 class="insight-value">1,240</h3>
-						<p class="insight-trend purple-text">
-							+ 12 new arrivals
-						</p>
+						<h3 class="insight-value" id="totalProductsCount">0</h3>
+						<p class="insight-trend purple-text" id="totalProductsTrend">Loading data...</p>
 					</div>
 				</div>
 
 			</div>
 
-			<!-- Low Stock Report -->
 			<section class="report-card">
 				<div class="report-card-header d-flex justify-content-between align-items-center gap-3 flex-wrap">
 					<h2 class="report-card-title mb-0">Low Stock Report</h2>
-					<a href="#" class="report-link">View All Alerts</a>
+					<a href="#" class="report-link" id="toggleLowStockAlerts">View All Alerts</a>
 				</div>
 
 				<div class="table-responsive d-none d-md-block">
@@ -130,87 +115,29 @@
 								<th>STATUS</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="lowStockTableBody">
 							<tr>
-								<td class="fw-semibold">Pro Wireless Mouse</td>
-								<td>ACC-WM-092</td>
-								<td>Electronics</td>
-								<td>TechCorp Inc.</td>
-								<td class="qty-danger">2</td>
-								<td>15</td>
-								<td>
-									<span class="table-badge critical">CRITICAL</span>
-								</td>
-							</tr>
-							<tr>
-								<td class="fw-semibold">Mechanical Keyboard V2</td>
-								<td>ACC-MK-110</td>
-								<td>Electronics</td>
-								<td>Global Parts Co.</td>
-								<td class="qty-warning">8</td>
-								<td>10</td>
-								<td>
-									<span class="table-badge warning">WARNING</span>
-								</td>
-							</tr>
-							<tr>
-								<td class="fw-semibold">USB-C Hub Multiport</td>
-								<td>ACC-eB-04</td>
-								<td>Accessories</td>
-								<td>ConnectX Ltd.</td>
-								<td class="qty-warning">5</td>
-								<td>20</td>
-								<td>
-									<span class="table-badge warning">WARNING</span>
-								</td>
+								<td colspan="7" class="text-center py-4">Loading low stock items...</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 
-				<!-- Mobile version -->
-				<div class="d-block d-md-none report-mobile-list">
+				<div class="d-block d-md-none report-mobile-list" id="lowStockMobileList">
 					<div class="report-mobile-item">
-						<h6>Pro Wireless Mouse</h6>
-						<p><strong>SKU:</strong> ACC-WM-092</p>
-						<p><strong>Category:</strong> Electronics</p>
-						<p><strong>Supplier:</strong> TechCorp Inc.</p>
-						<p><strong>Quantity:</strong> <span class="qty-danger">2</span></p>
-						<p><strong>Reorder Level:</strong> 15</p>
-						<span class="table-badge critical">CRITICAL</span>
-					</div>
-
-					<div class="report-mobile-item">
-						<h6>Mechanical Keyboard V2</h6>
-						<p><strong>SKU:</strong> ACC-MK-110</p>
-						<p><strong>Category:</strong> Electronics</p>
-						<p><strong>Supplier:</strong> Global Parts Co.</p>
-						<p><strong>Quantity:</strong> <span class="qty-warning">8</span></p>
-						<p><strong>Reorder Level:</strong> 10</p>
-						<span class="table-badge warning">WARNING</span>
-					</div>
-
-					<div class="report-mobile-item">
-						<h6>USB-C Hub Multiport</h6>
-						<p><strong>SKU:</strong> ACC-eB-04</p>
-						<p><strong>Category:</strong> Accessories</p>
-						<p><strong>Supplier:</strong> ConnectX Ltd.</p>
-						<p><strong>Quantity:</strong> <span class="qty-warning">5</span></p>
-						<p><strong>Reorder Level:</strong> 20</p>
-						<span class="table-badge warning">WARNING</span>
+						<p class="mb-0">Loading low stock items...</p>
 					</div>
 				</div>
 			</section>
 
-			<!-- Inventory Value Report -->
 			<section class="report-card">
 				<div class="report-card-header d-flex justify-content-between align-items-center gap-3 flex-wrap">
 					<h2 class="report-card-title mb-0">Inventory Value Report</h2>
 
-					<select class="form-select sort-select">
-						<option selected>Sort by Total Value</option>
-						<option>Sort by Quantity</option>
-						<option>Sort by Price</option>
+					<select class="form-select sort-select" id="inventoryValueSort">
+						<option value="value" selected>Sort by Total Value</option>
+						<option value="quantity">Sort by Quantity</option>
+						<option value="price">Sort by Price</option>
 					</select>
 				</div>
 
@@ -226,44 +153,17 @@
 								<th>TOTAL VALUE</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="inventoryValueTableBody">
 							<tr>
-								<td class="fw-semibold">UltraWide Monitor 34"</td>
-								<td>DrP-M-M-34</td>
-								<td>Monitors</td>
-								<td>$549.99</td>
-								<td>120</td>
-								<td class="fw-bold">$65,998.80</td>
-							</tr>
-							<tr>
-								<td class="fw-semibold">Ergonomic Office Chair</td>
-								<td>CHR-OC-12</td>
-								<td>Furniture</td>
-								<td>$299.00</td>
-								<td>85</td>
-								<td class="fw-bold">$25,415.00</td>
+								<td colspan="6" class="text-center py-4">Loading inventory values...</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 
-				<div class="d-block d-md-none report-mobile-list">
+				<div class="d-block d-md-none report-mobile-list" id="inventoryValueMobileList">
 					<div class="report-mobile-item">
-						<h6>UltraWide Monitor 34"</h6>
-						<p><strong>SKU:</strong> DrP-M-M-34</p>
-						<p><strong>Category:</strong> Monitors</p>
-						<p><strong>Price:</strong> $549.99</p>
-						<p><strong>Quantity:</strong> 120</p>
-						<p><strong>Total Value:</strong> <span class="fw-bold">$65,998.80</span></p>
-					</div>
-
-					<div class="report-mobile-item">
-						<h6>Ergonomic Office Chair</h6>
-						<p><strong>SKU:</strong> CHR-OC-12</p>
-						<p><strong>Category:</strong> Furniture</p>
-						<p><strong>Price:</strong> $299.00</p>
-						<p><strong>Quantity:</strong> 85</p>
-						<p><strong>Total Value:</strong> <span class="fw-bold">$25,415.00</span></p>
+						<p class="mb-0">Loading inventory values...</p>
 					</div>
 				</div>
 			</section>
@@ -275,6 +175,7 @@
 
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/utils.js"></script>
+	<script src="js/api.js"></script>
 	<script src="js/inventoryInsights.js"></script>
 </body>
 

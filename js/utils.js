@@ -93,18 +93,8 @@ const showModal = function () {
   modalOverlay.classList.remove('hidden')
 }
 
-
-
-
 // * Search functionality (Should be suitable for all pages)
 
-/**
- * 
- * @param {*} endpoint :--> from api (http://localhost:3000/${endpoint})
- * @param {*} searchInputValue :--> search input Selector
- * @param {*} dataInInnerHTML :--> tbody (table)
- * @returns 
- */
 
 // ^ search By Name
 async function searchByName(endpoint, searchInputValue) {
@@ -210,53 +200,35 @@ function renderPagination(container, state, onPageChange) {
 
 // * Validation 
 
-//  Validate Name for any
+function validateInputs(regexForValidInput, inputElement, messageShowForUser) {
+  const value = inputElement.value.trim();
 
-/**
- * 
- * @param {*} regexForValidInput : 
- *      for Name :--> ^[A-Za-z\\s]{3,60}$
- *      for Price || Cost :--> ^(100|[1-9][0-9]{2,})$
- *      for Initial quentity:--> ^(1|[1-9][0-9]{2,})$
- * @param {*} NameValidate : 
- *       NameInputValidate :--> input Selector
- * @param {*} messageShowForUser 
- *       messageShowForUser :--> message shown through Validate 
- *       for Name :--> Please Enter Valid ${any Name} :\n  Must Name contains at  -> from 3 character to 40 character!!!
- *       for Price || Cost :-->  Value Must be large than or equal 100
- *       for Initial quentity :--> ...
- * 
- */
-
-function validateInputs(regexForValidInput, NameInputValidate, messageShowForUser) {
-  const constraints = `${regexForValidInput}`;
-  const constraintRegex = new RegExp(constraints, "");
-
-  if (constraintRegex.test(NameInputValidate.value)) {
-
-    NameInputValidate.setCustomValidity("");
-    NameInputValidate.checkValidity()
-    NameInputValidate.style.border = '2px solid rgb(0, 208, 59)';
-
-  }
-  else {
-
-    NameInputValidate.setCustomValidity(`${messageShowForUser}`);
-    NameInputValidate.reportValidity();
-    NameInputValidate.style.border = '2px solid rgba(255, 89, 89, 0.89)';
-
+  if (regexForValidInput.test(value)) {
+    inputElement.setCustomValidity("");
+    inputElement.style.border = "2px solid rgb(0, 208, 59)";
+  } else {
+    inputElement.setCustomValidity(messageShowForUser);
+    inputElement.reportValidity();
+    inputElement.style.border = "2px solid rgba(255, 89, 89, 0.89)";
   }
 }
 
 function validateSelect(selectValidate) {
-
-  if (selectValidate.value === '') {
-    selectValidate.setCustomValidity('please select value')
+  if (selectValidate.value === "") {
+    selectValidate.setCustomValidity("Please select a value");
     selectValidate.reportValidity();
-  }
-
-  else {
+    selectValidate.style.border = "2px solid rgba(255, 89, 89, 0.89)";
+  } else {
     selectValidate.setCustomValidity("");
+    selectValidate.style.border = "2px solid rgb(0, 208, 59)";
   }
+}
 
+
+// * Get Stock Class 
+
+function getStockClass(quantity, minStock) {
+  if (quantity === 0) return "stock-critical";
+  if (quantity <= minStock) return "stock-critical";
+  return "stock-normal";
 }

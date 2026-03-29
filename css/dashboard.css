@@ -58,7 +58,9 @@
 .inventory-chart .container {
   height: 80%;
 }
-
+.chart-col {
+  max-width: 8%;
+}
 .level {
   min-height: 5px;
   border-top-left-radius: var(--radius-md);
@@ -69,12 +71,14 @@
 
 .recent-activity {
   width: 35%;
+  height: 100%;
   background-color: var(--bg-card);
   border-radius: var(--radius-lg);
 }
 .activities {
   padding-top: 15px;
   width: 100%;
+  min-height: 180px;
 }
 .activities .icon {
   width: 10%;
@@ -82,20 +86,6 @@
 }
 .activity-caption span {
   font-size: 12px;
-}
-.view-activity {
-  width: 100%;
-  margin: 0px auto;
-  color: var(--primary-soft);
-  border: none;
-  border-radius: var(--radius-md);
-  background-color: var(--primary);
-  padding: 12px 18px;
-  outline: 0px;
-  transition: var(--transition-fast);
-}
-.view-activity:hover {
-  background-color: var(--primary-hover);
 }
 
 .low-wtock-preview {
@@ -214,19 +204,6 @@
   color: #555 !important;
 }
 
-.pagination button {
-  border: none;
-  background: none;
-  margin: 0 4px;
-  padding: 6px 10px;
-  border-radius: 6px;
-}
-
-.pagination .active {
-  background: #ede9fe;
-  color: #7c3aed;
-  font-weight: bold;
-}
 
 @media (max-width: 992px) {
   .summary-cards {

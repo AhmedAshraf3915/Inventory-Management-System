@@ -1,233 +1,356 @@
-// DOM Elements
-const tableBody = document.getElementById("categoriesTableBody");
-const modal = document.getElementById("categoryModal");
-const addBtn = modal.querySelector(".add-category-btn");
-const cancelBtn = document.getElementById("cancelBtn");
-const closeBtn = document.getElementById("modalClose");
-const searchInput = document.getElementById("categorySearch");
-const addCategoryBtn = document.getElementById("addCategoryBtn");
-const paginationContainer = document.querySelector(".table-footer .pagination");
-
-renderNavbar("Category");
+renderNavbar("Categories");
 renderFooter();
+
+// DOM
+const tableBody = document.getElementById("categoriesTableBody");
+const searchInput = document.getElementById("categorySearch");
+const paginationContainer = document.getElementById("pagination");
+const tableInfo = document.getElementById("inventoryTableInfo");
+
+const addCategoryBtn = document.getElementById("addCategoryBtn");
+
+// Main modal
+const modal = document.getElementById("categoryModal");
+const modalOverlay = document.getElementById("modalOverlay");
+const modalTitle = document.getElementById("modalTitle");
+const modalCloseBtn = document.getElementById("modalClose");
+const cancelBtn = document.getElementById("cancelBtn");
+const saveCategoryBtn = document.getElementById("saveCategoryBtn");
+
+// Form inputs
+const categoryNameInput = document.getElementById("categoryName");
+const categoryDescriptionInput = document.getElementById("categoryDescription");
+const categoryProductsInput = document.getElementById("categoryProducts");
+const categoryStatusInput = document.getElementById("categoryStatus");
+
+// Confirm modal
+const confirmModal = document.getElementById("confirmModal");
+const confirmMessage = document.getElementById("confirmMessage");
+const confirmOk = document.getElementById("confirmOk");
+const confirmCancel = document.getElementById("confirmCancel");
+const confirmClose = document.getElementById("confirmClose");
 
 // Data
 let categoriesData = [];
 let filteredData = [];
 let editCategoryId = null;
 
-// Pagination state
-const state = { page: 1, limit: 5, totalCount: 0 };
+// State
+const state = {
+  page: 1,
+  limit: 5,
+  totalCount: 0
+};
 
-// Custom confirm
-function showConfirm(message, onConfirm, onCancel = null) {
-  const confirmModal = document.getElementById("confirmModal");
-  document.getElementById("confirmMessage").textContent = message;
-  confirmModal.classList.add("show");
 
-  const okBtn = document.getElementById("confirmOk");
-  const cancelBtn = document.getElementById("confirmCancel");
-  const closeBtn = document.getElementById("confirmClose");
+// Confirm modal functions
+function showConfirmModal(message, onConfirm) {
+  confirmMessage.textContent = message;
+  confirmModal.classList.remove("hidden");
+  modalOverlay.classList.remove("hidden");
 
-  const close = () => confirmModal.classList.remove("show");
+  function cleanup() {
+    confirmOk.removeEventListener("click", handleConfirm);
+    confirmCancel.removeEventListener("click", handleCancel);
+    confirmClose.removeEventListener("click", handleCancel);
+  }
 
-  const handleOk = () => {
-    close();
+  function hideConfirmModal() {
+    confirmModal.classList.add("hidden");
+    modalOverlay.classList.add("hidden");
+  }
+
+  function handleConfirm() {
+    hideConfirmModal();
+    cleanup();
     onConfirm();
-    cleanup();
-  };
-  const handleCancel = () => {
-    close();
-    if (onCancel) onCancel();
-    cleanup();
-  };
+  }
 
-  const cleanup = () => {
-    okBtn.removeEventListener("click", handleOk);
-    cancelBtn.removeEventListener("click", handleCancel);
-    closeBtn.removeEventListener("click", handleCancel);
-  };
+  function handleCancel() {
+    hideConfirmModal();
+    cleanup();
+  }
 
-  okBtn.addEventListener("click", handleOk);
-  cancelBtn.addEventListener("click", handleCancel);
-  closeBtn.addEventListener("click", handleCancel);
+  confirmOk.addEventListener("click", handleConfirm);
+  confirmCancel.addEventListener("click", handleCancel);
+  confirmClose.addEventListener("click", handleCancel);
 }
 
-// Load categories
+function resetModal() {
+  editCategoryId = null;
+  modalTitle.textContent = "Add New Category";
+  categoryNameInput.value = "";
+  categoryDescriptionInput.value = "";
+  categoryProductsInput.value = "";
+  categoryStatusInput.value = "";
+}
+
+function openAddModal() {
+  resetModal();
+  showModal();
+}
+
+function openEditModal(id) {
+  const category = categoriesData.find(function (cat) {
+    return String(cat.id) === String(id);
+  });
+
+  if (!category) return;
+
+  editCategoryId = id;
+  modalTitle.textContent = "Edit Category";
+  categoryNameInput.value = category.name || "";
+  categoryDescriptionInput.value = category.description || "";
+  categoryProductsInput.value = category.productsCount ?? 0;
+  categoryStatusInput.value = category.status || "inactive";
+
+  showModal();
+}
+
 async function loadCategories() {
   try {
-    const { data } = await getData("categories");
-    const { data: products } = await getData("products");
+    const categoriesResponse = await getData("categories");
+    const productsResponse = await getData("products");
 
-    categoriesData = (data || []).map((cat) => {
-      const realCount = products.filter((p) => p.categoryId == cat.id).length;
-      const productsCount = cat.productsCount ?? realCount;
-      const status = productsCount > 0 ? "active" : "inactive";
+    const categories = categoriesResponse.data || [];
+    const products = productsResponse.data || [];
+
+    categoriesData = categories.map(function (cat) {
+      const realCount = products.filter(function (product) {
+        return String(product.categoryId) === String(cat.id);
+      }).length;
+
       return {
         ...cat,
-        productsCount,
-        status,
         description: cat.description || "No description provided",
+        productsCount: cat.productsCount ?? realCount,
+        status: cat.status || (realCount > 0 ? "active" : "inactive")
       };
     });
 
-    categoriesData.sort((a, b) => a.name.localeCompare(b.name));
+    categoriesData.sort(function (a, b) {
+      return (a.name || "").localeCompare(b.name || "");
+    });
+
     filteredData = [...categoriesData];
     state.page = 1;
     renderCategoriesPage();
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error("Error loading categories:", error);
   }
 }
 
-// Render table
 function renderCategoriesPage() {
-  const pageData = filteredData.slice(
-    (state.page - 1) * state.limit,
-    state.page * state.limit,
-  );
-
-  tableBody.innerHTML = pageData.length
-    ? pageData
-      .map(
-        (cat) => `
-        <tr data-id="${cat.id}">
-          <td>
-            <div class="category-cell">
-              <div class="category-icon icon-purple-bg"><i class="fa-solid fa-box"></i></div>
-              <span class="category-name">${cat.name || "-"}</span>
-            </div>
-          </td>
-          <td class="category-desc">${cat.description || "-"}</td>
-          <td class="products-count">${cat.productsCount}</td>
-          <td><span class="cat-status ${cat.status}">${cat.status}</span></td>
-          <td>
-            <div class="action-btns d-flex gap-2">
-              <button class="action-btn edit-btn"><i class="fa-solid fa-pen"></i></button>
-              <button class="action-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
-            </div>
-          </td>
-        </tr>`,
-      )
-      .join("")
-    : `<tr><td colspan="5" class="text-center">No categories found.</td></tr>`;
-
-  document.getElementById("categoriesCount").textContent =
-    `Total Categories: ${filteredData.length}`;
-
   state.totalCount = filteredData.length;
-  renderPagination(paginationContainer, state, renderCategoriesPage);
 
-  document
-    .querySelectorAll(".edit-btn")
-    .forEach((btn) =>
-      btn.addEventListener("click", (e) =>
-        openEditModal(e.target.closest("tr").dataset.id),
-      ),
-    );
-  document
-    .querySelectorAll(".delete-btn")
-    .forEach((btn) =>
-      btn.addEventListener("click", (e) =>
-        deleteCategory(e.target.closest("tr").dataset.id),
-      ),
-    );
+  const totalPages = Math.ceil(state.totalCount / state.limit) || 1;
+
+  if (state.page > totalPages) {
+    state.page = totalPages;
+  }
+
+  const startIndex = (state.page - 1) * state.limit;
+  const endIndex = startIndex + state.limit;
+  const pageData = filteredData.slice(startIndex, endIndex);
+
+  if (!pageData.length) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="5" class="text-center">No categories found.</td>
+      </tr>
+    `;
+  } else {
+    tableBody.innerHTML = pageData
+      .map(function (cat) {
+        return `
+          <tr data-id="${cat.id}">
+            <td>
+              <div class="category-cell">
+                <div class="category-icon icon-purple-bg">
+                  <i class="fa-solid fa-box"></i>
+                </div>
+                <span class="category-name">${cat.name || "-"}</span>
+              </div>
+            </td>
+            <td class="category-desc">${cat.description || "-"}</td>
+            <td class="products-count">${cat.productsCount ?? 0}</td>
+            <td>
+              <span class="cat-status ${cat.status}">
+                ${cat.status}
+              </span>
+            </td>
+            <td>
+              <div class="action-btns d-flex gap-2">
+                <button class="action-btn edit-btn" data-id="${cat.id}" type="button">
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="action-btn delete-btn" data-id="${cat.id}" type="button">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      })
+      .join("");
+  }
+
+  updateTableInfo();
+  renderPagination();
+  bindTableActions();
 }
 
-// Search
-searchInput.addEventListener("input", () => {
-  const query = searchInput.value.toLowerCase().trim();
-  filteredData = categoriesData.filter((cat) =>
-    [cat.name, cat.description, cat.status].some((val) =>
-      (val || "").toLowerCase().includes(query),
-    ),
-  );
+function updateTableInfo() {
+  if (!filteredData.length) {
+    tableInfo.textContent = "Showing 0 of 0 categories";
+    return;
+  }
+
+  const startItem = (state.page - 1) * state.limit + 1;
+  const endItem = Math.min(state.page * state.limit, filteredData.length);
+
+  tableInfo.textContent = `Showing ${startItem}-${endItem} of ${filteredData.length} categories`;
+}
+
+function renderPagination() {
+  const totalPages = Math.ceil(state.totalCount / state.limit) || 1;
+
+  let html = `
+    <button class="page-btn" type="button" data-page="prev" ${state.page === 1 ? "disabled" : ""}>
+      Prev
+    </button>
+  `;
+
+  for (let i = 1; i <= totalPages; i++) {
+    html += `
+      <button class="page-btn ${state.page === i ? "active" : ""}" type="button" data-page="${i}">
+        ${i}
+      </button>
+    `;
+  }
+
+  html += `
+    <button class="page-btn" type="button" data-page="next" ${state.page === totalPages ? "disabled" : ""}>
+      Next
+    </button>
+  `;
+
+  paginationContainer.innerHTML = html;
+
+  const pageButtons = paginationContainer.querySelectorAll(".page-btn");
+
+  pageButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const pageValue = btn.dataset.page;
+
+      if (pageValue === "prev" && state.page > 1) {
+        state.page--;
+      } else if (pageValue === "next" && state.page < totalPages) {
+        state.page++;
+      } else if (!isNaN(pageValue)) {
+        state.page = Number(pageValue);
+      }
+
+      renderCategoriesPage();
+    });
+  });
+}
+
+function bindTableActions() {
+  const editButtons = document.querySelectorAll(".edit-btn");
+  const deleteButtons = document.querySelectorAll(".delete-btn");
+
+  editButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      openEditModal(btn.dataset.id);
+    });
+  });
+
+  deleteButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      deleteCategory(btn.dataset.id);
+    });
+  });
+}
+
+function applySearch() {
+  const query = searchInput.value.trim().toLowerCase();
+
+  filteredData = categoriesData.filter(function (cat) {
+    return (
+      (cat.name || "").toLowerCase().includes(query) ||
+      (cat.description || "").toLowerCase().includes(query) ||
+      (cat.status || "").toLowerCase().includes(query)
+    );
+  });
+
   state.page = 1;
   renderCategoriesPage();
-});
-
-// Open edit modal
-function openEditModal(id) {
-  editCategoryId = id;
-  const cat = categoriesData.find((c) => c.id == id);
-  if (!cat) return;
-
-  const inputs = modal.querySelectorAll(".cat-input");
-  inputs[0].value = cat.name || "";
-  inputs[1].value = cat.description || "";
-  inputs[2].value = cat.productsCount ?? 0;
-  inputs[3].value = cat.status || "inactive";
-
-  modal.querySelector("h4").textContent = "Edit Category";
-  modal.classList.add("show");
 }
 
-// Reset modal
-function resetModal() {
-  editCategoryId = null;
-  modal.querySelectorAll(".cat-input").forEach((input) => (input.value = ""));
-  modal.querySelector("h4").textContent = "Add New Category";
-}
+async function saveCategory() {
+  const name = categoryNameInput.value.trim();
+  const description = categoryDescriptionInput.value.trim();
+  const productsCount = parseInt(categoryProductsInput.value) || 0;
+  const status = categoryStatusInput.value || "inactive";
 
-// Save category
-addBtn.addEventListener("click", async () => {
-  const inputs = modal.querySelectorAll(".cat-input");
-  const name = inputs[0].value.trim();
-  const description = inputs[1].value.trim();
-  const productsCount = parseInt(inputs[2].value) || 0;
-  const status = inputs[3].value || "inactive";
+  if (!name) {
+    alert("Category name is required");
+    return;
+  }
 
-  if (!name) return showConfirm("Category name is required", () => { }, null);
+  const categoryData = {
+    name,
+    description,
+    productsCount,
+    status
+  };
 
   try {
-    await (editCategoryId
-      ? putData("categories", editCategoryId, {
-        name,
-        description,
-        productsCount,
-        status,
-      })
-      : postData("categories", { name, description, productsCount, status }));
+    if (editCategoryId) {
+      await putData("categories", editCategoryId, categoryData);
+    } else {
+      await postData("categories", categoryData);
+    }
 
-    modal.classList.remove("show");
+    closeModal();
     resetModal();
-    loadCategories();
-  } catch (err) {
-    console.error(err);
+    await loadCategories();
+  } catch (error) {
+    console.error("Error saving category:", error);
   }
-});
+}
 
-// Delete category
-async function deleteCategory(id) {
-  showConfirm("Are you sure you want to delete this category?", async () => {
+function deleteCategory(id) {
+  showConfirmModal("Are you sure you want to delete this category?", async function () {
     try {
       await deleteData("categories", id);
-      loadCategories();
-    } catch (err) {
-      console.error(err);
+      await loadCategories();
+    } catch (error) {
+      console.error("Error deleting category:", error);
     }
   });
 }
 
-// Modal open/close
-addCategoryBtn.addEventListener("click", () => {
-  resetModal();
-  modal.classList.add("show");
-});
-cancelBtn.addEventListener("click", () => {
-  modal.classList.remove("show");
+// Events
+addCategoryBtn.addEventListener("click", openAddModal);
+modalCloseBtn.addEventListener("click", function () {
+  closeModal();
   resetModal();
 });
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("show");
+cancelBtn.addEventListener("click", function () {
+  closeModal();
   resetModal();
 });
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.remove("show");
-    resetModal();
-  }
+modalOverlay.addEventListener("click", function () {
+  closeModal();
+  resetModal();
+  confirmModal.classList.add("hidden");
+  modalOverlay.classList.add("hidden");
 });
 
-// Initialize
+saveCategoryBtn.addEventListener("click", saveCategory);
+searchInput.addEventListener("input", applySearch);
+
+// Init
 loadCategories();

@@ -559,6 +559,30 @@
       "status": "low_stock",
       "description": "Office board",
       "createdAt": "2026-03-22"
+    },
+    {
+      "id": "0f2wwoBSHmM",
+      "name": "screen x",
+      "sku": "p-041",
+      "categoryId": "2",
+      "supplierId": "10",
+      "price": 1000,
+      "quantity": 10,
+      "minStock": 2,
+      "status": "in_stock",
+      "createdAt": "2026-03-29"
+    },
+    {
+      "name": "xPhone",
+      "sku": "p-044",
+      "categoryId": "8",
+      "supplierId": "17",
+      "price": 1000,
+      "quantity": 10,
+      "minStock": 2,
+      "status": "in_stock",
+      "createdAt": "2026-03-29",
+      "id": "RDZuLGvt7L4"
     }
   ],
   "categories": [
@@ -797,7 +821,23 @@
       "status": "Inactive"
     }
   ],
-  "stockMovements": [],
+  "stockMovements": [
+    {
+      "productId": "RDZuLGvt7L4",
+      "productName": "xPhone",
+      "type": "PRODUCT_ADDED",
+      "action": "IN",
+      "quantity": 10,
+      "previousQuantity": 0,
+      "newQuantity": 10,
+      "title": "xPhone added to inventory",
+      "reason": "Initial stock",
+      "createdAt": "2026-03-29T18:03:13.028Z",
+      "createdBy": "Youssef Khaled",
+      "id": "vZo7TZYE99k"
+    }
+  ],
+  "orders": [],
   "admins": [
     {
       "id": "1",

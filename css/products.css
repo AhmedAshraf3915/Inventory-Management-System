@@ -45,7 +45,6 @@ th[colspan="2"] {
 .table tbody td {
   padding: var(--space-5);
   border-top: 1px solid #eee;
-  vertical-align: middle;
 }
 .product-cell {
   display: flex;

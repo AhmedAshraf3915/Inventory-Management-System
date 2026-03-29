@@ -30,7 +30,7 @@
               <div class="products-status d-flex justify-content-between align-items-center gap-1">
                 <i class="fa-solid fa-arrow-trend-up"></i>
                 <small>12%</small>
-              </div>  
+              </div>
             </div>
             <h6>Total Products</h6>
             <h3 id="totalProducts">1240</h3>
@@ -69,217 +69,91 @@
             <h3 id="inventoryValue">&dollar;450,000</h3>
           </div>
         </div>
-        <div class="statistics d-flex justify-content-between align-item-center mt-5 mb-5">
-          <div class="inventory-chart p-5">
-            <div class="top-caption d-flex w-100 justify-content-between align-items-center mb-2">
-              <h3>Inventory By Category</h3>
-              <small>Last 30 Days</small>
+        <div class="statistics mt-5 mb-5">
+          <div class="statistics-top d-flex justify-content-between align-item-center mt-5 mb-5">
+            <div class="inventory-chart p-5">
+              <div class="top-caption d-flex w-100 justify-content-between align-items-center mb-2">
+                <h3>Inventory By Category</h3>
+                <small>Last 30 Days</small>
+              </div>
+              <div class="container text-center d-flex justify-content-between align-items-end">
+                <div class="chart-col h-100 d-flex flex-column justify-content-end">
+                  <div class="level"></div>
+                  <small>Electronics</small>
+                </div>
+                <div class="chart-col h-100 d-flex flex-column justify-content-end">
+                  <div class="level"></div>
+                  <small>Furniture</small>
+                </div>
+                <div class="chart-col h-100 d-flex flex-column justify-content-end">
+                  <div class="level"></div>
+                  <small>Office</small>
+                </div>
+                <div class="chart-col h-100 d-flex flex-column justify-content-end">
+                  <div class="level"></div>
+                  <small>Tools</small>
+                </div>
+                <div class="chart-col h-100 d-flex flex-column justify-content-end">
+                  <div class="level"></div>
+                  <small>Aplliances</small>
+                </div>
+                <div class="chart-col h-100 d-flex flex-column justify-content-end">
+                  <div class="level"></div>
+                  <small>Other</small>
+                </div>
+              </div>
             </div>
-            <div class="container text-center d-flex justify-content-between align-items-end">
-              <div class="chart-col h-100 d-flex flex-column justify-content-end">
-                <div class="level"></div>
-                <small>Electronics</small>
-              </div>
-              <div class="chart-col h-100 d-flex flex-column justify-content-end">
-                <div class="level"></div>
-                <small>Furniture</small>
-              </div>
-              <div class="chart-col h-100 d-flex flex-column justify-content-end">
-                <div class="level"></div>
-                <small>Office</small>
-              </div>
-              <div class="chart-col h-100 d-flex flex-column justify-content-end">
-                <div class="level"></div>
-                <small>Tools</small>
-              </div>
-              <div class="chart-col h-100 d-flex flex-column justify-content-end">
-                <div class="level"></div>
-                <small>Aplliances</small>
-              </div>
-              <div class="chart-col h-100 d-flex flex-column justify-content-end">
-                <div class="level"></div>
-                <small>Other</small>
+            <div class="recent-activity p-5">
+              <h2 class="mb-2">Recent Activity</h2>
+              <div class="container activities">
               </div>
             </div>
           </div>
-          <div class="recent-activity p-5">
-            <h2 class="mb-2">Recent Activity</h2>
-            <div class="container activities">
-              <div class="container d-flex align-items-start">
-                <img src="assets/activity-1.png" alt="Icon-one" class="icon-purple icon">
-                <div class="activity-caption">
-                  <p>Logitech MX Master 3S added to inventory <br><span>2 minutes ago. by Alex Rivers</sapn>
-                  </p>
-                </div>
-              </div>
-              <div class="container d-flex align-items-start">
-                <img src="assets/activity-2.png" alt="Icon-one" class="icon-green icon">
-                <div class="activity-caption">
-                  <p>Logitech MX Master 3S added to inventory <br><span>2 minutes ago. by Alex Rivers</sapn>
-                  </p>
-                </div>
-              </div>
-              <div class="container d-flex align-items-start">
-                <img src="assets/activity-3.png" alt="Icon-one" class="icon-yellow icon">
-                <div class="activity-caption">
-                  <p>Logitech MX Master 3S added to inventory <br><span>2 minutes ago. by Alex Rivers</sapn>
-                  </p>
-                </div>
-              </div>
-              <div class="container d-flex align-items-start">
-                <img src="assets/activity-4.png" alt="Icon-one" class="icon-red icon">
-                <div class="activity-caption">
-                  <p>Logitech MX Master 3S added to inventory <br><span>2 minutes ago. by Alex Rivers</sapn>
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div class="low-wtock-preview card">
             <div class="container">
-              <button class="view-activity" id="viewActivityBtn">View All Activity</button>
-            </div>
-          </div>
-        </div>
-        <div class="low-wtock-preview card">
-          <div class="container">
-            <div class="low-stock-header d-flex justify-content-between align-items-center m-auto">
-              <div class="low-stock-title">
-                <h2>Low Stock Preview</h2>
-                <p>Items that require immediate action</p>
+              <div class="low-stock-header d-flex justify-content-between align-items-center m-auto">
+                <div class="low-stock-title">
+                  <h2>Low Stock Preview</h2>
+                  <p>Items that require immediate action</p>
+                </div>
+                <button class="bulk-order-btn" id="bulkOrderBtn"><i class="fa-solid fa-cart-plus"></i> Create Bulk
+                  Order</button>
               </div>
-              <button class="bulk-order-btn" id="bulkOrderBtn"><i class="fa-solid fa-cart-plus"></i> Create Bulk
-                Order</button>
-            </div>
-            <div class="low-stock-card">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Product Name</th>
-                      <th>Category</th>
-                      <th>Current Stock</th>
-                      <th>Reorder Level</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tableBody">
-                    <tr>
-                      <td>
-                        <div class="product-cell">
-                          <div class="product-icon">
-                            <i class="fa-solid fa-clock"></i>
-                          </div>
-                          <div class="product-info">
-                            <h6>Watch</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>Accessories</td>
-                      <td class="stock-critical">2</td>
-                      <td>15</td>
-                      <td><span class="status critical">Critical</span></td>
-                      <td><button class="reorder-btn">Reorder</button></td>
-                    </tr>
+              <div class="low-stock-card">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Current Stock</th>
+                        <th>Reorder Level</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableBody">
 
-                    <tr>
-                      <td>
-                        <div class="product-cell">
-                          <div class="product-icon">
-                            <i class="fa-solid fa-pen"></i>
-                          </div>
-                          <div class="product-info">
-                            <h6>Pen</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>Stationery</td>
-                      <td class="stock-critical">0</td>
-                      <td>10</td>
-                      <td><span class="status out">Out of Stock</span></td>
-                      <td><button class="reorder-btn">Reorder</button></td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <div class="product-cell">
-                          <div class="product-icon">
-                            <i class="fa-solid fa-keyboard"></i>
-                          </div>
-                          <div class="product-info">
-                            <h6>Mechanical Keyboard</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>Electronics</td>
-                      <td class="stock-normal">8</td>
-                      <td>12</td>
-                      <td><span class="status low">Low Stock</span></td>
-                      <td><button class="reorder-btn">Reorder</button></td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <div class="product-cell">
-                          <div class="product-icon">
-                            <i class="fa-solid fa-box"></i>
-                          </div>
-                          <div class="product-info">
-                            <h6>Storage Case</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>Storage</td>
-                      <td class="stock-normal">14</td>
-                      <td>20</td>
-                      <td><span class="status low">Low Stock</span></td>
-                      <td><button class="reorder-btn">Reorder</button></td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        <div class="product-cell">
-                          <div class="product-icon">
-                            <i class="fa-solid fa-headphones"></i>
-                          </div>
-                          <div class="product-info">
-                            <h6>Studio Headphones</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>Audio</td>
-                      <td class="stock-critical">3</td>
-                      <td>10</td>
-                      <td><span class="status critical">Critical</span></td>
-                      <td><button class="reorder-btn">Reorder</button></td>
-                    </tr>
-
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="table-footer">
-                <span>Showing 5 of 24 flagged items</span>
-                <div class="pagination">
-                  <button><i class="fa-solid fa-chevron-left"></i></button>
-                  <button class="active">1</button>
-                  <button>2</button>
-                  <button>3</button>
-                  <button><i class="fa-solid fa-chevron-right"></i></button>
+                    </tbody>
+                  </table>
+                  <div class="table-footer">
+                    <div id="pagination" class="container d-flex align-items-center justify-content-between">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
   </main>
 
   <footer id="footer"></footer>
 
-  <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
   <script src="js/dashboard.js"></script>
 </body>
 

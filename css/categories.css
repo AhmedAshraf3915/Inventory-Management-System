@@ -206,7 +206,7 @@
 }
 
 /* Table Footer & Pagination — matches dashboard.css */
-.table-footer {
+/* .table-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -235,33 +235,65 @@
   background: var(--primary-soft);
   color: var(--primary);
   font-weight: bold;
-}
+} */
 
 /* ========================
    Modal
 ======================== */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(17, 24, 39, 0.4);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
+.hidden {
+  display: none !important;
 }
 
-.modal-overlay.show {
+.modal-overlay-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 999;
+}
+
+.custom-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .modal-box {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
   width: 100%;
-  max-width: 480px;
-  box-shadow: var(--shadow-md);
-  animation: modalIn 0.2s ease;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.page-btn {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @keyframes modalIn {

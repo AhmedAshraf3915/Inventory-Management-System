@@ -184,18 +184,30 @@ function getProductFormData() {
 		productName,
 		"Product name must be at least 3 characters"
 	);
+
 	validateInputs(
 		/^[A-Za-z0-9-]{3,}$/,
 		SKU,
 		"SKU must contain letters, numbers or -"
 	);
+
 	validateInputs(
 		/^\d+(\.\d{1,2})?$/,
 		productPrice,
 		"Enter a valid price"
 	);
-	validateInputs(/^\d+$/, initialQty, "Quantity must be a valid number");
-	validateInputs(/^\d+$/, reorderLevel, "Reorder level must be a valid number");
+
+	validateInputs(
+		/^\d+$/,
+		initialQty,
+		"Quantity must be a valid number"
+	);
+
+	validateInputs(
+		/^\d+$/,
+		reorderLevel,
+		"Reorder level must be a valid number"
+	);
 
 	validateSelect(categorySelect);
 	validateSelect(supplierSelect);
@@ -227,6 +239,27 @@ function getProductFormData() {
 	};
 }
 
+// ^ Build Product stock movement
+
+function buildAddProductStockMovement(createdProduct) {
+	const rawUserName = localStorage.getItem("userName");
+	const actor = rawUserName ? JSON.parse(rawUserName) : "Admin";
+
+	return {
+		productId: String(createdProduct.id),
+		productName: createdProduct.name,
+		type: "PRODUCT_ADDED",
+		action: "IN",
+		quantity: Number(createdProduct.quantity),
+		previousQuantity: 0,
+		newQuantity: Number(createdProduct.quantity),
+		title: `${createdProduct.name} added to inventory`,
+		reason: "Initial stock",
+		createdAt: new Date().toISOString(),
+		createdBy: actor
+	};
+}
+
 // ===============================
 // Form fill for edit
 // ===============================
@@ -240,7 +273,6 @@ function fillFormWithProduct(product) {
 	reorderLevel.value = product.minStock ?? "";
 }
 
-// ^ Sort functionality (by name ascending and descending)
 // ^ Sort functionality (sort / return original order)
 let isSortedByName = false;
 let originalProductsOrder = [];
@@ -439,7 +471,10 @@ saveProduct.addEventListener("click", async function (e) {
 
 			await putData("products", state.editingId, updatedProduct);
 		} else {
-			await postData("products", productObject);
+			const createdProduct = await postData("products", productObject);
+
+			const stockMovementObject = buildAddProductStockMovement(createdProduct);
+			await postData("stockMovements", stockMovementObject);
 		}
 
 		closeModal();
@@ -539,7 +574,72 @@ formSelect.addEventListener("change", function () {
 
 // ^ Export button 
 
+exportBtn.addEventListener("click", async function () {
+	try {
+		let products = (await getData("products")).data;
+		const categoryMap = await getCategoriesMap();
+		const suppliersMap = await getSuppliersMap();
 
+		const searchValue = searchByProductName.value.trim().toLowerCase();
+		const filterValue = formSelect.value;
+
+		if (searchValue) {
+			products = products.filter(function (product) {
+				return String(product.name || "")
+					.toLowerCase()
+					.includes(searchValue);
+			});
+		}
+
+		products = filterProductsByStatus(products, filterValue);
+
+		const csvRows = [
+			[
+				"ID",
+				"Name",
+				"SKU",
+				"Category",
+				"Supplier",
+				"Price",
+				"Quantity",
+				"Min Stock",
+				"Status",
+				"Created At"
+			].join(",")
+		];
+
+		products.forEach(function (product) {
+			csvRows.push([
+				`"${product.id || ""}"`,
+				`"${String(product.name || "").replaceAll('"', '""')}"`,
+				`"${String(product.sku || "").replaceAll('"', '""')}"`,
+				`"${String(categoryMap[String(product.categoryId)] || "").replaceAll('"', '""')}"`,
+				`"${String(suppliersMap[String(product.supplierId)] || "").replaceAll('"', '""')}"`,
+				`"${product.price || ""}"`,
+				`"${product.quantity || ""}"`,
+				`"${product.minStock || ""}"`,
+				`"${getStatusText(product.status)}"`,
+				`"${product.createdAt || ""}"`
+			].join(","));
+		});
+
+		const blob = new Blob([csvRows.join("\n")], {
+			type: "text/csv;charset=utf-8;"
+		});
+
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = "products-export.csv";
+		document.body.appendChild(a);
+		a.click();
+		a.remove();
+		URL.revokeObjectURL(url);
+	} catch (error) {
+		console.error(error);
+		alert("Failed to export products");
+	}
+});
 
 //^ Initialization
 
