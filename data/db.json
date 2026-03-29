@@ -217,12 +217,13 @@
       "categoryId": 7,
       "supplierId": 10,
       "price": 1800,
-      "cost": 1400,
-      "quantity": 2,
+      "cost": 100,
+      "quantity": 7,
       "minStock": 5,
-      "status": "low_stock",
+      "status": "in_stock",
       "description": "Solid state drive",
-      "createdAt": "2026-03-22"
+      "createdAt": "2026-03-22",
+      "createdBy": "Ahmed Hassan"
     },
     {
       "id": "17",
@@ -273,12 +274,13 @@
       "categoryId": 9,
       "supplierId": 4,
       "price": 9000,
-      "cost": 7500,
-      "quantity": 2,
+      "cost": 15000,
+      "quantity": 4,
       "minStock": 5,
       "status": "low_stock",
       "description": "High-end tablet",
-      "createdAt": "2026-03-22"
+      "createdAt": "2026-03-22",
+      "createdBy": "Ahmed Hassan"
     },
     {
       "id": "21",
@@ -343,10 +345,10 @@
       "categoryId": 3,
       "supplierId": 9,
       "price": 15000,
-      "cost": 13000,
-      "quantity": 1,
+      "cost": 100,
+      "quantity": 11,
       "minStock": 3,
-      "status": "low_stock",
+      "status": "in_stock",
       "description": "GPU",
       "createdAt": "2026-03-22"
     },
@@ -583,6 +585,31 @@
       "status": "in_stock",
       "createdAt": "2026-03-29",
       "id": "RDZuLGvt7L4"
+    },
+    {
+      "name": "Screen Y",
+      "sku": "p-050",
+      "categoryId": "2",
+      "supplierId": "17",
+      "price": 100,
+      "quantity": 20,
+      "minStock": 2,
+      "status": "in_stock",
+      "createdAt": "2026-03-29",
+      "id": "oRLcWPCBefQ"
+    },
+    {
+      "id": "MDyp1sGjUu4",
+      "name": "Huawei Router",
+      "sku": "P-044",
+      "supplierId": 1,
+      "price": 114.99999999999999,
+      "cost": 100,
+      "quantity": 10,
+      "minStock": 2,
+      "status": "in_stock",
+      "description": "",
+      "createdAt": "2026-03-29"
     }
   ],
   "categories": [
@@ -824,7 +851,7 @@
   "stockMovements": [
     {
       "productId": "RDZuLGvt7L4",
-      "productName": "xPhone",
+      "name": "xPhone",
       "type": "PRODUCT_ADDED",
       "action": "IN",
       "quantity": 10,
@@ -835,6 +862,49 @@
       "createdAt": "2026-03-29T18:03:13.028Z",
       "createdBy": "Youssef Khaled",
       "id": "vZo7TZYE99k"
+    },
+    {
+      "productId": "oRLcWPCBefQ",
+      "name": "Screen Y",
+      "type": "PRODUCT_ADDED",
+      "action": "IN",
+      "quantity": 20,
+      "previousQuantity": 0,
+      "newQuantity": 20,
+      "title": "Screen Y added to inventory",
+      "reason": "Initial stock",
+      "createdAt": "2026-03-29T20:30:28.477Z",
+      "createdBy": "Ahmed Hassan",
+      "id": "bwk2ZB5z0TU"
+    },
+    {
+      "id": "Ysn2Wsv11Go",
+      "name": "Huawei Router",
+      "sku": "P-044",
+      "supplierId": 1,
+      "price": 114.99999999999999,
+      "cost": 100,
+      "quantity": 10,
+      "minStock": 2,
+      "status": "in_stock",
+      "description": "",
+      "createdAt": "2026-03-29",
+      "createdBy": "Ahmed Hassan"
+    },
+    {
+      "id": "Obdk2ndmij4",
+      "name": "Tablet Pro",
+      "sku": "P-020",
+      "categoryId": 9,
+      "supplierId": 4,
+      "price": 9000,
+      "cost": 15000,
+      "quantity": 4,
+      "minStock": 5,
+      "status": "low_stock",
+      "description": "High-end tablet",
+      "createdAt": "2026-03-22",
+      "createdBy": "Ahmed Hassan"
     }
   ],
   "orders": [
@@ -852,6 +922,70 @@
       ],
       "itemsCount": 20,
       "totalCost": 4000,
+      "status": "Received"
+    },
+    {
+      "id": "5ZnfqPt90gQ",
+      "supplier": "Storage Hub",
+      "date": "2026-03-29",
+      "items": [
+        {
+          "product": "Graphics Card",
+          "qty": 10,
+          "cost": 100,
+          "lineTotal": 1000
+        }
+      ],
+      "itemsCount": 10,
+      "totalCost": 1000,
+      "status": "Received"
+    },
+    {
+      "id": "gGJoJouDolQ",
+      "supplier": "Tech Source",
+      "date": "2026-03-29",
+      "items": [
+        {
+          "product": "Huawei Router",
+          "qty": 10,
+          "cost": 100,
+          "lineTotal": 1000
+        }
+      ],
+      "itemsCount": 10,
+      "totalCost": 1000,
+      "status": "Received"
+    },
+    {
+      "id": "KyN44OBzRA4",
+      "supplier": "PowerTech",
+      "date": "2026-03-29",
+      "items": [
+        {
+          "product": "SSD 512GB",
+          "qty": 5,
+          "cost": 100,
+          "lineTotal": 500
+        }
+      ],
+      "itemsCount": 5,
+      "totalCost": 500,
+      "status": "Received"
+    },
+    {
+      "id": "apOyJjePt6o",
+      "supplier": "IT World",
+      "date": "2026-03-29",
+      "items": [
+        {
+          "product": "Tablet Pro",
+          "qty": 2,
+          "cost": 15000,
+          "lineTotal": 30000
+        }
+      ],
+      "itemsCount": 2,
+      "totalCost": 30000,
       "status": "Received"
     }
   ],

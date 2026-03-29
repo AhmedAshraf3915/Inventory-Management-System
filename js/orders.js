@@ -484,6 +484,9 @@ async function syncOrderItemsToProducts(items, supplierName) {
 		return normalizeText(item.name) === normalizeText(supplierName);
 	});
 
+	const rawUserName = localStorage.getItem("userName");
+	const actor = rawUserName ? JSON.parse(rawUserName) : "Admin";
+
 	for (const item of items) {
 		const existingProduct = products.find((product) => {
 			const sameName =
@@ -504,10 +507,11 @@ async function syncOrderItemsToProducts(items, supplierName) {
 				cost: item.cost,
 				quantity: updatedQuantity,
 				status: getProductStatus(updatedQuantity, existingProduct.minStock),
+				createdBy: actor,
 			};
 
 			await putData("products", existingProduct.id, updatedProduct);
-			await putData("stockMovements", existingProduct.id, updatedProduct);
+			await postData("stockMovements", updatedProduct);
 
 
 			existingProduct.quantity = updatedQuantity;
@@ -532,6 +536,7 @@ async function syncOrderItemsToProducts(items, supplierName) {
 				status: getProductStatus(item.qty, 5),
 				description: "",
 				createdAt: new Date().toISOString().split("T")[0],
+				createdBy: actor,
 			};
 
 			await postData("products", newProduct);
@@ -575,6 +580,7 @@ async function createOrder() {
 
 	try {
 		await postData("orders", order);
+
 		await syncOrderItemsToProducts(items, supplier);
 
 		state.page = 1;
