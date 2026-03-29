@@ -1,23 +1,202 @@
 renderNavbar("Products");
-renderFooter()
+renderFooter();
 
-// & pagination state
+// ===============================
+// State
+// ===============================
 const state = {
 	page: 1,
 	limit: 5,
-	totalCount: 0
+	totalCount: 0,
+	editingId: null
 };
 
-// ^ Check validation for product modal inputs 
+// ===============================
+// Selectors
+// ===============================
+const tableBody = document.getElementById("tableBody");
+const paginationContainer = document.getElementById("pagination");
+const searchByProductName = document.getElementById("searchByProductName");
+const formSelect = document.getElementById("formSelect");
+
+const addProductBtn = document.getElementById("addProductBtn");
+const exportBtn = document.getElementById("exportBtn");
+
+const modal = document.getElementById("modal");
+const modalOverlay = document.getElementById("modalOverlay");
+const modalType = document.getElementById("modalType");
+
+const productForm = document.getElementById("productData");
+const productName = document.getElementById("productName");
+const SKU = document.getElementById("productSKU");
+const productPrice = document.getElementById("productPrice");
+const categorySelect = document.getElementById("category");
+const supplierSelect = document.getElementById("supplier");
+const initialQty = document.getElementById("initialQty");
+const reorderLevel = document.getElementById("reorderLevel");
+const cancelBtn = document.getElementById("cancelBtn");
+const saveProduct = document.getElementById("saveProduct");
+
+// ===============================
+// Helpers
+// ===============================
+function getCurrentDate() {
+	const today = new Date();
+	return today.toISOString().split("T")[0];
+}
+
+function escapeHTML(value) {
+	return String(value)
+		.replaceAll("&", "&amp;")
+		.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll('"', "&quot;")
+		.replaceAll("'", "&#39;");
+}
+
+function resetForm() {
+	productForm.reset();
+	state.editingId = null;
+	modalType.textContent = "Add";
+
+	[
+		productName,
+		SKU,
+		productPrice,
+		categorySelect,
+		supplierSelect,
+		initialQty,
+		reorderLevel
+	].forEach(function (field) {
+		field.setCustomValidity("");
+		field.style.border = "";
+	});
+}
+
+function calculateStatus(quantity, minStock) {
+	if (quantity === 0) return "out_of_stock";
+	if (quantity <= minStock) return "low_stock";
+	return "in_stock";
+}
+
+function getStockClass(status) {
+	const normalized = String(status || "").toLowerCase();
+
+	if (normalized === "out_of_stock") return "stock-critical";
+	if (normalized === "low_stock") return "stock-warning";
+	return "stock-normal";
+}
+
+function getStatusText(status) {
+	const normalized = String(status || "").toLowerCase();
+
+	if (normalized === "in_stock") return "In Stock";
+	if (normalized === "low_stock") return "Low Stock";
+	if (normalized === "out_of_stock") return "Out of Stock";
+	return "Unknown";
+}
+
+function getProductIcon(category) {
+	const cat = String(category || "").toLowerCase();
+
+	if (cat.includes("accessories")) return "fa-headphones";
+	if (cat.includes("displays")) return "fa-desktop";
+	if (cat.includes("computers")) return "fa-laptop";
+	if (cat.includes("furniture")) return "fa-chair";
+	if (cat.includes("office")) return "fa-print";
+	if (cat.includes("network")) return "fa-network-wired";
+	if (cat.includes("storage")) return "fa-hard-drive";
+	if (cat.includes("mobile")) return "fa-mobile-screen";
+	if (cat.includes("camera")) return "fa-camera";
+	if (cat.includes("power")) return "fa-plug";
+
+	return "fa-box";
+}
+
+function filterProductsByStatus(products, filterValue) {
+	if (!filterValue) return products;
+
+	return products.filter(function (product) {
+		return String(product.status || "").toLowerCase() === filterValue.toLowerCase();
+	});
+}
+
+// ===============================
+// Maps
+// ===============================
+async function getCategoriesMap() {
+	const response = await getData("categories");
+	const categories = response.data;
+
+	const map = {};
+	categories.forEach(function (cat) {
+		map[String(cat.id)] = cat.name;
+	});
+
+	return map;
+}
+
+async function getSuppliersMap() {
+	const response = await getData("suppliers");
+	const suppliers = response.data;
+
+	const map = {};
+	suppliers.forEach(function (supp) {
+		map[String(supp.id)] = supp.name;
+	});
+
+	return map;
+}
+
+// ===============================
+// Select rendering
+// ===============================
+async function renderCategoriesSelect() {
+	const categoriesMap = await getCategoriesMap();
+
+	let html = `<option value="" selected>Select</option>`;
+	for (const [id, name] of Object.entries(categoriesMap)) {
+		html += `<option value="${escapeHTML(id)}">${escapeHTML(name)}</option>`;
+	}
+
+	categorySelect.innerHTML = html;
+}
+
+async function renderSuppliersSelect() {
+	const suppliersMap = await getSuppliersMap();
+
+	let html = `<option value="" selected>Select</option>`;
+	for (const [id, name] of Object.entries(suppliersMap)) {
+		html += `<option value="${escapeHTML(id)}">${escapeHTML(name)}</option>`;
+	}
+
+	supplierSelect.innerHTML = html;
+}
+
+// ===============================
+// Validation
+// ===============================
 function getProductFormData() {
-	validateInputs(/^[A-Za-z0-9\s]{3,}$/, productName, "Product name must be at least 3 characters");
-	validateInputs(/^[A-Za-z0-9-]{3,}$/, SKU, "SKU must contain letters, numbers or -");
-	validateInputs(/^\d+(\.\d{1,2})?$/, productPrice, "Enter a valid price");
+	validateInputs(
+		/^[A-Za-z0-9\s]{3,}$/,
+		productName,
+		"Product name must be at least 3 characters"
+	);
+	validateInputs(
+		/^[A-Za-z0-9-]{3,}$/,
+		SKU,
+		"SKU must contain letters, numbers or -"
+	);
+	validateInputs(
+		/^\d+(\.\d{1,2})?$/,
+		productPrice,
+		"Enter a valid price"
+	);
 	validateInputs(/^\d+$/, initialQty, "Quantity must be a valid number");
 	validateInputs(/^\d+$/, reorderLevel, "Reorder level must be a valid number");
 
-	validateSelect(productCategory);
-	validateSelect(productSupplier);
+	validateSelect(categorySelect);
+	validateSelect(supplierSelect);
 
 	const allValid =
 		productName.checkValidity() &&
@@ -25,304 +204,253 @@ function getProductFormData() {
 		productPrice.checkValidity() &&
 		initialQty.checkValidity() &&
 		reorderLevel.checkValidity() &&
-		productCategory.checkValidity() &&
-		productSupplier.checkValidity();
+		categorySelect.checkValidity() &&
+		supplierSelect.checkValidity();
 
-	if (!allValid) {
-		return null;
-	}
+	if (!allValid) return null;
 
-	const productObject = {
+	const quantity = Number(initialQty.value);
+	const minStock = Number(reorderLevel.value);
+
+	return {
 		name: productName.value.trim(),
 		sku: SKU.value.trim(),
+		categoryId: String(categorySelect.value),
+		supplierId: String(supplierSelect.value),
 		price: Number(productPrice.value),
-		category: categorySelect.value,
-		supplier: supplierSelect.value,
-		initialQty: Number(initialQty.value),
-		reorderLevel: Number(reorderLevel.value),
-		createdAt: `${getCurrentDate()}`
+		quantity: quantity,
+		minStock: minStock,
+		status: calculateStatus(quantity, minStock),
+		createdAt: getCurrentDate()
 	};
-
-	return productObject;
 }
 
-
-// & Get date helper for >> createdAt field
-function getCurrentDate() {
-	let today = new Date()
-	today = (today.toISOString()).slice(0, today.toISOString().indexOf('T'))
-	return today;
+// ===============================
+// Form fill for edit
+// ===============================
+function fillFormWithProduct(product) {
+	productName.value = product.name || "";
+	SKU.value = product.sku || "";
+	productPrice.value = product.price ?? "";
+	categorySelect.value = String(product.categoryId ?? "");
+	supplierSelect.value = String(product.supplierId ?? "");
+	initialQty.value = product.quantity ?? "";
+	reorderLevel.value = product.minStock ?? "";
 }
 
-const addProductBtn = document.querySelector("#addProductBtn");
-
-// * Products Selectors
-const tableBody = document.querySelector("#tableBody");
-const paginationContainer = document.getElementById("pagination");
-const searchByProductName = document.getElementById("searchByProductName");
-const formSelect = document.getElementById("formSelect");
-
-// * Modal selectors
-const modal = document.querySelector("#modal");
-const modalOverlay = document.querySelector("#modalOverlay");
-const productName = document.getElementById('productName')
-const SKU = document.getElementById('productSKU')
-const productPrice = document.getElementById('productPrice')
-const categorySelect = document.getElementById('category')
-const supplierSelect = document.getElementById('supplier')
-const initialQty = document.getElementById('initialQty')
-const reorderLevel = document.getElementById('reorderLevel')
-const cancelModal = document.querySelector("#cancelBtn");
-const saveProduct = document.getElementById('saveProduct')
-
-
-// & Products Helpers
-function getStockClass(status) {
-	if (!status) return "stock-normal";
-
-	status = status.toLowerCase();
-
-	if (status === "out_of_stock") return "stock-critical";
-	if (status === "low_stock") return "stock-warning";
-	if (status === "in_stock") return "stock-normal";
-
-	return "stock-normal";
-}
-
-function getStatusText(status) {
-	if (!status) return "Unknown";
-
-	status = status.toLowerCase();
-
-	if (status === "in_stock") return "In Stock";
-	if (status === "low_stock") return "Low Stock";
-	if (status === "out_of_stock") return "Out of Stock";
-
-	return status;
-}
-
-function getProductIcon(category) {
-	const cat = category.toLowerCase();
-
-	if (cat.includes("electronics")) return "fa-keyboard";
-	if (cat.includes("storage")) return "fa-box";
-	if (cat.includes("accessories")) return "fa-headphones";
-	if (cat.includes("office")) return "fa-briefcase";
-	return "fa-box";
-}
-
-// ^ render categories in select
-async function renderCategoriesSelect() {
-	let html = ``
-	const categoriesData = await getCategoriesMap();
-	console.log(categoriesData)
-	for ([key, value] of Object.entries(categoriesData)) {
-		console.log(key, value)
-		html += `<option value="${key}">${value}</option>`;
-	}
-	categorySelect.innerHTML += html;
-}
-async function renderSuppliersSelect() {
-	let html = ``
-	const suppliersData = await getSuppliersMap();
-	console.log(suppliersData)
-	for ([key, value] of Object.entries(suppliersData)) {
-		console.log(key, value)
-		html += `<option value="${key}">${value}</option>`;
-	}
-	supplierSelect.innerHTML += html;
-}
-
-// ^ Modal Actions
-
-addProductBtn.addEventListener("click", function () {
-	showModal();
-});
-
-cancelModal.addEventListener("click", function () {
-	closeModal();
-});
-
-modalOverlay.addEventListener("click", function (e) {
-	if (e.target === modalOverlay) {
-		closeModal();
-	}
-});
-
-document.addEventListener("click", function (e) {
-	if (e.target.classList.contains("editProductBtn")) {
-		showModal();
-	}
-});
-
-document.addEventListener('keydown', function (e) {
-	if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-		closeModal();
-	}
-})
-
-// ^ Page load
-document.addEventListener("DOMContentLoaded", function () {
-	renderCategoriesSelect()
-	renderSuppliersSelect()
-	renderProducts();
-});
-
-// ^ Search listener
-searchByProductName.addEventListener("input", function () {
-	state.page = 1;
-	renderProducts();
-});
-
-// ^ Filter Listener
-formSelect.addEventListener("change", function () {
-	state.page = 1;
-	renderProducts();
-});
-
-// * Filter Function according to quantity
-function filterProductsByStatus(products, filterValue) {
-	if (filterValue === "") return products;
-
-	return products.filter(function (product) {
-		return (product.status || "")
-			.toLowerCase()
-			=== filterValue.toLowerCase();
-	});
-}
-
-// & Get categories
-async function getCategoriesMap() {
-	const categoriesResponse = await getData("categories");
-	const categories = categoriesResponse.data;
-
-	const categoryMap = {};
-	categories.forEach(function (cat) {
-		categoryMap[cat.id] = cat.name;
-	});
-	return categoryMap;
-}
-
-
-async function getSuppliersMap() {
-	const suppliersResponse = await getData("suppliers")
-	const suppliers = suppliersResponse.data
-
-	const suppliersMap = {}
-	suppliers.forEach(function (supp) {
-		suppliersMap[supp.id] = supp.name;
-	})
-	return suppliersMap;
-}
-
-
-// & Rendering Data Function
-
+// ===============================
+// Render products
+// ===============================
 async function renderProducts() {
 	try {
+		const productsResponse = await getData("products");
+		let products = productsResponse.data;
 
-
-		let products = [];
-		const searchValue = searchByProductName.value.trim();
+		const searchValue = searchByProductName.value.trim().toLowerCase();
 		const filterValue = formSelect.value;
 
-		if (searchValue !== "" || filterValue !== "") {
-			let allProducts = (await getData("products")).data;
-
-			//^  SEARCH
-			if (searchValue !== "") {
-				allProducts = allProducts.filter(function (product) {
-					return (product.name || "")
-						.toLowerCase()
-						.includes(searchValue);
-				});
-			}
-
-			// ^  FILTER
-			if (filterValue !== "") {
-				allProducts = filterProductsByStatus(allProducts, filterValue);
-			}
-
-			state.totalCount = allProducts.length;
-
-			let start = (state.page - 1) * state.limit;
-			let end = start + state.limit;
-
-			products = allProducts.slice(start, end);
-		} else {
-			const productsResponse = await getData(
-				"products",
-				`?_page=${state.page}&_per_page=${state.limit}`
-			);
-
-			products = productsResponse.data.data;
-			state.totalCount = productsResponse.data.items;
+		if (searchValue) {
+			products = products.filter(function (product) {
+				return String(product.name || "")
+					.toLowerCase()
+					.includes(searchValue);
+			});
 		}
 
-		const categoryMap = await getCategoriesMap()
+		products = filterProductsByStatus(products, filterValue);
 
-		if (!products.length) {
+		state.totalCount = products.length;
+
+		const categoryMap = await getCategoriesMap();
+
+		const start = (state.page - 1) * state.limit;
+		const end = start + state.limit;
+		const paginatedProducts = products.slice(start, end);
+
+		if (!paginatedProducts.length) {
 			tableBody.innerHTML = `
-				<tr>
-					<td colspan="7" style="text-align:center;">No products found</td>
-				</tr>
-			`;
-
+        <tr>
+          <td colspan="7" style="text-align:center;">No products found</td>
+        </tr>
+      `;
 			renderPagination(paginationContainer, state, renderProducts);
 			return;
 		}
 
-		tableBody.innerHTML = products
+		tableBody.innerHTML = paginatedProducts
 			.map(function (product) {
-				const categoryName = categoryMap[product.categoryId] || "Unknown";
+				const categoryName = categoryMap[String(product.categoryId)] || "Unknown";
 				const stockClass = getStockClass(product.status);
 				const statusText = getStatusText(product.status);
 				const iconClass = getProductIcon(categoryName);
 
 				return `
-					<tr>
-						<td>
-							<div class="product-cell">
-								<div class="product-icon">
-									<i class="fa-solid ${iconClass}"></i>
-								</div>
-								<div class="product-info">
-									<h6>${product.name}</h6>
-								</div>
-							</div>
-						</td>
-						<td>${categoryName}</td>
-						<td>${product.price}</td>
-						<td class="${stockClass}">${product.quantity}</td>
-						<td class="status ${stockClass}">
-							<i class="fa-solid fa-circle"></i> ${statusText}
-						</td>
-						<td>
-							<button class="editProductBtn" data-type="Edit" data-id="${product.id}">Edit</button>
-						</td>
-						<td>
-							<button class="removeProductBtn" data-id="${product.id}">Remove</button>
-						</td>
-					</tr>
-				`;
+          <tr>
+            <td>
+              <div class="product-cell">
+                <div class="product-icon">
+                  <i class="fa-solid ${iconClass}"></i>
+                </div>
+                <div class="product-info">
+                  <h6>${escapeHTML(product.name)}</h6>
+                </div>
+              </div>
+            </td>
+            <td>${escapeHTML(categoryName)}</td>
+            <td>$${Number(product.price).toLocaleString()}</td>
+            <td class="${stockClass}">${product.quantity}</td>
+            <td class="status ${stockClass}">
+              <i class="fa-solid fa-circle"></i> ${statusText}
+            </td>
+            <td>
+              <button class="editProductBtn" data-id="${product.id}">Edit</button>
+            </td>
+            <td>
+              <button class="removeProductBtn" data-id="${product.id}">Remove</button>
+            </td>
+          </tr>
+        `;
 			})
 			.join("");
 
 		renderPagination(paginationContainer, state, renderProducts);
 	} catch (error) {
-		tableBody.innerHTML = `
-			<tr>
-				<td colspan="7" style="text-align:center; color:red;">Failed to load products</td>
-			</tr>
-		`;
 		console.error(error);
+		tableBody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align:center; color:red;">Failed to load products</td>
+      </tr>
+    `;
 	}
 }
 
+// ===============================
+// Add / Update
+// ===============================
+saveProduct.addEventListener("click", async function (e) {
+	e.preventDefault();
+
+	const productObject = getProductFormData();
+	if (!productObject) return;
+
+	try {
+		if (state.editingId) {
+			const oldProductResponse = await getData(`products/${state.editingId}`);
+			const oldProduct = oldProductResponse.data;
+
+			const updatedProduct = {
+				...oldProduct,
+				...productObject
+			};
+
+			await putData("products", state.editingId, updatedProduct);
+		} else {
+			await postData("products", productObject);
+		}
+
+		closeModal();
+		resetForm();
+		state.page = 1;
+		await renderProducts();
+	} catch (error) {
+		console.error(error);
+		alert("Failed to save product");
+	}
+});
+
+// ===============================
+// Event delegation
+// ===============================
+document.addEventListener("click", async function (e) {
+	const editBtn = e.target.closest(".editProductBtn");
+	if (editBtn) {
+		try {
+			const id = editBtn.dataset.id;
+			const response = await getData(`products/${id}`);
+			const product = response.data;
+
+			state.editingId = id;
+			modalType.textContent = "Edit";
+			fillFormWithProduct(product);
+			showModal();
+		} catch (error) {
+			console.error(error);
+			alert("Failed to load product data");
+		}
+		return;
+	}
+
+	const removeBtn = e.target.closest(".removeProductBtn");
+	if (removeBtn) {
+		const id = removeBtn.dataset.id;
+		const confirmed = confirm("Are you sure you want to remove this product?");
+		if (!confirmed) return;
+
+		try {
+			await deleteData("products", id);
+
+			const possiblePages = Math.ceil((state.totalCount - 1) / state.limit);
+			if (state.page > possiblePages && state.page > 1) {
+				state.page--;
+			}
+
+			await renderProducts();
+		} catch (error) {
+			console.error(error);
+			alert("Failed to remove product");
+		}
+	}
+});
+
+// ===============================
+// Modal actions
+// ===============================
+addProductBtn.addEventListener("click", function () {
+	resetForm();
+	modalType.textContent = "Add";
+	showModal();
+});
+
+cancelBtn.addEventListener("click", function (e) {
+	e.preventDefault();
+	closeModal();
+	resetForm();
+});
+
+modalOverlay.addEventListener("click", function () {
+	closeModal();
+	resetForm();
+});
+
+document.addEventListener("keydown", function (e) {
+	if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+		closeModal();
+		resetForm();
+	}
+});
+
+// ===============================
+// Search / filter
+// ===============================
+searchByProductName.addEventListener("input", function () {
+	state.page = 1;
+	renderProducts();
+});
+
+formSelect.addEventListener("change", function () {
+	state.page = 1;
+	renderProducts();
+});
 
 
-// addProductBtn.addEventListener('click', function (e) {
-// 	e.preventDefault()
+// ^ Export button 
 
 
-// })
+
+//^ Initialization
+
+document.addEventListener("DOMContentLoaded", async function () {
+	await renderCategoriesSelect();
+	await renderSuppliersSelect();
+	await renderProducts();
+});
