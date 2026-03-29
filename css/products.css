@@ -70,15 +70,21 @@ th[colspan="2"] {
   margin: 0;
   font-weight: 700;
 }
-.stock-critical {
-  color: #c7485b !important;
-  font-weight: bold;
-}
 
 .stock-normal {
   color: #5d5a85 !important;
   font-weight: bold;
 }
+.stock-warning {
+  color: var(--activity-yellow) !important;
+  font-weight: bold;
+}
+.stock-critical {
+  color: #c7485b !important;
+  font-weight: bold;
+}
+
+
 .editProductBtn {
   background: var(--primary);
   color: white;

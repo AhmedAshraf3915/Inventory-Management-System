@@ -190,9 +190,9 @@
       "supplierId": 8,
       "price": 900,
       "cost": 700,
-      "quantity": 5,
+      "quantity": 0,
       "minStock": 5,
-      "status": "in_stock",
+      "status": "out_of_stock",
       "description": "Network switch",
       "createdAt": "2026-03-22"
     },
@@ -563,52 +563,54 @@
   ],
   "categories": [
     {
-      "id": 1,
       "name": "Accessories",
-      "description": "Keyboards, mice, headsets, and other peripheral accessories"
+      "description": "Keyboards, mice, headsets, and other peripheral accessories",
+      "productsCount": 10,
+      "status": "active",
+      "id": "1"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Displays",
       "description": "Monitors, screens, and display units for workstations"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Computers",
       "description": "Desktops, laptops, and all-in-one computing systems"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Furniture",
       "description": "Office desks, chairs, and workspace furniture"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Office Equipment",
       "description": "Printers, scanners, projectors, and office machines"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Networking",
       "description": "Routers, switches, access points, and network hardware"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Storage",
       "description": "Hard drives, SSDs, USB drives, and storage solutions"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Mobile Devices",
       "description": "Smartphones, tablets, and portable smart devices"
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Cameras",
       "description": "Digital cameras, webcams, and photography equipment"
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Power & Cables",
       "description": "Power strips, adapters, charging cables, and connectors"
     }

@@ -8,26 +8,97 @@ const state = {
 	totalCount: 0
 };
 
-// * Modal Selectors
+// ^ Check validation for product modal inputs 
+function getProductFormData() {
+	validateInputs(/^[A-Za-z0-9\s]{3,}$/, productName, "Product name must be at least 3 characters");
+	validateInputs(/^[A-Za-z0-9-]{3,}$/, SKU, "SKU must contain letters, numbers or -");
+	validateInputs(/^\d+(\.\d{1,2})?$/, productPrice, "Enter a valid price");
+	validateInputs(/^\d+$/, initialQty, "Quantity must be a valid number");
+	validateInputs(/^\d+$/, reorderLevel, "Reorder level must be a valid number");
+
+	validateSelect(productCategory);
+	validateSelect(productSupplier);
+
+	const allValid =
+		productName.checkValidity() &&
+		SKU.checkValidity() &&
+		productPrice.checkValidity() &&
+		initialQty.checkValidity() &&
+		reorderLevel.checkValidity() &&
+		productCategory.checkValidity() &&
+		productSupplier.checkValidity();
+
+	if (!allValid) {
+		return null;
+	}
+
+	const productObject = {
+		name: productName.value.trim(),
+		sku: SKU.value.trim(),
+		price: Number(productPrice.value),
+		category: categorySelect.value,
+		supplier: supplierSelect.value,
+		initialQty: Number(initialQty.value),
+		reorderLevel: Number(reorderLevel.value),
+		createdAt: `${getCurrentDate()}`
+	};
+
+	return productObject;
+}
+
+
+// & Get date helper for >> createdAt field
+function getCurrentDate() {
+	let today = new Date()
+	today = (today.toISOString()).slice(0, today.toISOString().indexOf('T'))
+	return today;
+}
+
 const addProductBtn = document.querySelector("#addProductBtn");
-const modal = document.querySelector("#modal");
-const modalOverlay = document.querySelector("#modalOverlay");
-const cancelModal = document.querySelector("#cancelBtn");
 
 // * Products Selectors
 const tableBody = document.querySelector("#tableBody");
 const paginationContainer = document.getElementById("pagination");
+const searchByProductName = document.getElementById("searchByProductName");
+const formSelect = document.getElementById("formSelect");
+
+// * Modal selectors
+const modal = document.querySelector("#modal");
+const modalOverlay = document.querySelector("#modalOverlay");
+const productName = document.getElementById('productName')
+const SKU = document.getElementById('productSKU')
+const productPrice = document.getElementById('productPrice')
+const categorySelect = document.getElementById('category')
+const supplierSelect = document.getElementById('supplier')
+const initialQty = document.getElementById('initialQty')
+const reorderLevel = document.getElementById('reorderLevel')
+const cancelModal = document.querySelector("#cancelBtn");
+const saveProduct = document.getElementById('saveProduct')
 
 
 // & Products Helpers
-function getStockClass(quantity) {
-	if (quantity <= 10) return "stock-critical";
+function getStockClass(status) {
+	if (!status) return "stock-normal";
+
+	status = status.toLowerCase();
+
+	if (status === "out_of_stock") return "stock-critical";
+	if (status === "low_stock") return "stock-warning";
+	if (status === "in_stock") return "stock-normal";
+
 	return "stock-normal";
 }
 
-function getStatusText(quantity) {
-	if (quantity <= 10) return "Low Stock";
-	return "In Stock";
+function getStatusText(status) {
+	if (!status) return "Unknown";
+
+	status = status.toLowerCase();
+
+	if (status === "in_stock") return "In Stock";
+	if (status === "low_stock") return "Low Stock";
+	if (status === "out_of_stock") return "Out of Stock";
+
+	return status;
 }
 
 function getProductIcon(category) {
@@ -38,6 +109,28 @@ function getProductIcon(category) {
 	if (cat.includes("accessories")) return "fa-headphones";
 	if (cat.includes("office")) return "fa-briefcase";
 	return "fa-box";
+}
+
+// ^ render categories in select
+async function renderCategoriesSelect() {
+	let html = ``
+	const categoriesData = await getCategoriesMap();
+	console.log(categoriesData)
+	for ([key, value] of Object.entries(categoriesData)) {
+		console.log(key, value)
+		html += `<option value="${key}">${value}</option>`;
+	}
+	categorySelect.innerHTML += html;
+}
+async function renderSuppliersSelect() {
+	let html = ``
+	const suppliersData = await getSuppliersMap();
+	console.log(suppliersData)
+	for ([key, value] of Object.entries(suppliersData)) {
+		console.log(key, value)
+		html += `<option value="${key}">${value}</option>`;
+	}
+	supplierSelect.innerHTML += html;
 }
 
 // ^ Modal Actions
@@ -68,33 +161,105 @@ document.addEventListener('keydown', function (e) {
 	}
 })
 
+// ^ Page load
 document.addEventListener("DOMContentLoaded", function () {
-	console.log(tableBody)
+	renderCategoriesSelect()
+	renderSuppliersSelect()
 	renderProducts();
 });
+
+// ^ Search listener
+searchByProductName.addEventListener("input", function () {
+	state.page = 1;
+	renderProducts();
+});
+
+// ^ Filter Listener
+formSelect.addEventListener("change", function () {
+	state.page = 1;
+	renderProducts();
+});
+
+// * Filter Function according to quantity
+function filterProductsByStatus(products, filterValue) {
+	if (filterValue === "") return products;
+
+	return products.filter(function (product) {
+		return (product.status || "")
+			.toLowerCase()
+			=== filterValue.toLowerCase();
+	});
+}
+
+// & Get categories
+async function getCategoriesMap() {
+	const categoriesResponse = await getData("categories");
+	const categories = categoriesResponse.data;
+
+	const categoryMap = {};
+	categories.forEach(function (cat) {
+		categoryMap[cat.id] = cat.name;
+	});
+	return categoryMap;
+}
+
+
+async function getSuppliersMap() {
+	const suppliersResponse = await getData("suppliers")
+	const suppliers = suppliersResponse.data
+
+	const suppliersMap = {}
+	suppliers.forEach(function (supp) {
+		suppliersMap[supp.id] = supp.name;
+	})
+	return suppliersMap;
+}
 
 
 // & Rendering Data Function
 
 async function renderProducts() {
 	try {
-		const productsResponse = await getData(
-			"products",
-			`?_page=${state.page}&_per_page=${state.limit}`
-		);
 
-		const categoriesResponse = await getData("categories");
 
-		const products = productsResponse.data.data;
-		const categories = categoriesResponse.data;
+		let products = [];
+		const searchValue = searchByProductName.value.trim();
+		const filterValue = formSelect.value;
 
-		state.totalCount = productsResponse.data.items;
+		if (searchValue !== "" || filterValue !== "") {
+			let allProducts = (await getData("products")).data;
 
-		const categoryMap = {};
+			//^  SEARCH
+			if (searchValue !== "") {
+				allProducts = allProducts.filter(function (product) {
+					return (product.name || "")
+						.toLowerCase()
+						.includes(searchValue);
+				});
+			}
 
-		categories.forEach(function (cat) {
-			categoryMap[cat.id] = cat.name;
-		});
+			// ^  FILTER
+			if (filterValue !== "") {
+				allProducts = filterProductsByStatus(allProducts, filterValue);
+			}
+
+			state.totalCount = allProducts.length;
+
+			let start = (state.page - 1) * state.limit;
+			let end = start + state.limit;
+
+			products = allProducts.slice(start, end);
+		} else {
+			const productsResponse = await getData(
+				"products",
+				`?_page=${state.page}&_per_page=${state.limit}`
+			);
+
+			products = productsResponse.data.data;
+			state.totalCount = productsResponse.data.items;
+		}
+
+		const categoryMap = await getCategoriesMap()
 
 		if (!products.length) {
 			tableBody.innerHTML = `
@@ -110,8 +275,8 @@ async function renderProducts() {
 		tableBody.innerHTML = products
 			.map(function (product) {
 				const categoryName = categoryMap[product.categoryId] || "Unknown";
-				const stockClass = getStockClass(product.quantity);
-				const statusText = getStatusText(product.quantity);
+				const stockClass = getStockClass(product.status);
+				const statusText = getStatusText(product.status);
 				const iconClass = getProductIcon(categoryName);
 
 				return `
@@ -133,7 +298,7 @@ async function renderProducts() {
 							<i class="fa-solid fa-circle"></i> ${statusText}
 						</td>
 						<td>
-							<button class="editProductBtn" data-id="${product.id}">Edit</button>
+							<button class="editProductBtn" data-type="Edit" data-id="${product.id}">Edit</button>
 						</td>
 						<td>
 							<button class="removeProductBtn" data-id="${product.id}">Remove</button>
@@ -147,9 +312,17 @@ async function renderProducts() {
 	} catch (error) {
 		tableBody.innerHTML = `
 			<tr>
-				<td colspan="7" style="text-align:center ; color:red;">Failed to load products</td>
+				<td colspan="7" style="text-align:center; color:red;">Failed to load products</td>
 			</tr>
 		`;
 		console.error(error);
 	}
 }
+
+
+
+// addProductBtn.addEventListener('click', function (e) {
+// 	e.preventDefault()
+
+
+// })

@@ -59,7 +59,7 @@
           </div> <!--form-select-->
 
           <div class="col-1">
-            <div class="sorting border text-center py-1 px-2 rounded-3">
+            <div class="sorting border text-center py-1 px-2 rounded-3" id="sortSupplierName">
               <img src="./assets/IconSort.png" class="m-auto mt-2">
             </div> <!--sorting-->
           </div>
@@ -86,76 +86,14 @@
             </thead>
 
             <tbody>
-              <!-- <tr> -->
-              <!-- <td>
-                  <p> <span class="first-latter rounded-4 text-center p-2" id="firstLatter">GL</span> Global Logistics
-                  </p>
-                </td>
-                <td>Sarah Chen</td>
-                <td>+1 555-0101</td>
-                <td><a href="http://gmail.com">sarah@globallog.com</a></td>
-                <td>123 Port St</td>
-                <td>
-                  <div id="statusActive" class="status_active">
-                    <p> <span class="dot-color"> </span> Active </p>
-                  </div> status_active -->
-              <!-- </td>
-                <td>
-                  <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                  <button class="btn">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p> <span class="first-latter rounded-4 text-center p-2" id="firstLatter">GL</span> Global Logistics
-                  </p>
-                </td>
-                <td>Sarah Chen</td>
-                <td>+1 555-0101</td>
-                <td><a href="http://gmail.com">sarah@globallog.com</a></td>
-                <td>123 Port St</td>
-                <td>
-                  <div id="statusInactive" class="status_inactive">
-                    <p> <span class="dot-color"> </span> Inactive </p>
-                  </div> status_active -->
-              <!-- </td>
-                <td>
-                  <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                  <button class="btn">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </button>
-                </td>
-              </tr> -->
             </tbody>
 
           </table>
         </div>
         <!-- Pagination -->
-        <div class="d-flex flex-column flex-md-row justify-content-between px-4 py-1">
-          <p id="showPageNumber" class="show-page-number">Showing 1 to 5 of 42 suppliers</p>
-          <nav aria-label="Page navigation example">
-            <ul class="pagination border-0 rounded-3">
-              <li class="page-item p-1 page-number" id="pageNumber">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
-                </a>
-              </li>
-              <li class="page-item text-center p-1"><a class="page-link page-active" href="#">1</a></li>
-              <li class="page-item p-1"><a class="page-link" href="#">2</a></li>
-              <li class="page-item p-1"><a class="page-link" href="#">3</a></li>
-              <li class="page-item p-1">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <div class="table-footer">
+          <div id="pagination" class="container w-50 d-flex align-items-center justify-content-between"> </div>
+
         </div>
       </section> <!--table-->
 
@@ -228,8 +166,8 @@
 
   <!-- Scripts -->
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/utils.js"></script>
   <script src="js/api.js"></script>
+  <script src="js/utils.js"></script>
   <script src="js/suppliers.js"></script>
 </body>
 
