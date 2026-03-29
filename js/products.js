@@ -180,7 +180,7 @@ async function renderSuppliersSelect() {
 // ===============================
 function getProductFormData() {
 	validateInputs(
-		/^[A-Za-z0-9\s]{3,}$/,
+		/^[A-Za-z0-9\s-]{3,100}$/,
 		productName,
 		"Product name must be at least 3 characters"
 	);
