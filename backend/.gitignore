@@ -1,0 +1,9 @@
+# Backend specific ignores
+node_modules/
+.DS_Store
+*.log
+.env
+npm-debug.log*
+
+# JSON server database backups or other data files if needed
+# data/db.json  # Note: You might want to keep db.json tracked if it contains initial data
