@@ -1,6 +1,28 @@
 {
-    "name": "invenTrack",
+    "name": "inventrack",
     "version": "1.0.0",
+    "description": "A web-based inventory management system with dashboard, REST API, and reporting.",
+    "main": "api/index.js",
+    "module": "api/index.js",
+    "exports": {
+        ".": "./api/index.js"
+    },
+    "files": [
+        "api/"
+    ],
+    "keywords": [
+        "inventory",
+        "dashboard",
+        "json-server",
+        "management",
+        "node-module"
+    ],
+    "author": "Mohamed Wael Salem",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
     "dependencies": {
         "json-server": "^0.17.4"
     }

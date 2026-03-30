@@ -3,7 +3,6 @@ node_modules/
 .DS_Store
 *.log
 .env
-.vscode/
 npm-debug.log*
 
 # JSON server database backups or other data files if needed
