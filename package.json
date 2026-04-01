@@ -33,7 +33,7 @@
         "url": "git+https://github.com/MoSalem149/Inventory-Management-System.git"
     },
     "scripts": {
-        "postinstall": "node -e \"const fs=require('fs'),path=require('path');const src=__dirname;const dest=process.env.INIT_CWD||process.cwd();['api','backend','frontend','vercel.json','README.md'].forEach(f=>{const s=path.join(src,f),d=path.join(dest,f);if(fs.existsSync(s)){fs.cpSync(s,d,{recursive:true});console.log('\\u2705 Copied: '+f);}});console.log('\\n\\ud83c\\udf89 Inventrack project files copied!');\""
+        "postinstall": "node -e \"const fs=require('fs');const path=require('path');if(process.env.VERCEL||process.env.CI||process.env.SKIP_POSTINSTALL){console.log('Skipping Inventrack postinstall');process.exit(0)}const src=process.cwd();const dest=process.env.INIT_CWD||process.cwd();if(path.resolve(src)===path.resolve(dest)){console.log('Skipping self-copy');process.exit(0)}['api','backend','frontend','vercel.json','README.md'].forEach(f=>{const s=path.join(src,f),d=path.join(dest,f);if(fs.existsSync(s)&&path.resolve(s)!==path.resolve(d)){fs.cpSync(s,d,{recursive:true,force:true});console.log('✅ Copied: '+f)}});console.log('\\n🎉 Inventrack project files copied!');\""
     },
     "dependencies": {
         "json-server": "^0.17.4"
