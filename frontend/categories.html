@@ -1,143 +1,194 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categories Page</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Categories Page</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/categories.css" />
+  </head>
 
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/categories.css" />
-</head>
+  <body>
+    <div id="top-navbar"></div>
+    <div id="second-navbar"></div>
 
-<body>
-  <div id="top-navbar"></div>
-  <div id="second-navbar"></div>
-
-  <main>
-    <div class="container">
-      <div class="main-content w-100">
-        <div class="page-title d-flex justify-content-between align-items-center">
-          <div>
-            <h1 class="fw-bold">Categories</h1>
-            <p class="m-0" style="color: var(--primary)">
-              Manage product categories
-            </p>
+    <main>
+      <div class="container">
+        <div class="main-content w-100">
+          <div
+            class="page-title d-flex justify-content-between align-items-center"
+          >
+            <div>
+              <h1 class="fw-bold">Categories</h1>
+              <p class="m-0" style="color: var(--primary)">
+                Manage product categories
+              </p>
+            </div>
+            <button class="add-category-btn" id="addCategoryBtn" type="button">
+              <i class="fa-solid fa-plus"></i> Add Category
+            </button>
           </div>
-          <button class="add-category-btn" id="addCategoryBtn" type="button">
-            <i class="fa-solid fa-plus"></i> Add Category
+
+          <section class="card p-4 border-0 mb-3">
+            <form class="row g-2">
+              <div class="col-9">
+                <input
+                  type="search"
+                  class="form-control rounded-4"
+                  placeholder="Search by category name or description..."
+                  id="searchByCategoryName"
+                />
+              </div>
+
+              <div class="col-2">
+                <select class="form-select" id="formSelect">
+                  <option value="all" selected>Status: All</option>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+
+              <div class="col-1">
+                <div
+                  class="sorting border text-center py-1 px-2 rounded-3"
+                  id="sortCategoryName"
+                >
+                  <img
+                    src="./assets/IconSort.png"
+                    class="m-auto mt-2"
+                    alt="sort"
+                  />
+                </div>
+              </div>
+            </form>
+          </section>
+
+          <div class="categories-card card">
+            <div class="table-responsive">
+              <table class="table categories-table">
+                <thead>
+                  <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Products</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="categoriesTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
+              <span id="inventoryTableInfo"></span>
+              <div class="pagination" id="pagination"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Background Overlay -->
+    <div class="modal-overlay-bg hidden" id="modalOverlay"></div>
+
+    <!-- Add/Edit Modal -->
+    <div class="custom-modal hidden" id="categoryModal">
+      <div class="modal-box">
+        <div
+          class="modal-header d-flex justify-content-between align-items-center mb-4"
+        >
+          <h4 class="fw-bold m-0" id="modalTitle">Add New Category</h4>
+          <button class="modal-close" id="modalClose" type="button">
+            <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
 
-        <div class="search-card card mb-4">
-          <div class="search-wrapper d-flex align-items-center gap-2">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="categorySearch" class="search-input" placeholder="Search categories..." />
-          </div>
-        </div>
-
-        <div class="categories-card card">
-          <div class="table-responsive">
-            <table class="table categories-table">
-              <thead>
-                <tr>
-                  <th>Category Name</th>
-                  <th>Description</th>
-                  <th>Products</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="categoriesTableBody"></tbody>
-            </table>
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <label class="form-label">Category Name</label>
+            <input
+              type="text"
+              class="form-control cat-input"
+              id="categoryName"
+              placeholder="e.g. Electronics"
+            />
           </div>
 
-          <div class="table-footer">
-            <span id="inventoryTableInfo"></span>
-            <div class="pagination" id="pagination"></div>
+          <div class="form-group mb-3">
+            <label class="form-label">Description</label>
+            <textarea
+              class="form-control cat-input"
+              id="categoryDescription"
+              rows="3"
+              placeholder="Short description of this category..."
+            ></textarea>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label">Products</label>
+            <input
+              type="number"
+              class="form-control cat-input"
+              id="categoryProducts"
+              placeholder="Number of products"
+            />
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="form-label">Status</label>
+            <select class="form-control cat-input" id="categoryStatus">
+              <option value="" disabled selected>Select Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+
+          <div class="d-flex gap-3 justify-content-end">
+            <button class="cancel-btn" id="cancelBtn" type="button">
+              Cancel
+            </button>
+            <button class="add-category-btn" id="saveCategoryBtn" type="button">
+              Save Category
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </main>
 
-  <!-- Background Overlay -->
-  <div class="modal-overlay-bg hidden" id="modalOverlay"></div>
-
-  <!-- Add/Edit Modal -->
-  <div class="custom-modal hidden" id="categoryModal">
-    <div class="modal-box">
-      <div class="modal-header d-flex justify-content-between align-items-center mb-4">
-        <h4 class="fw-bold m-0" id="modalTitle">Add New Category</h4>
-        <button class="modal-close" id="modalClose" type="button">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div class="form-group mb-3">
-          <label class="form-label">Category Name</label>
-          <input type="text" class="form-control cat-input" id="categoryName" placeholder="e.g. Electronics" />
-        </div>
-
-        <div class="form-group mb-3">
-          <label class="form-label">Description</label>
-          <textarea class="form-control cat-input" id="categoryDescription" rows="3"
-            placeholder="Short description of this category..."></textarea>
-        </div>
-
-        <div class="form-group mb-3">
-          <label class="form-label">Products</label>
-          <input type="number" class="form-control cat-input" id="categoryProducts" placeholder="Number of products" />
-        </div>
-
-        <div class="form-group mb-4">
-          <label class="form-label">Status</label>
-          <select class="form-control cat-input" id="categoryStatus">
-            <option value="" disabled selected>Select Status</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </div>
-
-        <div class="d-flex gap-3 justify-content-end">
-          <button class="cancel-btn" id="cancelBtn" type="button">Cancel</button>
-          <button class="add-category-btn" id="saveCategoryBtn" type="button">
-            Save Category
+    <!-- Confirm Modal -->
+    <div class="custom-modal hidden" id="confirmModal">
+      <div class="modal-box" style="max-width: 400px">
+        <div
+          class="modal-header d-flex justify-content-between align-items-center mb-3"
+        >
+          <h4 class="fw-bold m-0" id="confirmTitle">Confirm</h4>
+          <button class="modal-close" id="confirmClose" type="button">
+            <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Confirm Modal -->
-  <div class="custom-modal hidden" id="confirmModal">
-    <div class="modal-box" style="max-width: 400px;">
-      <div class="modal-header d-flex justify-content-between align-items-center mb-3">
-        <h4 class="fw-bold m-0" id="confirmTitle">Confirm</h4>
-        <button class="modal-close" id="confirmClose" type="button">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <p id="confirmMessage" class="mb-4"></p>
-        <div class="d-flex gap-3 justify-content-end">
-          <button class="cancel-btn" id="confirmCancel" type="button">Cancel</button>
-          <button class="add-category-btn" id="confirmOk" type="button">Confirm</button>
+        <div class="modal-body">
+          <p id="confirmMessage" class="mb-4"></p>
+          <div class="d-flex gap-3 justify-content-end">
+            <button class="cancel-btn" id="confirmCancel" type="button">
+              Cancel
+            </button>
+            <button class="add-category-btn" id="confirmOk" type="button">
+              Confirm
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <footer id="footer"></footer>
+    <footer id="footer"></footer>
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/categories.js"></script>
-</body>
-
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/categories.js"></script>
+  </body>
 </html>
