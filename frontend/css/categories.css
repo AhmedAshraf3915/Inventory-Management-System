@@ -285,17 +285,6 @@
   cursor: pointer;
 }
 
-.page-btn.active {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-}
-
-.page-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 @keyframes modalIn {
   from {
     opacity: 0;
