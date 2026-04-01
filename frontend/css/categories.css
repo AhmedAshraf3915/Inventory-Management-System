@@ -1,0 +1,348 @@
+/* ========================
+   Categories Page Styles
+   Matches dashboard.css conventions
+======================== */
+
+/* Page Title */
+.page-title {
+  margin: 20px 0px;
+}
+
+/* Search Card */
+.search-card {
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-sm);
+  border: none;
+}
+
+.search-wrapper {
+  width: 100%;
+  max-width: 460px;
+}
+
+.search-icon {
+  color: var(--primary);
+  font-size: 16px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Add Category Button */
+.add-category-btn {
+  padding: var(--space-3) var(--space-6);
+  border: none;
+  background-color: var(--primary);
+  color: var(--text-white);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.add-category-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.add-category-btn i {
+  color: var(--text-white);
+}
+
+/* Categories Table Card */
+.categories-card {
+  width: 100%;
+  box-shadow: var(--shadow-sm);
+  border: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--bg-card);
+}
+
+.categories-table thead th {
+  background: #f3f4f6;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.categories-table tbody td {
+  padding: 18px 16px;
+  border-top: 1px solid #eee;
+  vertical-align: middle;
+}
+
+/* Category Cell (icon + name) */
+.category-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-purple-bg {
+  background-color: var(--icon-purple-bg);
+}
+.icon-purple-bg i {
+  color: var(--primary);
+}
+
+.icon-green-bg {
+  background-color: var(--icon-green-bg);
+}
+.icon-green-bg i {
+  color: var(--success-dark);
+}
+
+.icon-yellow-bg {
+  background-color: var(--icon-yellow-bg);
+}
+.icon-yellow-bg i {
+  color: var(--warning-dark);
+}
+
+.icon-blue-bg {
+  background-color: var(--icon-blue-bg);
+}
+.icon-blue-bg i {
+  color: var(--info-dark);
+}
+
+.icon-red-bg {
+  background-color: var(--icon-red-bg);
+}
+.icon-red-bg i {
+  color: var(--danger-dark);
+}
+
+.category-name {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Description */
+.category-desc {
+  color: var(--text-secondary);
+  max-width: 340px;
+}
+
+/* Products count */
+.products-count {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Status badges */
+.cat-status {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cat-status.active {
+  background-color: var(--success-bg);
+  color: var(--success-dark);
+}
+
+.cat-status.inactive {
+  background-color: var(--bg-soft);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+}
+
+/* Action Buttons */
+.action-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.edit-btn {
+  background-color: var(--primary-soft);
+  color: var(--primary);
+}
+
+.edit-btn:hover {
+  background-color: var(--primary-light);
+  color: var(--text-white);
+}
+
+.delete-btn {
+  background-color: var(--danger-bg);
+  color: var(--danger);
+}
+
+.delete-btn:hover {
+  background-color: var(--danger);
+  color: var(--text-white);
+}
+
+/* Table Footer & Pagination — matches dashboard.css */
+/* .table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid #eee;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.pagination button {
+  border: none;
+  background: none;
+  margin: 0 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.pagination button:hover {
+  background-color: var(--bg-hover);
+}
+
+.pagination .active {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: bold;
+} */
+
+/* ========================
+   Modal
+======================== */
+.hidden {
+  display: none !important;
+}
+
+.modal-overlay-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 999;
+}
+
+.custom-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.page-btn {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  background: var(--bg-soft);
+  border: none;
+  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.cat-input {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  width: 100%;
+  color: var(--text-primary);
+  background: var(--bg-soft);
+  transition: var(--transition-fast);
+}
+
+.cat-input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.cancel-btn {
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.cancel-btn:hover {
+  background: var(--bg-hover);
+}
