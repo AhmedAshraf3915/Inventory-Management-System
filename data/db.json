@@ -550,18 +550,6 @@
       "createdAt": "2026-03-22"
     },
     {
-      "id": "0f2wwoBSHmM",
-      "name": "screen x",
-      "sku": "p-041",
-      "categoryId": "2",
-      "supplierId": "10",
-      "price": 1000,
-      "quantity": 10,
-      "minStock": 2,
-      "status": "in_stock",
-      "createdAt": "2026-03-29"
-    },
-    {
       "name": "xPhone",
       "sku": "p-044",
       "categoryId": "8",
@@ -637,13 +625,64 @@
       "description": "",
       "createdAt": "2026-03-29",
       "createdBy": "Karim Tarek"
+    },
+    {
+      "name": "Super Screen",
+      "sku": "p-049",
+      "categoryId": "2",
+      "supplierId": "4",
+      "price": 200,
+      "quantity": 10,
+      "minStock": 2,
+      "status": "in_stock",
+      "createdAt": "2026-03-30",
+      "id": "05SXC7qUq2E"
+    },
+    {
+      "name": "super phone",
+      "sku": "p-060",
+      "categoryId": "8",
+      "supplierId": "10",
+      "price": 1000,
+      "quantity": 100,
+      "minStock": 5,
+      "status": "in_stock",
+      "createdAt": "2026-03-30",
+      "id": "bvwzmRQhRzA"
+    },
+    {
+      "id": "6QFya6if9Sk",
+      "name": "My Product",
+      "sku": "P-048",
+      "supplierId": "1",
+      "price": 1150,
+      "cost": 1000,
+      "quantity": 10,
+      "minStock": 2,
+      "status": "in_stock",
+      "description": "",
+      "createdAt": "2026-03-30",
+      "createdBy": "Dina Sherif",
+      "categoryId": "kNDOeUuShzc"
+    },
+    {
+      "name": "wireless headphone",
+      "sku": "p-100",
+      "categoryId": "1",
+      "supplierId": "12",
+      "price": 1000,
+      "quantity": 10,
+      "minStock": 2,
+      "status": "in_stock",
+      "createdAt": "2026-03-30",
+      "id": "aYRnrYUL9Vg"
     }
   ],
   "categories": [
     {
-      "name": "Accessories plus",
+      "name": "Accessories",
       "description": "Keyboards, mice, headsets, and other peripheral accessories",
-      "productsCount": 10,
+      "productsCount": 20,
       "status": "active",
       "id": "1"
     },
@@ -673,11 +712,6 @@
       "description": "Routers, switches, access points, and network hardware"
     },
     {
-      "id": "7",
-      "name": "Storage",
-      "description": "Hard drives, SSDs, USB drives, and storage solutions"
-    },
-    {
       "id": "8",
       "name": "Mobile Devices",
       "description": "Smartphones, tablets, and portable smart devices"
@@ -698,6 +732,13 @@
       "productsCount": 20,
       "status": "active",
       "id": "fSCD8_DjVxM"
+    },
+    {
+      "name": "My Storage",
+      "description": "This is a big storage for yourData",
+      "productsCount": 9,
+      "status": "active",
+      "id": "kNDOeUuShzc"
     }
   ],
   "suppliers": [
@@ -721,9 +762,9 @@
     },
     {
       "id": "3",
-      "name": "Global Tech",
+      "name": "Global Tech Plus",
       "contactPerson": "Omar Hassan",
-      "phone": "01000000003",
+      "phone": "01000000001",
       "email": "s3@mail.com",
       "address": "Alexandria",
       "status": "Active"
@@ -736,15 +777,6 @@
       "email": "s4@mail.com",
       "address": "Giza",
       "status": "Active"
-    },
-    {
-      "id": "5",
-      "name": "Future Supplies",
-      "contactPerson": "Khaled Samy",
-      "phone": "01000000005",
-      "email": "s5@mail.com",
-      "address": "Cairo",
-      "status": "Inactive"
     },
     {
       "id": "6",
@@ -996,6 +1028,62 @@
       "description": "High performance laptop",
       "createdAt": "2026-03-22",
       "createdBy": "Karim Tarek"
+    },
+    {
+      "productId": "05SXC7qUq2E",
+      "productName": "hello world",
+      "type": "PRODUCT_ADDED",
+      "action": "IN",
+      "quantity": 10,
+      "previousQuantity": 0,
+      "newQuantity": 10,
+      "title": "hello world added to inventory",
+      "reason": "Initial stock",
+      "createdAt": "2026-03-30T18:49:57.559Z",
+      "createdBy": "Ahmed Hassan",
+      "id": "8jbMlueSBWA"
+    },
+    {
+      "productId": "bvwzmRQhRzA",
+      "productName": "super phone",
+      "type": "PRODUCT_ADDED",
+      "action": "IN",
+      "quantity": 100,
+      "previousQuantity": 0,
+      "newQuantity": 100,
+      "title": "super phone added to inventory",
+      "reason": "Initial stock",
+      "createdAt": "2026-03-30T18:55:48.768Z",
+      "createdBy": "Dina Sherif",
+      "id": "mACyGVh-yo8"
+    },
+    {
+      "id": "CExKXC8na6c",
+      "name": "My Product",
+      "sku": "P-048",
+      "supplierId": 1,
+      "price": 1150,
+      "cost": 1000,
+      "quantity": 10,
+      "minStock": 2,
+      "status": "in_stock",
+      "description": "",
+      "createdAt": "2026-03-30",
+      "createdBy": "Dina Sherif"
+    },
+    {
+      "productId": "aYRnrYUL9Vg",
+      "productName": "wireless headphone",
+      "type": "PRODUCT_ADDED",
+      "action": "IN",
+      "quantity": 10,
+      "previousQuantity": 0,
+      "newQuantity": 10,
+      "title": "wireless headphone added to inventory",
+      "reason": "Initial stock",
+      "createdAt": "2026-03-30T18:58:26.381Z",
+      "createdBy": "Dina Sherif",
+      "id": "ktBauKWYSFs"
     }
   ],
   "orders": [
@@ -1125,6 +1213,22 @@
       ],
       "itemsCount": 10,
       "totalCost": 200000,
+      "status": "Received"
+    },
+    {
+      "id": "J7tqsbXEwsE",
+      "supplier": "Tech Source",
+      "date": "2026-03-30",
+      "items": [
+        {
+          "product": "My Product",
+          "qty": 10,
+          "cost": 1000,
+          "lineTotal": 10000
+        }
+      ],
+      "itemsCount": 10,
+      "totalCost": 10000,
       "status": "Received"
     }
   ],

@@ -92,7 +92,7 @@ function renderChart(products, categories) {
 			return `
         <div class="chart-col d-flex flex-column justify-content-end align-items-center" style="height: 300px;">
           <div class="level" style="height:${height}px;"></div>
-          <small style="margin-top: 8px; text-align: center; line-height: 1.2; min-height: 30px; display: flex; align-items: flex-start; justify-content: center;">
+          <small style="margin-top: 8px; text-align: center; line-height: 1.2; min-height: 50px; display: flex; align-items: flex-start; justify-content: center;">
             ${item.name}
           </small>
         </div>
