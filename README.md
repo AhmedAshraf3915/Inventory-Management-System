@@ -22,4 +22,4 @@ Refer to the `backend/README.md` for detailed instructions on setting up and run
 
 ## Deployment
 
-This project is configured for deployment on Vercel. See the [Vercel deployment section](#vercel-deployment) for more details.
+See live demo here https://inventrack-sys.vercel.app/
